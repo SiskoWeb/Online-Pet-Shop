@@ -3,6 +3,10 @@ import styles from './ProductCard.module.scss'
 // import img from '../../assets/Products/p1.png'
 
 export default function ProductCard({ img }) {
+
+
+  
+
     return (
 
         <div className={styles.productCard}>
@@ -38,7 +42,7 @@ export default function ProductCard({ img }) {
 
 
                 <div className={`${styles.icons}`} >
-                    <i className={`${styles.cart} fa-brands fa-opencart`} ></i>
+                    <i className={`${styles.cart}  fa-brands fa-opencart`} ></i>
                     <i className={`${styles.heart} fa-regular fa-heart `} ></i>
 
                 </div>
