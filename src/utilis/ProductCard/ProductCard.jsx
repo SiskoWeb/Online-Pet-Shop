@@ -5,7 +5,7 @@ import styles from './ProductCard.module.scss'
 export default function ProductCard({ img }) {
 
 
-  
+
 
     return (
 
@@ -32,7 +32,7 @@ export default function ProductCard({ img }) {
                         <p>(152)</p>
                     </div>
                     <div className={styles.text} >
-                        <a href='/ProductLin'>  <p>Food Name</p></a>
+                        <a href='/product'>  <p>Food Name</p></a>
                         <p>$25.75</p>
 
 

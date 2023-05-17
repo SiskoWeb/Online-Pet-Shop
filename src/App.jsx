@@ -8,17 +8,23 @@ import ProductsHome from './User/Components/ProductsHome/ProductsHome/ProductsHo
 import Footer from './utilis/Footer/Footer'
 import HomePage from './User/Pages/HomePage/HomePage'
 import ProductDetails from './User/Pages/ProductDetails/ProductDetails'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartPage from './User/Pages/CartPage/CartPage'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-
-    <div className='App'>
+    <BrowserRouter>
       <NavBar />
-      <ProductDetails />
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Product" element={<ProductDetails />} />
+        <Route path="/cart" element={<CartPage />} />
 
+
+      </Routes>
+    </BrowserRouter>
 
   )
 }
