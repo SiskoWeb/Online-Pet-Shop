@@ -6,7 +6,7 @@
 
   .card1 {
     border-radius: 15px;
-    background-color: #cfe4ff;
+    background-color: #ffead1;
     padding: 15px 40px;
     width: 200px;
     display: flex;
@@ -100,9 +100,7 @@
     background-color: #e96161 !important;
     color: white !important;
   }
+  .productCard:hover img {
+    transform: scale(1.1);
+  }
 }
-
-.productCard:hover img {
-  transform: scale(1.1);
-}
-

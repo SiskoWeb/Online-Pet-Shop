@@ -13,7 +13,7 @@ export default function Categories() {
         <div className={styles.categories}>
             <p>Categories</p>
             <div className={styles.list}>
-                <CategoryCard img={img1} color={'#ffe3f8'} />
+                <CategoryCard img={img1} color={'#cfe4ff'} />
                 <CategoryCard img={img2} color={'#deeeed'} />
                 <CategoryCard img={img3} color={'#fff5b9'} />
                 <CategoryCard img={img4} color={'#ececec'} />

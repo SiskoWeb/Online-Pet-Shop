@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Navbar.module.scss'
 import Logo from '../../../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function NavBar() {
     const [cartItems, setCartItems] = useState(1)
@@ -24,12 +25,16 @@ export default function NavBar() {
 
 
                 <div className={styles.links}>
-                    <div className={styles.logo}><img src={Logo}></img></div>
-                    <a href='/'>Shop now</a>
-                    <a href='/'>About us</a>
+                    <div className={styles.logo}> <Link to='/' ><img src={Logo}></img></Link></div>
+
 
                 </div>
+                <div className={styles.links}>
 
+                    <Link to='/'>Shop now</Link>
+                    <Link to='/'>About us</Link>
+
+                </div>
                 <div className={styles.cart}>
                     <div className={styles.inputClass}>
                         <input type='text' placeholder='search for...'></input>
@@ -38,8 +43,8 @@ export default function NavBar() {
 
 
                     <div className={styles.cartMain}>
-                        {isCart ? <div className={styles.cartActive}>3</div> : null}
-                        <i className={`${styles.cart}  fa-brands fa-opencart`} ></i>
+                        <Link to="/cart" >  {isCart ? <div className={styles.cartActive}>3</div> : null}
+                            <i className={`${styles.cart}  fa-brands fa-opencart`} ></i></Link>
 
                     </div>
 

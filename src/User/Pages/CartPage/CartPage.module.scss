@@ -5,10 +5,13 @@
 
   display: flex;
   flex-direction: column;
-
+  height: 100dvh;
+  button {
+    cursor: pointer;
+  }
   input {
     width: 100%;
-    margin: 15px 0;
+
     padding: 10px 5px;
     font-size: 14px;
     border-width: 0px;
@@ -19,7 +22,9 @@
     border-radius: 4px;
     border: 1px solid black;
   }
-
+  input:focus {
+    border: 1px solid #d154b2;
+  }
   .cart {
     display: flex;
     flex-direction: row;
@@ -30,13 +35,14 @@
     flex-basis: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     width: 100%;
     height: 100%;
   }
 
   form {
+    margin-top: 15px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -46,7 +52,7 @@
     max-width: 100%;
     label {
       display: flex;
-
+      margin: 5px 0;
       flex-direction: column;
     }
     textarea {
@@ -61,7 +67,7 @@
       border-radius: 4px;
       border: 1px solid black;
       height: 100px;
-      overflow: hidden;
+      resize: none;
     }
   }
 
@@ -74,6 +80,15 @@
   textarea {
     font-size: 20px;
     width: 100%;
+  }
+
+  .addressBtn {
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    width: 50%;
+    border: none;
   }
 
   .items {
@@ -92,8 +107,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
+    // justify-content: center;
+    padding: 20px 10px;
+    width: 100%;
+    margin-top: 10px;
+    row-gap: 20px;
     img {
       width: 70%;
     }
@@ -113,13 +131,95 @@
   .orderBtn {
     border: none;
 
-    background-color: black;
+    background-color: #b04a18;
     color: white;
     padding: 10px 15px;
     border-radius: 15px;
-    width: 60%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .Item {
+    display: flex;
+    // column-gap: 20px;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 20px;
+
+    * > {
+      flex-basis: 100%;
+    }
+    .imgProdctCart {
+      width: 100%;
+      img {
+        background-color: #cfe4ff;
+        border-radius: 10px;
+        width: 50%;
+      }
+    }
+
+    .textProductCart {
+      width: 100%;
+      p {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      button {
+        border: none;
+        background-color: transparent;
+        color: red;
+      }
+    }
+    .QuantityCart {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 5px;
+      i {
+        width: 19px;
+        height: 19px;
+        display: flex;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #f2d2aa;
+        border: none;
+        color: #fff;
+      }
+    }
+    .prictProductCart {
+      width: 100%;
+    }
+  }
+}
+.DisplayAddressContainer {
+  display: flex;
+  margin-top: 20px;
+  align-items: start;
+  padding: 20px 10px;
+  justify-content: space-around;
+  width: 100%;
+}
+.DisplayAddress {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  row-gap: 20px;
+  p {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+
+    span {
+      font-weight: 200;
+    }
   }
 }
