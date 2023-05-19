@@ -10,15 +10,19 @@ export default function CategoriesAdmin() {
 
     return (
         <div className={styles.categoriesAdmin}>
-            <h1>Categories</h1>
 
-            <div className={styles.col1}>
-                <p> Add New Category</p>
-                <div className={styles.addCategory}>
+
+            <div className={styles.addCategory}>
+
+                <div className={styles.col1}>
+                    <p>Upload Image First </p>
                     <label htmlFor='categoryImage'> <img src={addimg}></img> <input className={styles.inputImg} id='categoryImage' type='file' /></label>
-
-                    <label htmlFor='nameCategory'> Add Name <input id='nameCategory' type='text' /></label>
+                    <label htmlFor='nameCategory'>Add Name Category<input id='nameCategory' type='text' /></label>
                     <button>Submit</button>
+
+                </div>
+                <div className={styles.col1}>
+
                 </div>
             </div>
 

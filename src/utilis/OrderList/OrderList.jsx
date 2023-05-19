@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './OrderList.module.scss'
+import { Link } from 'react-router-dom'
 export default function OrderList() {
     return (
         <div className={styles.OrderList}>
             <div className={styles.orderCol1}>
                 <p>Recent Orders</p>
-                <a  className={styles.orderBtn} href='/orders'>View All</a>
+                <Link className={styles.orderBtn} to='/admin/order/1'>View All</Link>
             </div>
             <table className={styles.table}>
                 <thead>

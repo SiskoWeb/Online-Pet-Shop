@@ -11,9 +11,10 @@
 }
 .adminPage {
   @include adminPages();
+  height: 100dvh;
 }
 
 .contentAdmin {
-  background-color: #fafafa;
+  background-color: rgb(248, 249, 250);
   padding: 20px;
 }
