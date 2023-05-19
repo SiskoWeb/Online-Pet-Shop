@@ -1,4 +1,4 @@
-import ProductCard from '../../../../utilis/ProductCard/ProductCardAdmin'
+import ProductCard from '../../../../utilis/ProductCard/ProductCard'
 import styles from './ProductsHome.module.scss'
 // import img1 from '../../../../assets/Products/p1.png'
 // import img2 from '../../../../assets/Products/p2.png'
@@ -26,7 +26,8 @@ export default function ProductsHome() {
             <p>Featured Products.</p>
             <div className={styles.list}>
 
-                {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) => <ProductCard key={item._id} img={item.imageCover} price={item.price} name={item.title} />) : <h1>No Categories</h1>}
+                {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) =>
+                    <ProductCard key={item._id} img={item.imageCover} price={item.price} name={item.title} />) : <h1>No Categories</h1>}
 
             </div>
         </div>

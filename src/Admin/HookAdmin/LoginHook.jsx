@@ -76,7 +76,7 @@ export const LoginHook = () => {
                     localStorage.setItem("user", JSON.stringify(res.data))
                     notify("Accoun Created Successfuly", "success")
                     setTimeout(() => {
-                        navigate('/cart')
+                        navigate('/admin')
                     }, 1100);
                 }
                 else {

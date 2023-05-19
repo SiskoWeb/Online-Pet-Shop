@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 import NavBar from './User/Components/NavBar/NavBar'
@@ -21,27 +21,52 @@ import AllOrders from './Admin/Components/AllOrders/AllOrders'
 import EditProduct from './Admin/Components/EditProduct/EditProduct'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState('')
 
+  useEffect(() => {
+    if (localStorage.getItem("user") != null)
+      setUser(JSON.parse(localStorage.getItem("user")))
+
+    // if(!user?.name === ''){
+
+    // }
+  }, [LoginPage])
+
+
+  // const logOut = () => {
+  //   localStorage.removeItem("user")
+  //   localStorage.removeItem("token")
+
+  //   setUser('')
+
+  //   navigate('/login')
+
+
+  // }
+
+
+  // {user?.name === '' ? <LoginPage /> : <DashboardPage />}
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Product" element={<ProductDetails />} />
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/cart" element={<CartPage />} />
 
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="admin" element={<DashboardPage />}>
           <Route index element={<Dashboard />} />
+
           <Route path="allproducts" index element={<AllProducts />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="categories" index element={<CategoriesAdmin />} />
           <Route path="order/1" index element={<Order />} />
           <Route path="orders" index element={<AllOrders />} />
-          <Route path="product/1" index element={<EditProduct/>} />
+          <Route path="product/1" index element={<EditProduct />} />
 
         </Route>
+        <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
 
     </BrowserRouter>

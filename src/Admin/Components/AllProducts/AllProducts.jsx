@@ -3,7 +3,7 @@ import styles from './AllProducts.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../../Redux/productsSlice/ActionsProducts'
-import ProductCardAdmin from '../../../utilis/ProductCard/ProductCardAdmin'
+import ProductCardAdmin from '../../../utilis/ProductCardAdmin/ProductCardAdmin'
 export default function AllProducts() {
 
 

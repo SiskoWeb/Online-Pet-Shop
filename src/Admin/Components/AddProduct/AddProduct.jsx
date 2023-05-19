@@ -12,14 +12,60 @@ export default function AddProduct() {
             <div className={styles.AddProduct}>
 
                 <div className={styles.containerAddProduct}>
+
+                    {/*--------------Description------------*/}
+
                     <h4>Description</h4>
                     <hr></hr>
                     <div className={styles.Description}>
 
                         <label><p>Product Name:* </p><input type='text' /></label>
                         <label><p>Product Description:*</p> <textarea type='text'></textarea></label>
+
+
+
+                        {/*--------------Category------------*/}
+
+                        <h4>Category</h4>
+                        <hr></hr>
+                        <div className={styles.Category}>
+                            <label>Product Category:*
+                                <select>
+                                    <option>Cat</option>
+                                    <option>Dog</option>
+                                    <option>Bird</option>
+                                </select>
+                            </label>
+
+
+                        </div>
+
+
+                        {/*--------------Inventory------------*/}
+
+                        <h4>Inventory</h4>
+                        <hr></hr>
+                        <div className={styles.Quantity}>
+                            <label>Quantity:* <input type='number' /></label>
+                        </div>
+
+
+                        {/*--------------Pricing------------*/}
+                        <h4>Pricing</h4>
+                        <hr></hr>
+                        <div className={styles.Price}>
+                            <label>Price:* <input type='number' /></label>
+                        </div>
                     </div>
+
+
+
+
+
+
+
                 </div>
+
 
 
 
@@ -53,46 +99,18 @@ export default function AddProduct() {
                         <img src={c11}></img>
                         <img src={c1}></img>
                     </div>
-                </div>
 
-                <div className={styles.containerAddProduct}>
-                    <h4>Category</h4>
-                    <hr></hr>
-                    <div className={styles.Category}>
-                        <label>Product Category:*
-                            <select>
-                                <option>Cat</option>
-                                <option>Dog</option>
-                                <option>Bird</option>
-                            </select>
-                        </label>
-                    </div>
 
                 </div>
 
-                <div className={styles.containerAddProduct}>
-                    <h4>Inventory</h4>
-                    <hr></hr>
-                    <div className={styles.Quantity}>
-                        <label>Quantity:* <input type='number' /></label>
-                    </div>
 
-                </div>
-                <div className={styles.containerAddProduct}>
-                    <h4>Pricing</h4>
-                    <hr></hr>
-                    <div className={styles.Price}>
-                        <label>Price:* <input type='number' /></label>
-                    </div>
 
-                </div>
+
+
 
             </div>
-            <div className={styles.containerAddProduct}>
-
-                <div className={styles.btnAddProduct}>
-                    <button>Add Product</button>
-                </div>
+            <div className={styles.btnAddProduct}>
+                <button>Add Product</button>
             </div>
         </div>
     )

@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './CardAdminStatus.module.scss'
-export default function CardAdminStatus({ color ,text}) {
+export default function CardAdminStatus({ color, text, icon,number }) {
     return (
         <div className={styles.cardAdmin} style={{ background: color }}>
-            <p>{text}<span>2</span></p>
-            <i className="fa-brands fa-first-order-alt"></i>
+            <p>{text}<span>{number}</span></p>
+            {icon}
         </div>
     )
 }
