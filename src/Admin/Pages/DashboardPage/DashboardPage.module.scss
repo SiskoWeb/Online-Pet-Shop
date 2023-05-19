@@ -1,0 +1,19 @@
+@import "../../../variables";
+
+//design for admin pages
+
+@mixin adminPages() {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  //   padding: 5px calc(100% - 80%);
+  height: 100dvh;
+  //   column-gap: 20px;
+}
+.adminPage {
+  @include adminPages();
+}
+
+.contentAdmin {
+  background-color: #fafafa;
+  padding: 20px;
+}

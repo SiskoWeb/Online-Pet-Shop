@@ -1,6 +1,6 @@
 @import "../../../variables";
 .PageProdcut {
-  padding: 100px calc(100% - 80%);
+  padding: $paddingPage;
 }
 .ProductDetails {
   height: 100%;

@@ -1,3 +1,11 @@
 $primary-color: #282c34;
 $secondary-color: #fef7ee;
 $navbar-color: #fef7ee;
+
+$paddingPage:100px calc(100% - 80%);
+
+//design for admin pages
+
+@mixin adminPages() {
+ 
+  }

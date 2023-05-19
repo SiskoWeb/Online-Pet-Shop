@@ -1,0 +1,24 @@
+.cardAdmin {
+  width: 100%;
+  background-color: #9081d7;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  justify-content: space-between;
+  height: 120px;
+
+  i {
+    font-size: 80px;
+  }
+  p {
+    font-size: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    row-gap: 50px;
+    align-items: start;
+    flex-direction: column;
+  }
+}

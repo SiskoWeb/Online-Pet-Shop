@@ -1,0 +1,26 @@
+.NavBarAdmin {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+  height: 70px;
+  .AdminNavBar_profil {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
+    img {
+      width: 50px;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .AdminNavBar_links {
+    border: none;
+  }
+}

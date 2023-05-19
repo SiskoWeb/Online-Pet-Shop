@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './ProductCard.module.scss'
 // import img from '../../assets/Products/p1.png'
 
-export default function ProductCard({ img }) {
+export default function ProductCard({ img, price, name }) {
 
 
 
@@ -32,8 +32,8 @@ export default function ProductCard({ img }) {
                         <p>(152)</p>
                     </div>
                     <div className={styles.text} >
-                        <a href='/product'>  <p>Food Name</p></a>
-                        <p>$25.75</p>
+                        <a href='/product'>  <p>{name}</p></a>
+                        <p>${price}</p>
 
 
                     </div>

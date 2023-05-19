@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Cartstyles from './CartPage.module.scss'
+import styles from './CartPage.module.scss'
 import empty from '../../../assets/empty-cart.png'
 import p11 from '../../../assets/Products/p11.png'
 import p1 from '../../../assets/Products/p1.png'
@@ -15,24 +15,24 @@ export default function CartPage() {
 
     console.log(name)
     return (
-        <div className={Cartstyles.PageCart}>
+        <div className={styles.PageCart}>
 
 
 
-            <div className={Cartstyles.cart}>
+            <div className={styles.cart}>
 
                 {/* -----Adress side -------*/}
-                <div className={Cartstyles.address}>
+                <div className={styles.address}>
                     <h3>Shipping Detail</h3>
                     {isAddressHere ?
-                        <div className={Cartstyles.DisplayAddressContainer}>
-                            <div className={Cartstyles.DisplayAddress}>
+                        <div className={styles.DisplayAddressContainer}>
+                            <div className={styles.DisplayAddress}>
                                 <p>Your Name<span>{shippingAddress.name}</span></p>
                                 <p>Phone Number <span>{shippingAddress.number}</span></p>
                                 <p>City<span>{shippingAddress.city}</span></p>
                                 <p>Shipping Adress<span>{shippingAddress.address}</span></p>
                             </div>
-                            <div className={Cartstyles.ChangeAddress}>
+                            <div className={styles.ChangeAddress}>
                                 <buuton onClick={(e) => editAddress(e)}>Change Address</buuton>
                             </div>
                         </div>
@@ -59,57 +59,57 @@ export default function CartPage() {
                                     City:
                                     <input required value={city} onChange={(e) => onChangeCity(e)} type='text' placeholder='name your city' name="city" />
                                 </label>
-                                <label className={Cartstyles.wrapper}>
+                                <label className={styles.wrapper}>
                                     Address:
-                                    <textarea required value={address} onChange={(e) => onChangeAddress(e)} className={Cartstyles.inputAddress} type='text' placeholder='add address here ' name="address" />
+                                    <textarea required value={address} onChange={(e) => onChangeAddress(e)} className={styles.inputAddress} type='text' placeholder='add address here ' name="address" />
                                 </label>
-                                <input onClick={(e) => addAddress(e)} className={Cartstyles.addressBtn} type='submit' name="address" value='Add Address' />
+                                <input onClick={(e) => addAddress(e)} className={styles.addressBtn} type='submit' name="address" value='Add Address' />
                             </form>
                         </>}
 
                 </div>
 
                 {/* -----items side -------*/}
-                <div className={Cartstyles.items}>
+                <div className={styles.items}>
                     <h3>ORDER DETAILS</h3>
 
-                    <div className={Cartstyles.listItem}>
+                    <div className={styles.listItem}>
                         {products ? <><p>Cart Empty</p>
                             <img src={empty}></img></> :
 
-                            <> <div className={Cartstyles.Item}>
+                            <> <div className={styles.Item}>
 
-                                <div className={Cartstyles.imgProdctCart}>
+                                <div className={styles.imgProdctCart}>
                                     <img src={p11}></img>
                                 </div>
-                                <div className={Cartstyles.textProductCart}>
+                                <div className={styles.textProductCart}>
                                     <p>Cat Food</p>
                                     <button>Remove</button>
                                 </div>
-                                <div className={Cartstyles.QuantityCart}>
+                                <div className={styles.QuantityCart}>
                                     <i class="fa-solid fa-minus"></i>
                                     <span>8</span>
                                     <i class="fa-solid fa-plus"></i>
                                 </div>
-                                <div className={Cartstyles.prictProductCart}>
+                                <div className={styles.prictProductCart}>
                                     <p>$102.99</p>
                                 </div>
                             </div>
-                                <div className={Cartstyles.Item}>
+                                <div className={styles.Item}>
 
-                                    <div className={Cartstyles.imgProdctCart}>
+                                    <div className={styles.imgProdctCart}>
                                         <img src={p1}></img>
                                     </div>
-                                    <div className={Cartstyles.textProductCart}>
+                                    <div className={styles.textProductCart}>
                                         <p>Dog Food</p>
                                         <button>Remove</button>
                                     </div>
-                                    <div className={Cartstyles.QuantityCart}>
+                                    <div className={styles.QuantityCart}>
                                         <i class="fa-solid fa-minus"></i>
                                         <span>8</span>
                                         <i class="fa-solid fa-plus"></i>
                                     </div>
-                                    <div className={Cartstyles.prictProductCart}>
+                                    <div className={styles.prictProductCart}>
                                         <p>$72.99</p>
                                     </div>
                                 </div>
@@ -121,18 +121,18 @@ export default function CartPage() {
 
                     </div>
 
-                    <div className={Cartstyles.price}>
-                        <div className={Cartstyles.textPrice}>
+                    <div className={styles.price}>
+                        <div className={styles.textPrice}>
                             <p>Shipping:</p>
                             <p>Total:</p>
                         </div>
-                        <div className={Cartstyles.numberPrice}>
+                        <div className={styles.numberPrice}>
                             <p>$0</p>
                             <p>$25.99</p>
                         </div>
                     </div>
 
-                    <button className={Cartstyles.orderBtn}>Confirme</button>
+                    <button className={styles.orderBtn}>Confirme</button>
                 </div>
 
 

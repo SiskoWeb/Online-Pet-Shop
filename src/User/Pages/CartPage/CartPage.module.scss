@@ -1,7 +1,7 @@
 @import "../../../variables";
 
 .PageCart {
-  padding: 100px calc(100% - 80%);
+  padding: $paddingPage;
 
   display: flex;
   flex-direction: column;
