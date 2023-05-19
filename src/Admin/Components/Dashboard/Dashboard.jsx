@@ -1,6 +1,7 @@
 import React from 'react'
 import CardAdminStatus from '../../../utilis/CardAdminStatus/CardAdminStatus'
 import styles from './Dashboard.module.scss'
+import OrderList from '../../../utilis/OrderList/OrderList'
 export default function Dashboard() {
     return (
         <div >
@@ -12,6 +13,11 @@ export default function Dashboard() {
                 <CardAdminStatus text={'ORDER PENDING'} color={'#9081d7'} />
 
             </div>
+
+            <div>
+            <OrderList/>
+            </div>
+
         </div>
     )
 }

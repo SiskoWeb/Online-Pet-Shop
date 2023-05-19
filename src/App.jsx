@@ -13,6 +13,7 @@ import CartPage from './User/Pages/CartPage/CartPage'
 import LoginPage from './Admin/Pages/LoginPage/LoginPage'
 import DashboardPage from './Admin/Pages/DashboardPage/DashboardPage'
 import Dashboard from './Admin/Components/Dashboard/Dashboard'
+import CategoriesAdmin from './Admin/Components/CategoriesAdmin/CategoriesAdmin'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,7 +31,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="allproducts" index element={<h2>all Products</h2>} />
           <Route path="addproduct" element={<h2>Add Product</h2>} />
-          <Route path="categories" index element={<h2>Categories</h2>} />
+          <Route path="categories" index element={<CategoriesAdmin />} />
 
         </Route>
       </Routes>

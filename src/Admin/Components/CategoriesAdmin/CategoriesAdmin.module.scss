@@ -1,0 +1,78 @@
+.categoriesAdmin {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  h1 {
+    padding: 10px;
+    text-align: center;
+  }
+  .col1 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: white;
+    padding: 20px;
+  }
+  .addCategory {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    justify-content: center;
+    button {
+      border: none;
+      background-color: black;
+      border-radius: 5px;
+      padding: 10px;
+      color: white;
+    }
+    .inputImg {
+      display: none;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  .listCategories {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    .categoryCardAdmin {
+      display: flex;
+      flex-direction: column;
+      width: 100px;
+      align-items: center;
+      text-align: center;
+      background-color: #cfe4ff;
+      border-radius: 10px;
+
+      img {
+        width: 100px;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        button:nth-child(1) {
+          color: red;
+        }
+        button:nth-child(2) {
+          color: green;
+        }
+        button {
+          border: none;
+          color: black;
+          background-color: transparent;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
