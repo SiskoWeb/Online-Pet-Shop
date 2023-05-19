@@ -1,0 +1,13 @@
+.AllProducts {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  padding: 20px;
+  height: 100dvh;
+  .list {
+    display: flex;
+    padding: 20px;
+    column-gap: 20px;
+    flex-wrap: wrap;
+  }
+}

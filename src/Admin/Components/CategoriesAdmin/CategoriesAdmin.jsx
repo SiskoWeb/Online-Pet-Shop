@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './CategoriesAdmin.module.scss'
 import addimg from '../../../assets/addimg.png'
 import c1 from '../../../assets/categories/c1.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCategories } from '../../../Redux/CategoriesSlice/ActionsCategories'
 
 export default function CategoriesAdmin() {
+    const Categories = useSelector((state) => state.categories.categoriesList)
+    const isLoading = useSelector((state) => state.categories.isloading)
 
+    const dispatch = useDispatch()
 
     const colors = ['#cfe4ff', '#deeeed', '#fff5b9', '#ececec']
+
+
+
+    useEffect(() => {
+
+        dispatch(getAllCategories())
+        console.log(Categories)
+    }, [])
 
     return (
         <div className={styles.categoriesAdmin}>
@@ -15,20 +28,28 @@ export default function CategoriesAdmin() {
             <div className={styles.addCategory}>
 
                 <div className={styles.col1}>
-                    <p>Upload Image First </p>
-                    <label htmlFor='categoryImage'> <img src={addimg}></img> <input className={styles.inputImg} id='categoryImage' type='file' /></label>
-                    <label htmlFor='nameCategory'>Add Name Category<input id='nameCategory' type='text' /></label>
+
+                    <div className={styles.imageCategory}>
+                        <p>Image(Required)*</p>
+                        <label htmlFor='imageCover'
+
+                        ><img src={addimg}></img>
+                            Click To Upload
+                            <input id='imageCover' type='file' />
+                        </label>
+
+                    </div>
+                    <label htmlFor='nameCategory'>Add Name Category* <input id='nameCategory' type='text' /></label>
                     <button>Submit</button>
 
                 </div>
-                <div className={styles.col1}>
 
-                </div>
             </div>
 
             <div className={styles.listCategories}>
 
-                {colors.map((item, index) => <CategoryCard key={index} color={item} />)}
+                {isLoading ? <h1>Loading</h1> : CategoryCard.length >= 1 ? Categories?.map((item, index) =>
+                    <CategoryCard key={item._id} img={item.image} color={colors[index]} name={item.name} />) : <h1>No Categories</h1>}
 
             </div>
         </div>
@@ -36,7 +57,7 @@ export default function CategoriesAdmin() {
 }
 
 
-const CategoryCard = ({ color }) => {
+const CategoryCard = ({ img, name, color }) => {
 
 
     return (
@@ -45,8 +66,8 @@ const CategoryCard = ({ color }) => {
                 <button><i className="fa-solid fa-xmark"></i></button>
                 <button><i className="fa-solid fa-pen-to-square"></i></button>
             </div>
-            <img src={c1}></img>
-            <p>Cat</p>
+            <img src={img}></img>
+            <p>{name}</p>
         </div>
 
     )

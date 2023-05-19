@@ -1,4 +1,4 @@
-import ProductCard from '../../../../utilis/ProductCard/ProductCard'
+import ProductCard from '../../../../utilis/ProductCard/ProductCardAdmin'
 import styles from './ProductsHome.module.scss'
 // import img1 from '../../../../assets/Products/p1.png'
 // import img2 from '../../../../assets/Products/p2.png'

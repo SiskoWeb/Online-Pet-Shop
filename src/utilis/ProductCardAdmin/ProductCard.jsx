@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './ProductCard.module.scss'
+
 // import img from '../../assets/Products/p1.png'
 
 export default function ProductCard({ img, price, name }) {
-
 
 
 

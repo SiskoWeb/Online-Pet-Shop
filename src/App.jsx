@@ -14,8 +14,11 @@ import LoginPage from './Admin/Pages/LoginPage/LoginPage'
 import DashboardPage from './Admin/Pages/DashboardPage/DashboardPage'
 import Dashboard from './Admin/Components/Dashboard/Dashboard'
 import CategoriesAdmin from './Admin/Components/CategoriesAdmin/CategoriesAdmin'
-import Order from './Admin/Components/AllOrders/Order'
+import Order from './Admin/Components/OrderDetailes/Order'
 import AddProduct from './Admin/Components/AddProduct/AddProduct'
+import AllProducts from './Admin/Components/AllProducts/AllProducts'
+import AllOrders from './Admin/Components/AllOrders/AllOrders'
+import EditProduct from './Admin/Components/EditProduct/EditProduct'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,10 +34,12 @@ function App() {
 
         <Route path="admin" element={<DashboardPage />}>
           <Route index element={<Dashboard />} />
-          <Route path="allproducts" index element={<h2>all Products</h2>} />
+          <Route path="allproducts" index element={<AllProducts />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="categories" index element={<CategoriesAdmin />} />
           <Route path="order/1" index element={<Order />} />
+          <Route path="orders" index element={<AllOrders />} />
+          <Route path="product/1" index element={<EditProduct/>} />
 
         </Route>
       </Routes>

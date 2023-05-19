@@ -1,0 +1,158 @@
+@mixin oneInput() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    input {
+      margin: 15px 0;
+    }
+  }
+}
+
+@mixin drowbox() {
+  select:focus {
+    background-color: white;
+    border: 1px solid #fff;
+  }
+
+  select {
+    cursor: pointer;
+    border: 1px solid #000;
+    outline: 1px solid #000;
+    border-radius: 5px;
+    width: 50%;
+    margin: 20px 10px;
+    height: 30px;
+    box-shadow: 2px 3px 5px #c5c5c5;
+    transition: all 300ms;
+
+    option > * {
+      padding: 20px;
+    }
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.EditProduct {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
+  padding: 20px;
+
+  .containerAddProduct {
+    width: 100%;
+    background-color: #fff;
+    height: 100%;
+    padding: 20px;
+
+    .Description {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      h4 {
+        padding: 10px 0;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+      }
+      textarea {
+        resize: none;
+        width: 100%;
+        height: 200px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 10px;
+        font-size: 14px;
+        // border-width: 0px;
+        border-color: #d0d0d0;
+        background-color: #fff;
+        color: #000;
+
+        border-radius: 5px;
+        border: 1px solid rgb(164, 164, 164);
+      }
+      input:focus {
+        border: 1px solid green !important;
+      }
+    }
+
+    .Category {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      margin: 0 10px;
+      @include drowbox;
+    }
+  }
+
+  .imageCover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px 10px;
+
+    input {
+      display: none;
+    }
+    img {
+      width: 100px;
+      padding: 20px;
+    }
+    label {
+      font-size: 12px;
+      margin-top: 20px;
+      background-color: #f8fafb;
+      padding: 50px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  .listImages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 50px;
+    }
+  }
+
+  .Quantity,
+  .Price {
+    @include oneInput;
+  }
+}
+.btnAddProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  button {
+    background-color: #005efb;
+    color: white;
+    border-radius: 5px;
+    border: none;
+
+    padding: 10px 20px;
+  }
+}

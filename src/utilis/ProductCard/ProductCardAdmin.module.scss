@@ -1,0 +1,106 @@
+@import "../../variables";
+
+.ProductCardAdmin {
+  display: flex;
+  flex-direction: column;
+
+  .card1 {
+    border-radius: 15px;
+    background-color: #ffead1;
+    padding: 15px 40px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 150px;
+      transition: 0.3s all ease-in;
+
+      // box-shadow: 0 4px 2px -2px gray;
+    }
+  }
+
+  .card2 {
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+
+    column-gap: 40px;
+    flex-direction: row;
+  }
+
+  .col1 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
+
+  .reviews {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 4px;
+
+    i {
+      color: #ff8904;
+      font-size: 10px;
+    }
+    p {
+      font-size: 12px !important;
+      font-weight: 100 !important;
+    }
+  }
+
+  .text {
+    a,
+    p {
+      text-decoration: none;
+      color: black;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  .text :nth-child(2) {
+    font-size: 10px !important;
+    font-weight: 200 !important;
+  }
+
+  .icons {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icons .heart {
+    cursor: pointer;
+    background-color: #dbdee8;
+    color: black;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 10px;
+    transition: 0.3s all ease-in;
+  }
+  .icons .cart {
+    cursor: pointer;
+
+    background-color: rgb(176, 76, 76);
+    color: #dbdee8;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 10px;
+    :hover {
+      color: red !important;
+    }
+  }
+
+  .icons .heart:hover {
+    background-color: green !important;
+    color: white !important;
+  }
+  .productCard:hover img {
+    transform: scale(1.1);
+  }
+}

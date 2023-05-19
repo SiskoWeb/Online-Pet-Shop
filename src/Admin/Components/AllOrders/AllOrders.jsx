@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from './OrderList.module.scss'
+import styles from './AllOrders.module.scss'
 import { Link } from 'react-router-dom'
-export default function OrderList(orderData) {
+export default function AllOrders() {
     return (
-        <div className={styles.OrderList}>
+        <div className={styles.AllOrders}>
             <div className={styles.orderCol1}>
                 <p>Recent Orders</p>
-                <Link className={styles.orderBtn} to='/admin/orders'>View All</Link>
+                <Link className={styles.orderBtn} to='/admin/order/1'>View All</Link>
             </div>
             <table className={styles.table}>
                 <thead>
