@@ -18,7 +18,7 @@ export default function ProductsHome() {
     useEffect(() => {
 
         dispatch(getAllProducts())
-        console.log(productsList)
+
     }, [])
 
     return (

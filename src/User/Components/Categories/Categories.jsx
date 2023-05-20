@@ -19,7 +19,7 @@ export default function Categories() {
     useEffect(() => {
 
         dispatch(getAllCategories())
-        console.log(Categories)
+    
     }, [])
 
 
