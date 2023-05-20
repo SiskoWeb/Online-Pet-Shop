@@ -22,17 +22,17 @@ export const authSlice = createSlice({
     },
     extraReducers: {
         [loginAction.pending]: (state, action) => {
-            state.user = action.payload
+            // state.user = action.payload
             state.isloading = true
         },
         [loginAction.fulfilled]: (state, action) => {
             state.user = action.payload
-            console.log(action.payload)
+    
             state.isloading = false
 
         },
         [loginAction.rejected]: (state, action) => {
-            state.user = action.payload
+            // state.user = action.payload
             state.isloading = true
         }
     }

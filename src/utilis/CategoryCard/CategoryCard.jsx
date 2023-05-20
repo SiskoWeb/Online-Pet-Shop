@@ -12,7 +12,7 @@ export default function CategoryCard({ img, color }) {
 
             <img src={img}></img>
 
-
+         
         </div>
 
 

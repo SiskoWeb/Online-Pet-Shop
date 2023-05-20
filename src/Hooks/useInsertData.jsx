@@ -10,19 +10,63 @@ import baseUrl from "../Api/baseURL";
 // export { useInsertData }    
 
 
-const useInsertData = async (url, body) => {
 
-    try {
 
-        const res = await baseUrl.post(url, body)
-        console.log(res.data)
-        return res
 
-    } catch (e) {
-        console.log(`error from useister ${e}`)
-        return e.response
+const useInsertDataWithImages = async (url, body) => {
 
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
     }
+
+
+    const res = await baseUrl.post(url, body, config)
+
+    return res.data
+
+
+
+
+
+
 }
 
-export { useInsertData }    
+const useInsertData = async (url, body) => {
+    // const config = {
+    //     headers: {
+    //         Authorization: `Bearer ${localStorage.getItem("token")}`
+    //     }
+    // }
+
+
+    const res = await baseUrl.post(url, body)
+
+    return res.data
+
+}
+
+
+
+// const useInsertData = async (url, body) => {
+//     const config = {
+//         headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`
+//         }
+//     }
+//     try {
+
+//         const res = await baseUrl.post(url, body, config)
+
+//         return res
+
+//     } catch (e) {
+//         console.log(`error from useister ${e}`)
+//         return e.response
+
+//     }
+// }
+
+export { useInsertData, useInsertDataWithImages }    

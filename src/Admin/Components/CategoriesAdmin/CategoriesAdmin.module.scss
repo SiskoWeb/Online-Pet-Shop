@@ -84,6 +84,10 @@
       border-radius: 4px;
       border: 1px solid black;
     }
+
+    .UploadedImgCategory {
+      width: 200px;
+    }
   }
 
   .listCategories {
@@ -95,37 +99,6 @@
     height: 100%;
     flex-wrap: wrap;
     column-gap: 50px;
-    .categoryCardAdmin {
-      display: flex;
-      flex-direction: column;
-      width: 100px;
-      align-items: center;
-      text-align: center;
-      background-color: #cfe4ff;
-      border-radius: 10px;
 
-      img {
-        width: 100px;
-      }
-
-      .actions {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        button:nth-child(1) {
-          color: red;
-        }
-        button:nth-child(2) {
-          color: green;
-        }
-        button {
-          border: none;
-          color: black;
-          background-color: transparent;
-          font-size: 20px;
-          cursor: pointer;
-        }
-      }
-    }
   }
 }

@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react'
+
 import styles from './CategoriesAdmin.module.scss'
 import addimg from '../../../assets/addimg.png'
-import c1 from '../../../assets/categories/c1.png'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllCategories } from '../../../Redux/CategoriesSlice/ActionsCategories'
+
+import { CategoriesHook } from '../../HookAdmin/CategoriesHook'
+import { ToastContainer } from 'react-toastify';
+import CardCategoryAdmin from '../../../utilis/CardCategoryAdmin/CardCategoryAdmin'
 
 export default function CategoriesAdmin() {
-    const Categories = useSelector((state) => state.categories.categoriesList)
-    const isLoading = useSelector((state) => state.categories.isloading)
 
-    const dispatch = useDispatch()
+
+
+    const [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg, deleteCategory, isLoading, Categories] = CategoriesHook()
+
+
 
     const colors = ['#cfe4ff', '#deeeed', '#fff5b9', '#ececec']
 
 
 
-    useEffect(() => {
-
-        dispatch(getAllCategories())
-        console.log(Categories)
-    }, [])
 
     return (
         <div className={styles.categoriesAdmin}>
@@ -35,40 +33,34 @@ export default function CategoriesAdmin() {
 
                         ><img src={addimg}></img>
                             Click To Upload
-                            <input id='imageCover' type='file' />
+                            <input
+                                type="file"
+                                id='imageCover'
+                                onChange={(e) => onChangeImg(e.target.files[0])}
+
+                            />
                         </label>
 
                     </div>
-                    <label htmlFor='nameCategory'>Add Name Category* <input id='nameCategory' type='text' /></label>
-                    <button>Submit</button>
+                    <label htmlFor='nameCategory'>Add Name Category* <input value={categoryName} onChange={onChangeName} id='nameCategory' type='text' /></label>
+                    <button onClick={onSubmit}>Submit</button>
 
                 </div>
-
+                <div className={styles.col1}>
+                    {imgCategory === null ? null : <button onClick={clearInputImg}>Remove Image</button>}
+                    <img className={styles.UploadedImgCategory} src={imgCategory}></img>
+                </div>
             </div>
 
             <div className={styles.listCategories}>
 
-                {isLoading ? <h1>Loading</h1> : CategoryCard.length >= 1 ? Categories?.map((item, index) =>
-                    <CategoryCard key={item._id} img={item.image} color={colors[index]} name={item.name} />) : <h1>No Categories</h1>}
+                {isLoading ? <h1>Loading</h1> : Categories.length >= 1 ? Categories?.map((item, index) =>
+                    <CardCategoryAdmin key={item._id} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />) : <h1>No Categories</h1>}
 
             </div>
+            <ToastContainer />
         </div>
     )
 }
 
 
-const CategoryCard = ({ img, name, color }) => {
-
-
-    return (
-        <div style={{ backgroundColor: color }} className={styles.categoryCardAdmin}>
-            <div className={styles.actions}>
-                <button><i className="fa-solid fa-xmark"></i></button>
-                <button><i className="fa-solid fa-pen-to-square"></i></button>
-            </div>
-            <img src={img}></img>
-            <p>{name}</p>
-        </div>
-
-    )
-}
