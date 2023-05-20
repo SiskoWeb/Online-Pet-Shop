@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react"
-import notify from "../../Hooks/useNotifaction"
-import { addCategory, getAllCategories, removeCategory } from "../../Redux/CategoriesSlice/ActionsCategories"
+import notify from "../../../Hooks/useNotifaction"
+import { addCategory, getAllCategories } from "../../../Redux/CategoriesSlice/ActionsCategories"
 import { useDispatch, useSelector } from "react-redux"
 
 
-export const CategoriesHook = () => {
+export const AddCategoryHook = () => {
 
     const [categoryName, setCategoryName] = useState('')
     const [imgCategory, setImgCategory] = useState(null)
     const [selectedImg, setSelectedImg] = useState(null)
+
     const [loading, setLoading] = useState(true)
 
     const dispatch = useDispatch()
-    const Categories = useSelector((state) => state.categories.categoriesList)
-    const isLoading = useSelector((state) => state.categories.isloading)
+
+
     const addCategoryResponse = useSelector((state) => state.categories.addCategoryResponse)
-    const RemoveResponse = useSelector((state) => state.categories.RemoveResponse)
+
 
 
     const onChangeName = (e) => {
@@ -53,16 +54,16 @@ export const CategoriesHook = () => {
             notify('Name Category to short ', 'error')
             return
         }
+
+
         setLoading(true)
-
-
         // @desc create new form from buildin FromData
         const formData = new FormData()
         formData.append('name', categoryName)
         formData.append('image', selectedImg)
 
 
-
+        //@desc fun create Category  passing ID + naem & image
         await dispatch(addCategory(formData))
 
         //@dex switchh loading to false to active validator inside useEffect
@@ -70,61 +71,50 @@ export const CategoriesHook = () => {
 
     }
 
-    //@desc fun remove Category 
-    const deleteCategory = (id) => {
-
-        dispatch(removeCategory(id))
-        setLoading(false)
-    }
 
 
-
-
-
-    console.log(RemoveResponse)
 
 
 
 
     useEffect(() => {
-        dispatch(getAllCategories())
+
 
 
         if (loading === false) {
 
-            //@ check if category created by response  came from server
 
 
-            //@ if category created 
-            if (addCategoryResponse.createdAt) {
-                notify('category created', 'success')
-                setImgCategory(null)
-                setSelectedImg(null)
-                setCategoryName('')
-            }
-            //@ if category created 
+            if (addCategoryResponse.status === 200) {
+                //@ if category created 
+                if (addCategoryResponse.data.data.createdAt) {
+                    notify('category created', 'success')
+                    dispatch(getAllCategories())
 
-
-            //@ if we get error
-            if (addCategoryResponse?.data) {
-
-                if (addCategoryResponse?.data.message === "Categories validation failed: name: category too short") {
-                    notify('Name Category too short ', 'error')
+                    setImgCategory(null)
+                    setSelectedImg(null)
+                    setCategoryName('')
                 }
-                if (addCategoryResponse?.data.message?.includes('E11000 duplicate key error collection:')) {
-                    notify('This Category already in db ', 'error')
+            }
+            else {
+
+                //     //@ if we get error
+                if (addCategoryResponse?.data) {
+                    notify('main error ', 'error')
+                    if (addCategoryResponse.data.errors) {
+                        notify("email or passowrd uncourrect", "error")
+
+                    }
                 }
 
+
+
             }
-
-
-
-
         }
 
 
     }, [loading])
 
 
-    return [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg, deleteCategory, isLoading, Categories]
+    return [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg]
 } 

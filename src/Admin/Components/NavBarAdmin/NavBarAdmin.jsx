@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './NavBarAdmin.module.scss'
 export default function NavBarAdmin() {
+
+    const [user, setUser] = useState('')
+
+
     return (
         <nav className={styles.NavBarAdmin}>
             <div>
@@ -9,7 +13,7 @@ export default function NavBarAdmin() {
 
             <div className={styles.AdminNavBar_profil}>
                 <img src='https://avatars.dicebear.com/api/male/sadasd.png'></img>
-                <p>Yassine <span>Admin</span></p>
+                <p>{!user?.name === '' ? user?.name : 'not login'}<span>Admin</span></p>
                 <select className={styles.AdminNavBar_links}>
                     <option>edit</option>
                     <option>logout</option>

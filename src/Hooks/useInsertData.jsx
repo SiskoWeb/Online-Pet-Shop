@@ -24,8 +24,8 @@ const useInsertDataWithImages = async (url, body) => {
 
 
     const res = await baseUrl.post(url, body, config)
-
-    return res.data
+   
+    return res
 
 
 

@@ -8,7 +8,7 @@ const useDeleteData = async (url) => {
     }
 
     const res = await baseUrl.delete(url, config)
-    return res.data
+    return res
 }
 
 export { useDeleteData }
