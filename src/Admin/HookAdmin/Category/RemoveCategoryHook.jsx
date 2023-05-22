@@ -36,7 +36,7 @@ export const RemoveCategoryHook = () => {
 
         console.log(RemoveResponse)
         dispatch(getAllCategories())
-        if (RemoveResponse.status === 200) {
+        if (RemoveResponse.status === 202) {
             //@ if category created 
             notify('removed', 'success')
 

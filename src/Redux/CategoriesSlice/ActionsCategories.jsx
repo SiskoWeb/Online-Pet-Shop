@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { useGetData } from "../../Hooks/useGetData"
 import { useInsertDataWithImages } from "../../Hooks/useInsertData"
 import { useDeleteData } from "../../Hooks/useDeleteData"
-import { useUpdateData } from "../../Hooks/useUpdateData"
+import { useUpdateData, useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
 
 
@@ -21,7 +21,20 @@ export const getAllCategories = createAsyncThunk('categories/getAll', async () =
     }
 
 })
+export const getOneCategories = createAsyncThunk('categories/getOne', async (id) => {
+    try {
 
+        const response = await useGetData(`/api/v1/categories/${id}`)
+
+        return response
+
+    } catch (error) {
+
+        return error.response
+
+    }
+
+})
 export const addCategory = createAsyncThunk('categories/add', async (body) => {
     try {
 
@@ -52,12 +65,13 @@ export const removeCategory = createAsyncThunk('categories/remove', async (id) =
 })
 
 
-export const updateCategory = createAsyncThunk('categories/update', async (id, body) => {
+export const updateCategory = createAsyncThunk('categories/update', async (id, data) => {
     try {
 
-        const response = await useUpdateData(`/api/v1/categories/${id}`, body)
-        console.log(response)
-        return response.data
+
+        const response = await useUpdateDataWithImage(`/api/v1/categories/${id}`, data)
+
+        return response
 
     } catch (error) {
 

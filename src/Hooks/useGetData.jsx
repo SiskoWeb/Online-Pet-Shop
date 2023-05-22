@@ -20,4 +20,19 @@ const useGetData = async (url) => {
 
     }
 }
-export { useGetData }
+
+const useGetOnData = async (url) => {
+
+    try {
+
+        const res = await baseUrl.get(url)
+
+        return res
+
+    } catch (e) {
+        console.log(`error from useister ${e}`)
+        return e.response
+
+    }
+}
+export { useGetData, useGetOnData }

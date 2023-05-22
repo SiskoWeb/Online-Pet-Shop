@@ -1,9 +1,21 @@
+@import "../../../variables.scss";
+
 .categoriesAdmin {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   text-align: center;
-
+  .loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+  }
   .imageCategory {
     display: flex;
     align-items: center;
@@ -99,6 +111,68 @@
     height: 100%;
     flex-wrap: wrap;
     column-gap: 50px;
+  }
+  .wrapperPopUpdate {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 3;
+    height: 100%;
 
+    position: absolute;
+  }
+  .popUpdate {
+    position: absolute;
+    top: 15%;
+    i {
+      position: absolute;
+      top: 5%;
+      cursor: pointer;
+      right: 5%;
+    }
+    background-color: white;
+    border-radius: 20px;
+    width: 500px;
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    justify-content: center;
+
+    label input {
+      display: none;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 10px;
+      max-height: 100%;
+    }
+    input {
+      padding: 5px 6px;
+      font-size: 15px;
+      border-width: 0px;
+      border-color: #cccccc;
+      background-color: #ffffff;
+      color: #000000;
+      border-style: solid;
+      border-radius: 10px;
+      box-shadow: 0px 0px 4px rgba(66, 66, 66, 0.4);
+      text-shadow: -50px 0px 6px rgba(66, 66, 66, 0);
+    }
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+
+    .UpdateBtn {
+      @include btnAdmin(10px 20px);
+    }
   }
 }

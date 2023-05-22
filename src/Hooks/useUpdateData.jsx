@@ -1,15 +1,30 @@
 import baseUrl from "../Api/baseURL";
 
 
+const useUpdateDataWithImage = async (url, parms) => {
+
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    }
+
+    const res = await baseUrl.put(url, parms, config)
+    return res
+}
+
+
 const useUpdateData = async (url, body) => {
     const config = {
         headers: {
+
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
     }
 
     const res = await baseUrl.put(url, body, config)
-    return res.data
+    return res
 }
 
-export { useUpdateData }
+export { useUpdateData, useUpdateDataWithImage }

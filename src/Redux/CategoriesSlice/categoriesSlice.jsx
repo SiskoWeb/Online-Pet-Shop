@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllCategories, addCategory, removeCategory, updateCategory } from './ActionsCategories'
+import { getAllCategories, addCategory, removeCategory, updateCategory, getOneCategories } from './ActionsCategories'
 
 const initialState = {
     categoriesList: [],
     addCategoryResponse: [],
+    GetOneResponse: [],
     RemoveResponse: [],
     UpdateResponse: [],
     isloading: false
@@ -28,6 +29,17 @@ export const categoriesSlice = createSlice({
 
         },
         [getAllCategories.rejected]: (state, action) => {
+            state.isloading = true
+        },
+        [getOneCategories.pending]: (state, action) => {
+            state.isloading = true
+        },
+        [getOneCategories.fulfilled]: (state, action) => {
+            state.categoriesList = action.payload
+            state.isloading = false
+
+        },
+        [getOneCategories.rejected]: (state, action) => {
             state.isloading = true
         },
 

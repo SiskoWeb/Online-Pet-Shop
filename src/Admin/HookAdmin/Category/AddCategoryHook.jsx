@@ -27,6 +27,8 @@ export const AddCategoryHook = () => {
 
         setImgCategory(URL.createObjectURL(img))
         setSelectedImg(img)
+        console.log(selectedImg)
+        console.log(img)
     }
 
 
@@ -61,7 +63,7 @@ export const AddCategoryHook = () => {
         const formData = new FormData()
         formData.append('name', categoryName)
         formData.append('image', selectedImg)
-
+        console.log(formData)
 
         //@desc fun create Category  passing ID + naem & image
         await dispatch(addCategory(formData))
