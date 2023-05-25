@@ -19,58 +19,51 @@ import AddProduct from './Admin/Components/AddProduct/AddProduct'
 import AllProducts from './Admin/Components/AllProducts/AllProducts'
 import AllOrders from './Admin/Components/AllOrders/AllOrders'
 import EditProduct from './Admin/Components/EditProduct/EditProduct'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const isloading = useSelector((state) => state.categories.isloading)
+  
   const [user, setUser] = useState('')
 
   useEffect(() => {
     if (localStorage.getItem("user") != null)
       setUser(JSON.parse(localStorage.getItem("user")))
 
-    // if(!user?.name === ''){
 
-    // }
   }, [LoginPage])
 
 
-  // const logOut = () => {
-  //   localStorage.removeItem("user")
-  //   localStorage.removeItem("token")
 
-  //   setUser('')
-
-  //   navigate('/login')
-
-
-  // }
-
-
-  // {user?.name === '' ? <LoginPage /> : <DashboardPage />}
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/Product" element={<ProductDetails />} />
+    <div className='App'>
 
 
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="admin" element={<DashboardPage />}>
-          <Route index element={<Dashboard />} />
+      <BrowserRouter>
+        {isloading ? <p className='loading'>Loading...</p> : null}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Product" element={<ProductDetails />} />
 
-          <Route path="allproducts" index element={<AllProducts />} />
-          <Route path="addproduct" element={<AddProduct />} />
-          <Route path="categories" index element={<CategoriesAdmin />} />
-          <Route path="order/1" index element={<Order />} />
-          <Route path="orders" index element={<AllOrders />} />
-          <Route path="product/1" index element={<EditProduct />} />
 
-        </Route>
-        <Route path="*" element={<p>There's nothing here: 404!</p>} />
-      </Routes>
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="admin" element={<DashboardPage />}>
+            <Route index element={<Dashboard />} />
 
-    </BrowserRouter>
+            <Route path="allproducts" index element={<AllProducts />} />
+            <Route path="addproduct" element={<AddProduct />} />
+            <Route path="categories" index element={<CategoriesAdmin />} />
+            <Route path="order/1" index element={<Order />} />
+            <Route path="orders" index element={<AllOrders />} />
+            <Route path="product/1" index element={<EditProduct />} />
 
+          </Route>
+          <Route path="*" element={<p>There's nothing here: 404!</p>} />
+        </Routes>
+
+      </BrowserRouter>
+    </div>
   )
 }
 

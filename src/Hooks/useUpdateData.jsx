@@ -1,7 +1,8 @@
 import baseUrl from "../Api/baseURL";
 
 
-const useUpdateDataWithImage = async (url, parms) => {
+const useUpdateDataWithImage = async (url, body) => {
+
 
     const config = {
         headers: {
@@ -10,9 +11,13 @@ const useUpdateDataWithImage = async (url, parms) => {
         }
     }
 
-    const res = await baseUrl.put(url, parms, config)
+
+    const res = await baseUrl.put(url, body, config)
+
     return res
 }
+
+
 
 
 const useUpdateData = async (url, body) => {

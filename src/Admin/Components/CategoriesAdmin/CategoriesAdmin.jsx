@@ -16,7 +16,7 @@ export default function CategoriesAdmin() {
     const [isLoading, Categories] = GetCategoryHook()
     const [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg,] = AddCategoryHook()
     const [deleteCategory] = RemoveCategoryHook()
-    const [updateCategoryPart1, updateCategoryPart2, fileUpdate, nameUpdate, setNameUpdate, saveFileUpdate, toggleUpdate, setToggleUpdate] = UpdateCategoryHook()
+    const [onBringDataToUpdate, onSubmitUpdate, imgToDisplay, nameUpdate, setNameUpdate, saveFileUpdate, toggleUpdate, setToggleUpdate] = UpdateCategoryHook()
 
 
     // const Categories = useSelector((state) => state.categories.categoriesList)
@@ -29,7 +29,7 @@ export default function CategoriesAdmin() {
     return (
         <div className={styles.categoriesAdmin}>
 
-            {isLoading ? <p className={styles.loading}>Loading...</p> : null}
+
             <div className={styles.addCategory}>
 
                 <div className={styles.col1}>
@@ -52,7 +52,7 @@ export default function CategoriesAdmin() {
                     <label htmlFor='nameCategory'>Add Name Category* <input value={categoryName} onChange={onChangeName} id='nameCategory' type='text' /></label>
                     <button onClick={onSubmit}>Submit</button>
 
-                    {isLoading ? <p>Loading...</p> : null}
+
                 </div>
                 <div className={styles.col1}>
                     {imgCategory === null ? null : <button onClick={clearInputImg}>Remove Image</button>}
@@ -63,14 +63,19 @@ export default function CategoriesAdmin() {
             <div className={styles.listCategories}>
 
                 {isLoading ? <h1>Loading</h1> : Categories.length >= 1 ? Categories?.map((item, index) =>
-                    <CardCategoryAdmin key={item._id} updateCategoryPart1={updateCategoryPart1} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
+                    <CardCategoryAdmin key={item._id} onBringDataToUpdate={onBringDataToUpdate} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
                     : <h1>No Categories</h1>}</div>
+
+
+
+            {/* ----  Update PopUp--- */}
             {toggleUpdate ? <div className={styles.wrapperPopUpdate}>
                 <div className={styles.popUpdate}>
                     <i onClick={() => setToggleUpdate(false)} className="fa-solid fa-xmark"></i>
+
                     <label htmlFor='imageUpdateCategory'>
                         click here to upload Image
-                        <img src={fileUpdate}></img>
+                        <img src={imgToDisplay}></img>
                         <input
                             type="file"
                             id='imageUpdateCategory'
@@ -81,7 +86,7 @@ export default function CategoriesAdmin() {
 
 
                     <input value={nameUpdate} type="text" onChange={(e) => setNameUpdate(e.target.value)} />
-                    <button className={styles.UpdateBtn} onClick={updateCategoryPart2}>Update</button>
+                    <button className={styles.UpdateBtn} onClick={(e) => onSubmitUpdate(e)}>Update</button>
                 </div>
             </div> : null}
 

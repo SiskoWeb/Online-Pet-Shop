@@ -39,7 +39,7 @@ export const addCategory = createAsyncThunk('categories/add', async (body) => {
     try {
 
         const response = await useInsertDataWithImages('/api/v1/categories', body)
-        console.log(response)
+
         return response
 
     } catch (error) {
@@ -49,6 +49,29 @@ export const addCategory = createAsyncThunk('categories/add', async (body) => {
     }
 
 })
+
+
+export const updateCategoryImage = createAsyncThunk('categories/update', async (params) => {
+    try {
+
+
+        console.log(params)
+        const response = await useUpdateData(`/api/v1/categories/${params.id}`, params.formData)
+
+        return response
+
+    } catch (error) {
+
+        return error.response
+
+    }
+
+})
+
+
+
+
+
 export const removeCategory = createAsyncThunk('categories/remove', async (id) => {
     try {
 
@@ -63,23 +86,4 @@ export const removeCategory = createAsyncThunk('categories/remove', async (id) =
     }
 
 })
-
-
-export const updateCategory = createAsyncThunk('categories/update', async (id, data) => {
-    try {
-
-
-        const response = await useUpdateDataWithImage(`/api/v1/categories/${id}`, data)
-
-        return response
-
-    } catch (error) {
-
-        return error.response
-
-    }
-
-})
-
-
 
