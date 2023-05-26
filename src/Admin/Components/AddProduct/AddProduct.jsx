@@ -1,8 +1,7 @@
 import styles from './AddProduct.module.scss'
 
-import imageCover2 from '../../../assets/addimg.png'
-import c1 from '../../../assets/Products/p1.png'
-import c11 from '../../../assets/Products/p11.png'
+import { ToastContainer } from 'react-toastify';
+
 import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
 export default function AddProduct() {
     const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages] = AddProductHook()
@@ -32,9 +31,10 @@ export default function AddProduct() {
                         <div className={styles.Category}>
                             <label>Product Category:*
                                 <select onChange={handleChange} value={formInputData.category} name="category">
-                                    <option>Cat</option>
-                                    <option>Dog</option>
-                                    <option>Bird</option>
+                                    <option value='646fc746e4f71d2cdbe2a21a'>Cat</option>
+                                    <option value='646fc832976d10fd1b9d61a1'>Dog</option>
+                                    <option value='646fc832976d10fd1b9d61a1'>bird</option>
+
                                 </select>
                             </label>
 
@@ -111,6 +111,7 @@ export default function AddProduct() {
             <div className={styles.btnAddProduct}>
                 <button onClick={(e) => onSubmit(e)}>Add Product</button>
             </div>
+            <ToastContainer />
         </div>
     )
 }

@@ -27,7 +27,7 @@ export default function AllProducts() {
                 {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) => <ProductCardAdmin key={item._id} img={item.imageCover} price={item.price} name={item.title} />) : <h1>No Categories</h1>}
 
             </div>
-
+     
         </div>
     )
 }

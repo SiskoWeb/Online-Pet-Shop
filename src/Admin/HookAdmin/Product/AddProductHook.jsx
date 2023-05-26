@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import notify from "../../../Hooks/useNotifaction"
 import { addCategory, getAllCategories } from "../../../Redux/CategoriesSlice/ActionsCategories"
 import { useDispatch, useSelector } from "react-redux"
+import { AddProduct } from "../../../Redux/productsSlice/ActionsProducts"
+
 
 
 export const AddProductHook = () => {
@@ -58,30 +60,43 @@ export const AddProductHook = () => {
 
     }
 
+    const addProductResponse = useSelector(state => state.products.addProductResponse)
+
     // @desc upload data to Server 
     const onSubmit = async (e) => {
-
         e.preventDefault()
 
-
-        console.log(formInputData)
+        //@desc  valuesValidator
+        const checkEmptyInput = !Object.values(formInputData).every(res => res === "")
         console.log(imageCover)
-        console.log(images)
-
-        setLoading(true)
-
-        // @desc create new form from buildin FromData
-        // const formData = new FormData()
-        // formData.append('name', categoryName)
-        // formData.append('image', selectedImg)
+        console.log(checkEmptyInput)
+        if (checkEmptyInput || imageCover === null) {
+            notify('you forget input empty', 'warn')
+            return
+        }
 
 
-        //@desc fun create Category  passing ID + naem & image
-        // await dispatch(addCategory(formData))
+        else {
 
-        //@dex switchh loading to false to active validator inside useEffect
-        setLoading(false)
 
+            setLoading(true)
+
+            // @desc create new form from buildin FromData
+            const formData = new FormData()
+            formData.append('title', formInputData.title)
+            formData.append('description', formInputData.description)
+            formData.append('quantity', parseInt(formInputData.quantity))
+            formData.append('price', parseInt(formInputData.price))
+            formData.append('category', formInputData.category)
+            formData.append('imageCover', imageCover)
+
+
+            //@desc fun create Category  passing ID + naem & image
+            await dispatch(AddProduct(formData))
+
+            //@dex switchh loading to false to active validator inside useEffect
+            setLoading(false)
+        }
     }
 
 
@@ -94,34 +109,68 @@ export const AddProductHook = () => {
 
 
 
-        // if (loading === false) {
+        if (loading === false) {
+
+
+            console.log(addProductResponse)
+            if (addProductResponse.status === 200) {
+                //@ if category created 
+                if (addProductResponse.data.data.createdAt) {
+                    notify('category created', 'success')
+
+
+                    setformInputData({
+                        title: '',
+                        description: '',
+                        quantity: Number,
+                        price: Number,
+                        category: '',
+
+                    })
+                }
+            }
+            else {
+
+                //     //@ if we get error
+                if (addProductResponse?.data) {
+
+                    if (addProductResponse.data.message.includes("quantity")) {
+                        notify("quantity uncourrect", "error")
+                        console.log("pb quantity    ")
+
+                    }
+                    if (addProductResponse.data.message.includes("price")) {
+                        notify("price uncourrect", "error")
+                        console.log("pb price    ")
+
+                    }
+                    if (addProductResponse.data.message.includes("category")) {
+                        notify("category uncourrect", "error")
+                        console.log("pb category    ")
+
+                    }
+                    if (addProductResponse.data.message.includes("title")) {
+                        notify("title uncourrect", "error")
+                        console.log("pb title    ")
+
+                    }
+                    if (addProductResponse.data.message.includes("description")) {
+                        notify("description uncourrect", "error")
+                        console.log("pb description    ")
+
+                    }
+                    if (addProductResponse.data.message.includes("imageCover")) {
+                        notify("imageCover uncourrect", "error")
+                        console.log("pb imageCover    ")
+
+                    }
+
+                }
 
 
 
-        //     if (addCategoryResponse.status === 200) {
-        //         //@ if category created 
-        //         if (addCategoryResponse.data.data.createdAt) {
-        //             notify('category created', 'success')
-
-
-
-        //         }
-        //     }
-        //     else {
-
-        //         //     //@ if we get error
-        //         if (addCategoryResponse?.data) {
-        //             notify('main error ', 'error')
-        //             if (addCategoryResponse.data.errors) {
-        //                 notify("email or passowrd uncourrect", "error")
-
-        //             }
-        //         }
-
-
-
-        //     }
-        // }
+            }
+        }
 
 
     }, [loading])

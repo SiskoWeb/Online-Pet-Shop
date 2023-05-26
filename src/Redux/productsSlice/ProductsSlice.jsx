@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllProducts } from './ActionsProducts'
+import { getAllProducts, AddProduct } from './ActionsProducts'
 
 const initialState = {
     productsList: [],
-    isloading: false
-
+    isloading: false,
+    addProductResponse: []
 }
 
 
@@ -26,7 +26,18 @@ export const ProductsSlice = createSlice({
         },
         [getAllProducts.rejected]: (state, action) => {
             state.isloading = true
-        }
+        },
+        [AddProduct.pending]: (state, action) => {
+            state.isloading = true
+        },
+        [AddProduct.fulfilled]: (state, action) => {
+            state.addProductResponse = action.payload
+            state.isloading = false
+
+        },
+        [AddProduct.rejected]: (state, action) => {
+            state.isloading = true
+        },
     }
 })
 
