@@ -3,64 +3,67 @@ import styles from './AddProduct.module.scss'
 import { ToastContainer } from 'react-toastify';
 
 import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
+import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 export default function AddProduct() {
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages] = AddProductHook()
+    const [Categories] = GetCategoryHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray] = AddProductHook()
+
     return (
         <div>
-            <h1>Add New product</h1>
+            <div className={styles.title}>
+                <h3>Add New product</h3>
+            </div>
 
-            <div className={styles.AddProduct}>
 
-                <div className={styles.containerAddProduct}>
-
-                    {/*--------------Description------------*/}
-
-                    <h4>Description</h4>
-                    <hr></hr>
-                    <div className={styles.Description}>
-
-                        <label><p>Product Name:* </p><input onChange={handleChange} value={formInputData.title} name="title" type='text' /></label>
-                        <label><p>Product Description:*</p> <textarea onChange={handleChange} value={formInputData.description} name="description" type='text'></textarea></label>
+            <div className={styles.ProductAdd}>
 
 
 
-                        {/*--------------Category------------*/}
+                <div className={styles.container}>
 
-                        <h4>Category</h4>
-                        <hr></hr>
-                        <div className={styles.Category}>
-                            <label>Product Category:*
-                                <select onChange={handleChange} value={formInputData.category} name="category">
-                                    <option value='646fc746e4f71d2cdbe2a21a'>Cat</option>
-                                    <option value='646fc832976d10fd1b9d61a1'>Dog</option>
-                                    <option value='646fc832976d10fd1b9d61a1'>bird</option>
-
-                                </select>
-                            </label>
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}><h5>General</h5></div>
 
 
-                        </div>
+                        <div className={styles.cardBody}>
+                            <div className={styles.formGroup}>
+                                <label><p><span>*</span>Product Name</p><input className={styles.formControl} onChange={handleChange} value={formInputData.title} name="title" type='text' /></label>
+                            </div>
 
 
-                        {/*--------------Inventory------------*/}
 
-                        <h4>Inventory</h4>
-                        <hr></hr>
-                        <div className={styles.Quantity}>
-                            <label>Quantity:* <input onChange={handleChange} value={formInputData.quantity} name="quantity" type='number' /></label>
-                        </div>
+                            <div className={styles.formGroup}>
+                                <label><span>*</span>Price<input className={styles.formControl} onChange={handleChange} value={formInputData.price} name="price" type='number' /></label>
+                            </div>
 
 
-                        {/*--------------Pricing------------*/}
-                        <h4>Pricing</h4>
-                        <hr></hr>
-                        <div className={styles.Price}>
-                            <label>Price:* <input onChange={handleChange} value={formInputData.price} name="price" type='number' /></label>
+                            <div className={styles.formGroup}>
+                                <label><span>*</span>Quantity<input className={styles.formControl} onChange={handleChange} value={formInputData.quantity} name="quantity" type='number' /></label>
+                            </div>
+
+
+                            <div className={styles.formGroup}>
+                                <label className={styles.category}>
+                                    <p><span>*</span>Product Category</p>
+                                    <select onChange={handleChange} value={formInputData.category} name="category">
+                                        {Categories.length >= 1 ? Categories?.map((cat, index) => <option key={index} value={cat._id}>{cat.name}</option>) : <option disabled>No Category , add new one</option>}
+
+
+                                    </select>
+                                </label>
+                            </div>
+
+
+
+
+
+
+                            <div className={styles.formGroup}>
+                                <label><p><span>*</span>Product Description</p> <textarea className={styles.formControl} onChange={handleChange} value={formInputData.description} name="description" type='text'></textarea></label>
+                            </div>
+
                         </div>
                     </div>
-
-
-
 
 
 
@@ -70,36 +73,74 @@ export default function AddProduct() {
 
 
 
-                <div className={styles.containerAddProduct}>
-                    <h4>Product Images</h4>
-                    <hr></hr>
-                    <div className={styles.imageCover}>
-                        <p>Main Image(Required)*</p>
-                        <label htmlFor='imageCover'
 
-                        ><img src={displayImageCover}></img>
-                            Click To Upload
-                            <input onChange={handleChangeImageCover} name="imageCover" id='imageCover' type='file' />
-                        </label>
+
+                <div className={styles.container}>
+
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}><h5>Main Image</h5></div>
+
+
+                        <div className={styles.cardBody}>
+
+                            <div className={styles.imageCard}>
+                                <img src={displayImageCover}></img>
+                                <label htmlFor='imageCover'
+
+                                >
+                                    Click To Upload
+                                    <input onChange={handleChangeImageCover} name="imageCover" id='imageCover' type='file' />
+                                </label>
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
 
                     </div>
-                    <hr></hr>
-                    <div className={styles.imageCover}>
-                        <p>Images</p>
-                        <label htmlFor='images'
 
-                        >
-                            Click To Upload
-                            <input multiple onChange={handleChangeImages} name="images" id='images' type='file' />
-                        </label>
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}><h5>Images</h5></div>
+
+
+                        <div className={styles.cardBody}>
+
+
+                            <div className={styles.listImages}>
+                                {displayImages?.map((img, index) => {
+                                    return (
+                                        <div className={styles.ItemOfImage} key={index}>
+                                            <img src={URL.createObjectURL(img)}></img>
+                                            <i onClick={() => onRemoveImageFromArray()} className={`${styles.cart}  fa-solid fa-xmark`} ></i>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
+
+
+                            <div className={styles.imageCard}>
+
+                                <label htmlFor='images'
+
+                                >
+                                    Click To Upload
+                                    <input multiple onChange={handleChangeImages} name="images" id='images' type='file' />
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+
 
                     </div>
-                    <div className={styles.listImages}>
-                        {displayImages?.map((img, index) => <img key={index} src={URL.createObjectURL(img)}></img>)}
-
-                    </div>
-
-
                 </div>
 
 
@@ -112,6 +153,8 @@ export default function AddProduct() {
                 <button onClick={(e) => onSubmit(e)}>Add Product</button>
             </div>
             <ToastContainer />
+            <div>
+            </div>
         </div>
     )
 }

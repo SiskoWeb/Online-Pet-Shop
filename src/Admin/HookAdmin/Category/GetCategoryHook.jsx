@@ -22,5 +22,5 @@ export const GetCategoryHook = () => {
 
 
 
-    return [isLoading, Categories]
+    return [Categories]
 } 

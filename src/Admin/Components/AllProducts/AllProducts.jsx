@@ -1,33 +1,34 @@
-import React, { useEffect } from 'react'
-import styles from './AllProducts.module.scss'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllProducts } from '../../../Redux/productsSlice/ActionsProducts'
+import styles from './AllProducts.module.scss'
+import { ToastContainer } from 'react-toastify';
+
+
 import ProductCardAdmin from '../../../utilis/ProductCardAdmin/ProductCardAdmin'
+import { RemoveProductHook, } from '../../HookAdmin/Product/RemoveProductHook'
+import { GetProductHook } from '../../HookAdmin/Product/GetProductHook'
+
+
+
 export default function AllProducts() {
 
+    const [isLoading, productsList] = GetProductHook()
+    const [deleteProduct] = RemoveProductHook()
+    GetProductHook()
 
 
-    const productsList = useSelector((state) => state.products.productsList)
-    const isLoading = useSelector((state) => state.products.isloading)
-    const dispatch = useDispatch()
 
 
-    useEffect(() => {
 
-        dispatch(getAllProducts())
-        console.log(productsList)
-    }, [])
 
     return (
         <div className={styles.AllProducts}>
             <h4>All Products</h4>
             <div className={styles.list}>
 
-                {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) => <ProductCardAdmin key={item._id} img={item.imageCover} price={item.price} name={item.title} />) : <h1>No Categories</h1>}
+                {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) => <ProductCardAdmin key={item._id} dataProduct={item} img={item.imageCover} price={item.price} name={item.title} deleteProduct={deleteProduct} />) : <h1>No Product</h1>}
 
             </div>
-     
+            <ToastContainer />
         </div>
     )
 }

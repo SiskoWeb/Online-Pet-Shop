@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import notify from "../../../Hooks/useNotifaction"
-import { addCategory, getAllCategories } from "../../../Redux/CategoriesSlice/ActionsCategories"
 import { useDispatch, useSelector } from "react-redux"
 import { AddProduct } from "../../../Redux/productsSlice/ActionsProducts"
 
@@ -11,10 +10,11 @@ export const AddProductHook = () => {
 
     const [loading, setLoading] = useState(true)
 
+
     const [displayImageCover, setDisplayImageCover] = useState(null)
     const [imageCover, setImageCover] = useState(null)
 
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState(null)
     const [displayImages, setDisplayImages] = useState()
 
     const [formInputData, setformInputData] = useState(
@@ -48,7 +48,7 @@ export const AddProductHook = () => {
     }
 
     const handleChangeImages = (evnt) => {
-        setImages(evnt.target.files)
+        setImages(Array.from(evnt.target.files))
         // setDisplayImages(evnt.target.files)
         setDisplayImages(Array.from(evnt.target.files))
 
@@ -57,7 +57,8 @@ export const AddProductHook = () => {
 
 
     const onRemoveImageFromArray = (e) => {
-
+        setImageCover(null)
+        setDisplayImageCover(null)
     }
 
     const addProductResponse = useSelector(state => state.products.addProductResponse)
@@ -67,13 +68,37 @@ export const AddProductHook = () => {
         e.preventDefault()
 
         //@desc  valuesValidator
-        const checkEmptyInput = !Object.values(formInputData).every(res => res === "")
-        console.log(imageCover)
-        console.log(checkEmptyInput)
-        if (checkEmptyInput || imageCover === null) {
-            notify('you forget input empty', 'warn')
+        if (formInputData.title.length <= 3) {
+            notify('title to short', 'warn')
             return
         }
+        if (formInputData.description.length <= 20) {
+            notify('description to short', 'warn')
+            return
+        }
+        if (formInputData.quantity === '') {
+            notify('quantity is empty', 'warn')
+            return
+        }
+        if (parseInt(formInputData.quantity) < 0) {
+            notify('quantity should be more then 1', 'warn')
+            return
+        }
+        if (formInputData.price === '') {
+            notify('price is empty', 'warn')
+            return
+        }
+        if (formInputData.category === '') {
+            notify('category is empty', 'warn')
+            return
+        }
+        if (imageCover === null) {
+            notify('you forget imageCover empty', 'warn')
+            return
+        }
+
+        // const checkEmptyInput = !Object.values(formInputData).every(res => res === "")
+
 
 
         else {
@@ -89,6 +114,9 @@ export const AddProductHook = () => {
             formData.append('price', parseInt(formInputData.price))
             formData.append('category', formInputData.category)
             formData.append('imageCover', imageCover)
+
+            //@desc Looping in images to add it in formdata
+            images.map(img => formData.append('images', img))
 
 
             //@desc fun create Category  passing ID + naem & image
@@ -127,6 +155,8 @@ export const AddProductHook = () => {
                         category: '',
 
                     })
+                    setDisplayImages(null)
+                    setDisplayImageCover(null)
                 }
             }
             else {
@@ -176,5 +206,5 @@ export const AddProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages,onRemoveImageFromArray]
 } 

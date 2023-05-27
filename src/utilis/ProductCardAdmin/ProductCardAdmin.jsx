@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 // import img from '../../assets/Products/p1.png'
 
-export default function ProductCardAdmin({ img, price, name }) {
+export default function ProductCardAdmin({ dataProduct, deleteProduct }) {
 
 
 
@@ -15,7 +15,7 @@ export default function ProductCardAdmin({ img, price, name }) {
 
 
 
-                <img src={img}></img>
+                <img src={dataProduct.imageCover}></img>
 
 
             </div>
@@ -27,7 +27,7 @@ export default function ProductCardAdmin({ img, price, name }) {
 
                     <div className={styles.text} >
                         <a href='/product'>  <p>{name}</p></a>
-                        <p>${price}</p>
+                        <p>${dataProduct.price}</p>
 
 
                     </div>
@@ -38,7 +38,7 @@ export default function ProductCardAdmin({ img, price, name }) {
                 <div className={`${styles.icons}`} >
 
 
-                    <i className={`${styles.cart}  fa-solid fa-xmark`} ></i>
+                    <i onClick={() => deleteProduct(dataProduct._id)} className={`${styles.cart}  fa-solid fa-xmark`} ></i>
                     <Link to='admin/product/1'><i className={`${styles.heart} fa-solid fa-pen-to-square `}></i></Link>
 
                 </div>

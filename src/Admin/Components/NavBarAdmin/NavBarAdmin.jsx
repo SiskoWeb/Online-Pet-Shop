@@ -8,7 +8,7 @@ export default function NavBarAdmin() {
     return (
         <nav className={styles.NavBarAdmin}>
             <div>
-                <h1>Admin</h1>
+                <i className="fa-solid fa-sliders"></i>
             </div>
 
             <div className={styles.AdminNavBar_profil}>
