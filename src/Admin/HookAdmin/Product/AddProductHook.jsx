@@ -11,11 +11,10 @@ export const AddProductHook = () => {
     const [loading, setLoading] = useState(true)
 
 
-    const [displayImageCover, setDisplayImageCover] = useState(null)
+    const [displayImageCover, setDisplayImageCover] = useState(addImg)
     const [imageCover, setImageCover] = useState(null)
 
-    const [images, setImages] = useState(null)
-    const [displayImages, setDisplayImages] = useState()
+
 
     const [formInputData, setformInputData] = useState(
         {
@@ -30,41 +29,91 @@ export const AddProductHook = () => {
 
 
 
-
-    useEffect(() => {
-
-        if (displayImages?.length >= 3) {
-            console.log('max 3')
+    const [listimages, setListimages] = useState([
+        {
+            id: 1,
+            image: null,
+            imageDisplay: addImg
+        },
+        {
+            id: 2,
+            image: null,
+            imageDisplay: addImg
+        },
+        {
+            id: 3,
+            image: null,
+            imageDisplay: addImg
+        },
+        {
+            id: 4,
+            image: null,
+            imageDisplay: addImg
         }
-    }, [])
+    ]);
 
 
 
 
+
+    //@desc get images from user (second Images)
+    const handleChangeImages = (image, id) => {
+        const updatedList = listimages.map(item => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    image: image, imageDisplay: URL.createObjectURL(image)// Replace 'image' + id with the actual image value
+                };
+            }
+            return item;
+        });
+
+        setListimages(updatedList);
+        console.log(updatedList)
+
+    };
+
+
+
+
+
+    //@desc get data from inputs not include images
     const handleChange = (evnt) => {
         const newInput = (data) => ({ ...data, [evnt.target.name]: evnt.target.value })
         setformInputData(newInput)
 
     }
 
-
+    //@desc get images from user (main Image)
     const handleChangeImageCover = (evnt) => {
         setImageCover(evnt.target.files[0])
         setDisplayImageCover(URL.createObjectURL(evnt.target.files[0]))
     }
 
-    const handleChangeImages = (evnt) => {
-        setImages(Array.from(evnt.target.files))
-        // setDisplayImages(evnt.target.files)
-        setDisplayImages(Array.from(evnt.target.files))
-
-    }
 
 
 
-    const onRemoveImageFromArray = () => {
-        setImageCover(null)
-        setDisplayImageCover(null)
+
+
+
+
+    //@desc cleare input image by imageselected
+    const onRemoveImage = (id) => {
+
+
+        const updatedList = listimages.map(item => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    image: null, imageDisplay: addImg
+                };
+            }
+            return item;
+        });
+
+        setListimages(updatedList);
+        console.log(updatedList)
+
     }
 
     const addProductResponse = useSelector(state => state.products.addProductResponse)
@@ -108,8 +157,6 @@ export const AddProductHook = () => {
 
 
         else {
-
-
             setLoading(true)
 
             // @desc create new form from buildin FromData
@@ -122,7 +169,7 @@ export const AddProductHook = () => {
             formData.append('imageCover', imageCover)
 
             //@desc Looping in images to add it in formdata
-            images.map(img => formData.append('images', img))
+            listimages.map(item => formData.append('images', item.image))
 
 
             //@desc fun create Category  passing ID + naem & image
@@ -161,8 +208,28 @@ export const AddProductHook = () => {
                         category: '',
 
                     })
-                    setDisplayImages(null)
-                    setDisplayImageCover(null)
+                    setListimages([
+                        {
+                            id: 1,
+                            image: null,
+                            imageDisplay: addImg
+                        },
+                        {
+                            id: 2,
+                            image: null,
+                            imageDisplay: addImg
+                        },
+                        {
+                            id: 3,
+                            image: null,
+                            imageDisplay: addImg
+                        },
+                        {
+                            id: 4,
+                            image: null,
+                            imageDisplay: addImg
+                        }
+                    ])
                 }
             }
             else {
@@ -212,5 +279,5 @@ export const AddProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray, handleChangeListImages, listimages]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, imageCover, onRemoveImage, handleChangeImages, listimages]
 } 

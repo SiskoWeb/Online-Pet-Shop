@@ -6,7 +6,7 @@ import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 export default function AddProduct() {
     const [Categories] = GetCategoryHook()
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray, handleChangeListImages, listimages] = AddProductHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, imageCover, onRemoveImage, handleChangeImages, listimages] = AddProductHook()
 
     return (
         <div>
@@ -62,6 +62,7 @@ export default function AddProduct() {
                                 <label><p><span>*</span>Product Description</p> <textarea className={styles.formControl} onChange={handleChange} value={formInputData.description} name="description" type='text'></textarea></label>
                             </div>
 
+
                         </div>
                     </div>
 
@@ -85,73 +86,51 @@ export default function AddProduct() {
 
                             <div className={styles.imageCard}>
 
-                                {displayImageCover === null ? null :
-
-                                    <div className={styles.displayMainImage}>
-                                        <i onClick={() => onRemoveImageFromArray()} className={` fa-solid fa-xmark`} ></i>
-                                        <img src={displayImageCover}></img>
-                                    </div>}
+                                {imageCover ? <button onClick={() => onRemoveImage("mainImage")}>Remove</button> : <div></div>}
 
 
-                                <label htmlFor='imageCover'
+                                <label htmlFor='imageCover' >
 
-                                >
-                                    Click To Upload
+
+                                    <img src={displayImageCover}></img>
+
                                     <input onChange={handleChangeImageCover} name="imageCover" id='imageCover' type='file' />
                                 </label>
 
                             </div>
-
-
-
-
-                        </div>
-
-
-
-
-                    </div>
-
-                    <div className={styles.card}>
-                        <div className={styles.cardHeader}><h5>Images</h5></div>
-
-
-                        <div className={styles.cardBody}>
-
-
-
-
-
                             <div className={styles.imagesCard}>
 
-                                <label htmlFor='images'>
-                                    <img src={listimages[0].image}></img>
+                                <label htmlFor='images1'>
+                                    <img src={listimages[0].imageDisplay}></img>
                                     Click to Upload
-                                    <input onChange={(e) => handleChangeListImages(0, e)} name="images" id='images' type='file' />
+                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
                                 </label>
-                                <label htmlFor='images'>
-                                    <img src={listimages[1].image}></img>
+                                <label htmlFor='images2'>
+                                    <img src={listimages[1].imageDisplay}></img>
                                     Click to Upload
-                                    <input onChange={(e) => handleChangeListImages(1, e)} name="images" id='images' type='file' />
+                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
                                 </label>
-                                <label htmlFor='images'>
-                                    <img src={listimages[2].image}></img>
+                                <label htmlFor='images3'>
+                                    <img src={listimages[2].imageDisplay}></img>
                                     Click to Upload
-                                    <input onChange={(e) => handleChangeListImages(2, e)} name="images" id='images' type='file' />
+                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
                                 </label>
-                                <label htmlFor='images'>
-                                    <img src={listimages[3].image}></img>
+                                <label htmlFor='images4'>
+                                    <img src={listimages[3].imageDisplay}></img>
                                     Click to Upload
-                                    <input onChange={(e) => handleChangeListImages(3, e)} name="images" id='images' type='file' />
+                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
                                 </label>
                             </div>
 
+
+
                         </div>
-
-
-
-
                     </div>
+
+
+
+
+
                 </div>
 
 
