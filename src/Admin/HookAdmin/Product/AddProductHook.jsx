@@ -99,20 +99,25 @@ export const AddProductHook = () => {
 
     //@desc cleare input image by imageselected
     const onRemoveImage = (id) => {
+        if (0 === id) {
+            setImageCover(null)
+            setDisplayImageCover(addImg)
+        }
+        else {
+            const updatedList = listimages.map(item => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        image: null, imageDisplay: addImg
+                    };
+                }
+                return item;
+            });
 
+            setListimages(updatedList);
+            console.log(updatedList)
+        }
 
-        const updatedList = listimages.map(item => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    image: null, imageDisplay: addImg
-                };
-            }
-            return item;
-        });
-
-        setListimages(updatedList);
-        console.log(updatedList)
 
     }
 
@@ -229,7 +234,10 @@ export const AddProductHook = () => {
                             image: null,
                             imageDisplay: addImg
                         }
+
                     ])
+                    setImageCover(null)
+                    setDisplayImageCover(addImg)
                 }
             }
             else {

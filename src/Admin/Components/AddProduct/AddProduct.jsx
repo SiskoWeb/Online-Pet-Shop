@@ -86,7 +86,7 @@ export default function AddProduct() {
 
                             <div className={styles.imageCard}>
 
-                                {imageCover ? <button onClick={() => onRemoveImage("mainImage")}>Remove</button> : <div></div>}
+                                {imageCover ? <button onClick={() => onRemoveImage(0)}>Remove</button> : null}
 
 
                                 <label htmlFor='imageCover' >
@@ -100,26 +100,47 @@ export default function AddProduct() {
                             </div>
                             <div className={styles.imagesCard}>
 
-                                <label htmlFor='images1'>
-                                    <img src={listimages[0].imageDisplay}></img>
-                                    Click to Upload
-                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
-                                </label>
-                                <label htmlFor='images2'>
-                                    <img src={listimages[1].imageDisplay}></img>
-                                    Click to Upload
-                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
-                                </label>
-                                <label htmlFor='images3'>
-                                    <img src={listimages[2].imageDisplay}></img>
-                                    Click to Upload
-                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
-                                </label>
-                                <label htmlFor='images4'>
-                                    <img src={listimages[3].imageDisplay}></img>
-                                    Click to Upload
-                                    <input onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
-                                </label>
+                                -
+                                <div>
+                                    {listimages[0].image ? <button onClick={() => onRemoveImage(1)}>Remove</button> : null}
+                                    <label htmlFor='images1'>
+
+                                        <img src={listimages[0].imageDisplay}></img>
+                                        Click to Upload
+                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
+                                    </label>
+                                </div>
+
+                                <div>
+                                    {listimages[1].image ? <button onClick={() => onRemoveImage(2)}>Remove</button> : null}
+
+                                    <label htmlFor='images2'>
+                                        <img src={listimages[1].imageDisplay}></img>
+                                        Click to Upload
+                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
+                                    </label>
+                                </div>
+
+                                <div>
+                                    {listimages[2].image ? <button onClick={() => onRemoveImage(3)}>Remove</button> : null}
+
+                                    <label htmlFor='images3'>
+                                        <img src={listimages[2].imageDisplay}></img>
+                                        Click to Upload
+                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
+                                    </label>
+                                </div>
+                                <div>
+                                    {listimages[3].image ? <button onClick={() => onRemoveImage(4)}>Remove</button> : null}
+
+                                    <label htmlFor='images4'>
+                                        <img src={listimages[3].imageDisplay}></img>
+                                        Click to Upload
+                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
+                                    </label>
+                                </div>
+
+
                             </div>
 
 
