@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .title {
   width: 100%;
   // margin-left: 20px;
@@ -34,29 +36,11 @@
   margin-left: -15px;
 
   .container {
-    flex: 0 0 50%;
-    max-width: 50%;
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    @include container;
   }
 
   .card {
-    margin-bottom: 30px;
-    border: 0;
-    letter-spacing: 0.5px;
-    border-radius: 8px;
-    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    transition: all 0.3s ease;
+    @include card;
 
     .formControl {
       display: block;
@@ -112,7 +96,43 @@
       }
     }
   }
-
+  .displayMainImage {
+    i {
+      position: absolute;
+      cursor: pointer;
+    }
+    img {
+      position: relative;
+    }
+  }
+  .imagesCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    column-gap: 10px;
+    input {
+      display: none;
+    }
+    img {
+      width: 100px;
+      max-height: 400px;
+      padding: 20px;
+    }
+    label {
+      border: 3px red dotted;
+      font-size: 12px;
+      // margin-top: 20px;
+      background-color: #f8fafb;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
   .imageCard {
     display: flex;
     align-items: center;
@@ -136,6 +156,7 @@
       padding: 10px;
       border-radius: 10px;
       display: flex;
+
       justify-content: center;
       flex-direction: column;
     }

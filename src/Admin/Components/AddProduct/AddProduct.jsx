@@ -1,12 +1,12 @@
 import styles from './AddProduct.module.scss'
 
 import { ToastContainer } from 'react-toastify';
-
+import addImg from '../../../assets/addimg.png'
 import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 export default function AddProduct() {
     const [Categories] = GetCategoryHook()
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray] = AddProductHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray, handleChangeListImages, listimages] = AddProductHook()
 
     return (
         <div>
@@ -45,7 +45,7 @@ export default function AddProduct() {
                             <div className={styles.formGroup}>
                                 <label className={styles.category}>
                                     <p><span>*</span>Product Category</p>
-                                    <select onChange={handleChange} value={formInputData.category} name="category">
+                                    <select required onChange={handleChange} value={formInputData.category} name="category">
                                         {Categories.length >= 1 ? Categories?.map((cat, index) => <option key={index} value={cat._id}>{cat.name}</option>) : <option disabled>No Category , add new one</option>}
 
 
@@ -84,7 +84,15 @@ export default function AddProduct() {
                         <div className={styles.cardBody}>
 
                             <div className={styles.imageCard}>
-                                <img src={displayImageCover}></img>
+
+                                {displayImageCover === null ? null :
+
+                                    <div className={styles.displayMainImage}>
+                                        <i onClick={() => onRemoveImageFromArray()} className={` fa-solid fa-xmark`} ></i>
+                                        <img src={displayImageCover}></img>
+                                    </div>}
+
+
                                 <label htmlFor='imageCover'
 
                                 >
@@ -111,28 +119,31 @@ export default function AddProduct() {
                         <div className={styles.cardBody}>
 
 
-                            <div className={styles.listImages}>
-                                {displayImages?.map((img, index) => {
-                                    return (
-                                        <div className={styles.ItemOfImage} key={index}>
-                                            <img src={URL.createObjectURL(img)}></img>
-                                            <i onClick={() => onRemoveImageFromArray()} className={`${styles.cart}  fa-solid fa-xmark`} ></i>
-                                        </div>
-                                    )
-                                })}
-
-                            </div>
 
 
-                            <div className={styles.imageCard}>
 
-                                <label htmlFor='images'
+                            <div className={styles.imagesCard}>
 
-                                >
-                                    Click To Upload
-                                    <input multiple onChange={handleChangeImages} name="images" id='images' type='file' />
+                                <label htmlFor='images'>
+                                    <img src={listimages[0].image}></img>
+                                    Click to Upload
+                                    <input onChange={(e) => handleChangeListImages(0, e)} name="images" id='images' type='file' />
                                 </label>
-
+                                <label htmlFor='images'>
+                                    <img src={listimages[1].image}></img>
+                                    Click to Upload
+                                    <input onChange={(e) => handleChangeListImages(1, e)} name="images" id='images' type='file' />
+                                </label>
+                                <label htmlFor='images'>
+                                    <img src={listimages[2].image}></img>
+                                    Click to Upload
+                                    <input onChange={(e) => handleChangeListImages(2, e)} name="images" id='images' type='file' />
+                                </label>
+                                <label htmlFor='images'>
+                                    <img src={listimages[3].image}></img>
+                                    Click to Upload
+                                    <input onChange={(e) => handleChangeListImages(3, e)} name="images" id='images' type='file' />
+                                </label>
                             </div>
 
                         </div>

@@ -13,3 +13,30 @@ $paddingPage: 100px calc(100% - 80%);
   padding: $padding;
   border-radius: 5px;
 }
+@mixin card() {
+  margin-bottom: 30px;
+  border: 0;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  transition: all 0.3s ease;
+}
+
+
+@mixin container() {
+
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}

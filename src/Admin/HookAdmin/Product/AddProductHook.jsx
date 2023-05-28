@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import notify from "../../../Hooks/useNotifaction"
 import { useDispatch, useSelector } from "react-redux"
 import { AddProduct } from "../../../Redux/productsSlice/ActionsProducts"
-
+import addImg from '../../../assets/addimg.png'
 
 
 export const AddProductHook = () => {
@@ -31,6 +31,12 @@ export const AddProductHook = () => {
 
 
 
+    useEffect(() => {
+
+        if (displayImages?.length >= 3) {
+            console.log('max 3')
+        }
+    }, [])
 
 
 
@@ -56,7 +62,7 @@ export const AddProductHook = () => {
 
 
 
-    const onRemoveImageFromArray = (e) => {
+    const onRemoveImageFromArray = () => {
         setImageCover(null)
         setDisplayImageCover(null)
     }
@@ -206,5 +212,5 @@ export const AddProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages,onRemoveImageFromArray]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, handleChangeImages, displayImages, onRemoveImageFromArray, handleChangeListImages, listimages]
 } 
