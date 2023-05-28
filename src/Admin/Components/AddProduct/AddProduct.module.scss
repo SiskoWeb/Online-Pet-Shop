@@ -176,21 +176,6 @@
     }
   }
 
-  .btnAddProduct {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    button {
-      background-color: #005efb;
-      color: white;
-      border-radius: 5px;
-      border: none;
-
-      padding: 10px 20px;
-    }
-  }
-
   textarea {
     resize: none;
     width: 100%;
@@ -218,6 +203,23 @@
     i {
       position: absolute;
       cursor: pointer;
+    }
+  }
+
+  .btnAddProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    button {
+      background-color: #005efb;
+      color: white;
+      border-radius: 5px;
+      border: none;
+
+      padding: 10px 20px;
     }
   }
 }

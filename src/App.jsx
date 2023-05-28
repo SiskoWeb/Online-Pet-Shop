@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux'
 
 function App() {
   const isloading = useSelector((state) => state.categories.isloading)
-  
+
   const [user, setUser] = useState('')
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function App() {
             <Route path="categories" index element={<CategoriesAdmin />} />
             <Route path="order/1" index element={<Order />} />
             <Route path="orders" index element={<AllOrders />} />
-            <Route path="product/1" index element={<EditProduct />} />
+            <Route path="product/:id" index element={<EditProduct />} />
 
           </Route>
           <Route path="*" element={<p>There's nothing here: 404!</p>} />

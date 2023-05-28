@@ -78,6 +78,7 @@ export const UpdateCategoryHook = () => {
 
 
         }
+
         else {
 
             formData.append("name", nameUpdate);

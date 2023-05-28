@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllProducts, AddProduct, removeProduct } from './ActionsProducts'
+import { getAllProducts, AddProduct, removeProduct, updateProductRedux, getOneProductRedux } from './ActionsProducts'
 
 const initialState = {
     productsList: [],
     isloading: false,
     addProductResponse: [],
-    DeletedResponse: []
+    DeletedResponse: [],
+    UpdateResponse: [],
+    GetOneProduct: [],
 }
 
 
@@ -48,6 +50,28 @@ export const ProductsSlice = createSlice({
 
         },
         [removeProduct.rejected]: (state, action) => {
+            state.isloading = true
+        },
+        [getOneProductRedux.pending]: (state, action) => {
+            state.isloading = true
+        },
+        [getOneProductRedux.fulfilled]: (state, action) => {
+            state.GetOneProduct = action.payload
+            state.isloading = false
+
+        },
+        [getOneProductRedux.rejected]: (state, action) => {
+            state.isloading = true
+        },
+        [updateProductRedux.pending]: (state, action) => {
+            state.isloading = true
+        },
+        [updateProductRedux.fulfilled]: (state, action) => {
+            state.UpdateResponse = action.payload
+            state.isloading = false
+
+        },
+        [updateProductRedux.rejected]: (state, action) => {
             state.isloading = true
         },
     }

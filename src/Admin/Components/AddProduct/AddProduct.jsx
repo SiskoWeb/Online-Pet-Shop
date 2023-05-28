@@ -153,20 +153,18 @@ export default function AddProduct() {
 
 
                 </div>
-
-
-
-
-
-
+                <div className={styles.btnAddProduct}>
+                    <button onClick={(e) => onSubmit(e)}>Add Product</button>
+                </div>
             </div>
-            <div className={styles.btnAddProduct}>
-                <button onClick={(e) => onSubmit(e)}>Add Product</button>
-            </div>
+
+
             <ToastContainer />
             <div>
             </div>
         </div>
+
+
     )
 }
 

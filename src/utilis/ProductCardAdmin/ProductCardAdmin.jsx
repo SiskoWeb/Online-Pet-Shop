@@ -39,7 +39,7 @@ export default function ProductCardAdmin({ dataProduct, deleteProduct }) {
 
 
                     <i onClick={() => deleteProduct(dataProduct._id)} className={`${styles.cart}  fa-solid fa-xmark`} ></i>
-                    <Link to='admin/product/1'><i className={`${styles.heart} fa-solid fa-pen-to-square `}></i></Link>
+                    <Link to={`product/${dataProduct._id}`}><i className={`${styles.heart} fa-solid fa-pen-to-square `}></i></Link>
 
                 </div>
 
