@@ -120,7 +120,7 @@ export const UpdateProductHook = () => {
                 description: GetOneProduct?.data.description,
                 quantity: GetOneProduct?.data.quantity,
                 price: GetOneProduct?.data.price,
-                category: GetOneProduct?.data.category.name,
+                category: GetOneProduct?.data.category._id,
             });
 
         }
@@ -149,7 +149,7 @@ export const UpdateProductHook = () => {
         });
 
         setListimages(updatedList);
-        console.log(updatedList)
+
 
     };
 
@@ -250,7 +250,7 @@ export const UpdateProductHook = () => {
 
 
         else {
-
+            console.log(formInputData.category)
             setLoading(true)
             // @desc create new form from buildin FromData
             const formData = new FormData()
@@ -262,15 +262,20 @@ export const UpdateProductHook = () => {
                 formData.append('quantity', parseInt(formInputData.quantity))
                 formData.append('price', parseInt(formInputData.price))
                 formData.append('category', formInputData.category)
-
+                listimages.map(item => formData.append('images', item.image))
+                console.log(formInputData.category)
             }
+
             else {
+                console.log(formInputData.category)
+
                 formData.append('title', formInputData.title)
                 formData.append('description', formInputData.description)
                 formData.append('quantity', parseInt(formInputData.quantity))
                 formData.append('price', parseInt(formInputData.price))
                 formData.append('imageCover', mainImage.image)
                 formData.append('category', formInputData.category)
+                listimages.map(item => formData.append('images', item.image))
             }
 
 

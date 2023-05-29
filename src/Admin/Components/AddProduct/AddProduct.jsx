@@ -46,6 +46,7 @@ export default function AddProduct() {
                                 <label className={styles.category}>
                                     <p><span>*</span>Product Category</p>
                                     <select required onChange={handleChange} value={formInputData.category} name="category">
+                                        <option value='' selected disabled hidden>Choose here</option>
                                         {Categories.length >= 1 ? Categories?.map((cat, index) => <option key={index} value={cat._id}>{cat.name}</option>) : <option disabled>No Category , add new one</option>}
 
 

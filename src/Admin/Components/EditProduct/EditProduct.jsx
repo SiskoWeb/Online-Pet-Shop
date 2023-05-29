@@ -43,12 +43,19 @@ export default function EditProduct() {
 
                             <div className={styles.formGroup}>
                                 <label className={styles.category}>
-                                    <p><span>*</span>Product Category</p>
 
-                                    <select required onChange={handleChange} defaultValue={formInputData.category} name="category">
-                                        <option >this Product Under:{formInputData.category}</option>
-                                        {Categories.length >= 1 ? Categories?.map((cat, index) =>
-                                            <option key={index} value={cat._id}>{cat.name}</option>) :
+
+                                    <select onChange={handleChange} defaultValue='cat' name="category" >
+
+                                        {Categories.length >= 1 ? Categories?.map((cat, index) => {
+                                            if (cat._id === formInputData.category) {
+                                                return <option selected key={index} value={cat._id}>{cat.name}</option>
+                                            }
+                                            else {
+                                                return <option key={index} value={cat._id}>{cat.name}</option>
+                                            }
+                                        })
+                                            :
                                             <option disabled>No Category , add new one</option>}
                                     </select>
 
