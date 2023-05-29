@@ -8,7 +8,7 @@ import Footer from '../../../utilis/Footer/Footer'
 export default function HomePage() {
     return (
         <div className={styles.home}>
-
+<NavBar/>
             <Hero />
             <Categories />
             <ProductsHome />

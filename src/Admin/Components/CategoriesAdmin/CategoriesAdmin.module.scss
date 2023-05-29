@@ -1,7 +1,7 @@
 @import "../../../variables.scss";
 
 .categoriesAdmin {
-  position: relative;
+  // position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -126,6 +126,8 @@
   .popUpdate {
     position: absolute;
     top: 15%;
+    -webkit-transition: all 0.9s ease;
+    transition: all 0.9s ease;
     i {
       position: absolute;
       top: 5%;

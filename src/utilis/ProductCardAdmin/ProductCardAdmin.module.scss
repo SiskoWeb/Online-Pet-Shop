@@ -1,106 +1,89 @@
 @import "../../variables";
 
 .ProductCardAdmin {
-  display: flex;
-  flex-direction: column;
-
+  width: 100%;
+  height: 100%;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   .card1 {
-    border-radius: 15px;
-    background-color: #ffead1;
-    padding: 15px 40px;
-    width: 200px;
     display: flex;
+    background-color: #eeeeee;
+    position: relative;
+    flex-basis: 100%;
     align-items: center;
     justify-content: center;
+    width: 100%;
 
     img {
-      width: 150px;
-      transition: 0.3s all ease-in;
-
-      // box-shadow: 0 4px 2px -2px gray;
+      max-width: 100%;
     }
   }
 
   .card2 {
-    padding-top: 5px;
-    display: flex;
-    align-items: center;
-
-    column-gap: 40px;
-    flex-direction: row;
-  }
-
-  .col1 {
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
-  }
-
-  .reviews {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    column-gap: 4px;
-
-    i {
-      color: #ff8904;
-      font-size: 10px;
+    height: 100%;
+    justify-content: start;
+    flex-basis: 100%;
+    margin-top: 5px;
+    h6 {
+      line-height: 1;
+      margin-bottom: 0;
+      padding-top: 2px;
+      padding-bottom: 5px;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      font-size: 16px;
+      color: #777;
     }
-    p {
-      font-size: 12px !important;
-      font-weight: 100 !important;
+    .text {
+      display: flex;
+      justify-content: space-between;
+      column-gap: 10px;
     }
-  }
-
-  .text {
-    a,
-    p {
-      text-decoration: none;
-      color: black;
-      font-size: 12px !important;
-      font-weight: 600 !important;
-    }
-  }
-
-  .text :nth-child(2) {
-    font-size: 10px !important;
-    font-weight: 200 !important;
   }
 
   .icons {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
     display: flex;
-    column-gap: 5px;
     align-items: center;
     justify-content: center;
+    background-color: hsla(0, 0%, 100%, 0.7);
+    opacity: 0;
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    column-gap: 10px;
+    -webkit-transition: all 0.3s ease;
+    z-index: 1;
   }
 
-  .icons .heart {
+  .icons i {
     cursor: pointer;
-    background-color: #dbdee8;
+    padding: 10px;
     color: black;
+    background-color: white;
     border-radius: 50%;
-    padding: 5px;
-    font-size: 10px;
-    transition: 0.3s all ease-in;
+    -webkit-transition: all 0.3s ease;
   }
-  .icons .cart {
-    cursor: pointer;
-
-    background-color: rgb(176, 76, 76);
-    color: #dbdee8;
-    border-radius: 50%;
-    padding: 5px;
-    font-size: 10px;
-    :hover {
-      color: red !important;
-    }
+  .icons i :hover {
   }
-
-  .icons .heart:hover {
-    background-color: green !important;
-    color: white !important;
-  }
-  .productCard:hover img {
-    transform: scale(1.1);
-  }
+}
+.ProductCardAdmin :hover .icons {
+  opacity: 1;
+  border-radius: 0;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }

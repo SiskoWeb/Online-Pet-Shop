@@ -4,12 +4,14 @@ import { ToastContainer } from 'react-toastify';
 import addImg from '../../../assets/addimg.png'
 import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
+import Loading from '../../../utilis/Loading/Loading';
 export default function AddProduct() {
     const [Categories] = GetCategoryHook()
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, imageCover, onRemoveImage, handleChangeImages, listimages] = AddProductHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, imageCover, onRemoveImage, handleChangeImages, listimages, isloading] = AddProductHook()
 
     return (
         <div>
+            {isloading ? <Loading /> : null}
             <div className={styles.title}>
                 <h3>Add New product</h3>
             </div>
@@ -95,7 +97,7 @@ export default function AddProduct() {
 
                                     <img src={displayImageCover}></img>
 
-                                    <input onChange={handleChangeImageCover} name="imageCover" id='imageCover' type='file' />
+                                    <input onChange={handleChangeImageCover} accept="image/png, image/jpeg" name="imageCover" id='imageCover' type='file' />
                                 </label>
 
                             </div>
@@ -108,7 +110,7 @@ export default function AddProduct() {
 
                                         <img src={listimages[0].imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
                                     </label>
                                 </div>
 
@@ -118,7 +120,7 @@ export default function AddProduct() {
                                     <label htmlFor='images2'>
                                         <img src={listimages[1].imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
                                     </label>
                                 </div>
 
@@ -128,7 +130,7 @@ export default function AddProduct() {
                                     <label htmlFor='images3'>
                                         <img src={listimages[2].imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
                                     </label>
                                 </div>
                                 <div>
@@ -137,7 +139,7 @@ export default function AddProduct() {
                                     <label htmlFor='images4'>
                                         <img src={listimages[3].imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
                                     </label>
                                 </div>
 

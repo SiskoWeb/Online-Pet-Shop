@@ -6,7 +6,7 @@ import addImg from '../../../assets/addimg.png'
 import { useParams } from "react-router-dom"
 
 
-export const UpdateProductHook = () => {
+export const UpdateOrderHook = () => {
     const params = useParams()
     const dispatch = useDispatch()
 

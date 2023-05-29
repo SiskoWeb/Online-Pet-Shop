@@ -26,6 +26,9 @@
     text-transform: capitalize;
     font-weight: 600;
     line-height: 24px;
+    span {
+      color: red;
+    }
   }
 }
 
@@ -34,7 +37,7 @@
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-
+  // height: 100dvh;
   .container {
     @include container;
   }

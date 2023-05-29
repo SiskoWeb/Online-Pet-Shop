@@ -12,7 +12,7 @@ export const GetCategoryHook = () => {
 
 
 
-    const isLoading = useSelector((state) => state.categories.isloading)
+    const isloading = useSelector((state) => state.categories.isloading)
     const Categories = useSelector((state) => state.categories.categoriesList)
 
     useEffect(() => {
@@ -22,5 +22,5 @@ export const GetCategoryHook = () => {
 
 
 
-    return [Categories]
+    return [isloading, Categories]
 } 

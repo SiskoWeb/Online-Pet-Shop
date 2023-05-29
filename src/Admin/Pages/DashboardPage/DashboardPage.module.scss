@@ -6,15 +6,16 @@
   display: grid;
   grid-template-columns: 250px 1fr;
   //   padding: 5px calc(100% - 80%);
-  height: 100dvh;
+  // height: 100dvh;
   //   column-gap: 20px;
 }
 .adminPage {
   @include adminPages();
-  height: 100dvh;
+  // height: 100dvh;
 }
 
 .contentAdmin {
   background-color: #f8f8f9;
   padding: 20px;
+  height: 100vh;
 }

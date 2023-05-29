@@ -11,37 +11,35 @@ export default function ProductCardAdmin({ dataProduct, deleteProduct }) {
     return (
 
         <div className={styles.ProductCardAdmin}>
+
             <div className={styles.card1} >
-
-
-
                 <img src={dataProduct.imageCover}></img>
+                <div className={`${styles.icons}`} >
 
+                    <i onClick={() => deleteProduct(dataProduct._id)} className={`${styles.cartIcon}  fa-solid fa-trash-can`} ></i>
+                    <Link to={`product/${dataProduct._id}`}><i className={`${styles.updateIcon} fa-solid fa-pen-to-square `}></i></Link>
 
+                </div>
             </div>
+
 
             <div className={styles.card2}>
 
 
-                <div className={styles.col1}>
 
-                    <div className={styles.text} >
-                        <a href='/product'>  <p>{name}</p></a>
-                        <p>${dataProduct.price}</p>
+                <h6>{dataProduct.title}</h6>
+                <div className={styles.text} >
 
 
-                    </div>
+
+                    <p>${dataProduct.price}</p>
+                    <p>-</p>
+
+                    <p>Stock:{dataProduct.quantity}</p>
                 </div>
 
 
 
-                <div className={`${styles.icons}`} >
-
-
-                    <i onClick={() => deleteProduct(dataProduct._id)} className={`${styles.cart}  fa-solid fa-xmark`} ></i>
-                    <Link to={`product/${dataProduct._id}`}><i className={`${styles.heart} fa-solid fa-pen-to-square `}></i></Link>
-
-                </div>
 
 
             </div>

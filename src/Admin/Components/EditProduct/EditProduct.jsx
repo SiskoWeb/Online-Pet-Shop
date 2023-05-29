@@ -3,17 +3,19 @@ import styles from './EditProduct.module.scss'
 import { ToastContainer } from 'react-toastify';
 import { UpdateProductHook } from '../../HookAdmin/Product/UpdateProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
+import Loading from '../../../utilis/Loading/Loading';
 export default function EditProduct() {
     const [Categories] = GetCategoryHook()
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, getOneProduct] = UpdateProductHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading] = UpdateProductHook()
 
     return (
         <div>
+            {isloading ? <Loading /> : null}
             <div className={styles.title}>
-                <h3>Add New product</h3>
+                <h3>Update Product</h3>
             </div>
 
-            <button onClick={() => getOneProduct()}> get data</button>
+
             <div className={styles.ProductAdd}>
 
 
@@ -88,7 +90,7 @@ export default function EditProduct() {
                 <div className={styles.container}>
 
                     <div className={styles.card}>
-                        <div className={styles.cardHeader}><h5>Main Image</h5></div>
+                        <div className={styles.cardHeader}><h5><span>*</span>Main Image</h5></div>
 
 
                         <div className={styles.cardBody}>
@@ -103,10 +105,11 @@ export default function EditProduct() {
 
                                     <img src={mainImage.displayImageCover}></img>
 
-                                    <input onChange={(evnt) => handleChangeImageCover(evnt)} name="imageCover" id='imageCover' type='file' />
+                                    <input accept="image/png, image/jpeg" onChange={(evnt) => handleChangeImageCover(evnt)} name="imageCover" id='imageCover' type='file' />
                                 </label>
 
                             </div>
+                            <div className={styles.cardHeader}><h5>Images</h5></div>
                             <div className={styles.imagesCard}>
 
                                 -
@@ -116,7 +119,7 @@ export default function EditProduct() {
 
                                         <img src={listimages[0]?.imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 1)} name="images1" id='images1' type='file' />
                                     </label>
                                 </div>
 
@@ -126,7 +129,7 @@ export default function EditProduct() {
                                     <label htmlFor='images2'>
                                         <img src={listimages[1]?.imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 2)} name="images2" id='images2' type='file' />
                                     </label>
                                 </div>
 
@@ -136,7 +139,7 @@ export default function EditProduct() {
                                     <label htmlFor='images3'>
                                         <img src={listimages[2]?.imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 3)} name="images3" id='images3' type='file' />
                                     </label>
                                 </div>
                                 <div>
@@ -145,7 +148,7 @@ export default function EditProduct() {
                                     <label htmlFor='images4'>
                                         <img src={listimages[3]?.imageDisplay}></img>
                                         Click to Upload
-                                        <input onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
+                                        <input accept="image/png, image/jpeg" onChange={(e) => handleChangeImages(e.target.files[0], 4)} name="images4" id='images4' type='file' />
                                     </label>
                                 </div>
 

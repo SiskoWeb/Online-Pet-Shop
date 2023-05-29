@@ -29,9 +29,7 @@ $paddingPage: 100px calc(100% - 80%);
   transition: all 0.3s ease;
 }
 
-
 @mixin container() {
-
   flex: 0 0 50%;
   max-width: 50%;
   position: relative;

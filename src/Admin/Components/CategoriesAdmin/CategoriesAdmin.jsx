@@ -8,12 +8,13 @@ import CardCategoryAdmin from '../../../utilis/CardCategoryAdmin/CardCategoryAdm
 import { AddCategoryHook } from '../../HookAdmin/Category/AddCategoryHook';
 import { RemoveCategoryHook } from '../../HookAdmin/Category/RemoveCategoryHook';
 import { UpdateCategoryHook } from '../../HookAdmin/Category/UpdateCategoryHook';
+import Loading from '../../../utilis/Loading/Loading';
 
 export default function CategoriesAdmin() {
 
 
 
-    const [isLoading, Categories] = GetCategoryHook()
+    const [isloading, Categories] = GetCategoryHook()
     const [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg,] = AddCategoryHook()
     const [deleteCategory] = RemoveCategoryHook()
     const [onBringDataToUpdate, onSubmitUpdate, imgToDisplay, nameUpdate, setNameUpdate, saveFileUpdate, toggleUpdate, setToggleUpdate] = UpdateCategoryHook()
@@ -27,6 +28,7 @@ export default function CategoriesAdmin() {
 
 
     return (
+
         <div className={styles.categoriesAdmin}>
 
 
@@ -62,7 +64,7 @@ export default function CategoriesAdmin() {
 
             <div className={styles.listCategories}>
 
-                {isLoading ? <h1>Loading</h1> : Categories.length >= 1 ? Categories?.map((item, index) =>
+                {isloading ? <h1>Loading...</h1> : Categories.length >= 1 ? Categories?.map((item, index) =>
                     <CardCategoryAdmin key={item._id} onBringDataToUpdate={onBringDataToUpdate} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
                     : <h1>No Categories</h1>}</div>
 
@@ -91,7 +93,11 @@ export default function CategoriesAdmin() {
             </div> : null}
 
             <ToastContainer />
+
+            {isloading ? <Loading /> : null}
         </div>
+
+
     )
 }
 

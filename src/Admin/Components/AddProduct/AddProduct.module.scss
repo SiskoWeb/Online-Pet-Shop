@@ -1,8 +1,6 @@
 @import "../../../variables.scss";
 
 .title {
-  width: 100%;
-  // margin-left: 20px;
   text-align: start !important;
   width: 100%;
   padding-right: 15px;
@@ -11,6 +9,7 @@
   margin-left: auto;
   padding-top: 30px;
   padding-bottom: 30px;
+  height: 100%;
 }
 
 .cardHeader {
