@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import notify from "../../../Hooks/useNotifaction"
 
 import { useDispatch, useSelector } from "react-redux"
-import { getAllProducts, removeProduct } from "../../../Redux/productsSlice/ActionsProducts"
+// import { getAllProducts } from "../../../Redux/productsSlice/ActionsProducts"
+import { get10OrderRedux, removeOrderRedux } from "../../../Redux/OrdersSlice/ActionsOrders"
 
 
-export const RemoveProductHook = () => {
+export const RemoveOrderHook = () => {
 
 
 
@@ -15,17 +16,15 @@ export const RemoveProductHook = () => {
 
 
 
-    const DeletedResponse = useSelector((state) => state.products.DeletedResponse)
+    const DeletedResponse = useSelector((state) => state.orders.DeletedResponse)
 
 
 
 
     //@desc fun remove Category 
-    const deleteProduct = (id) => {
+    const deleteOrder = (id) => {
 
-        dispatch(removeProduct(id))
-
-
+        dispatch(removeOrderRedux(id))
 
 
     }
@@ -43,9 +42,9 @@ export const RemoveProductHook = () => {
 
 
 
-        dispatch(getAllProducts())
-        if (DeletedResponse.status === 202) {
 
+        if (DeletedResponse.status === 202) {
+            dispatch(get10OrderRedux())
             notify('removed', 'success')
             console.log('RMOVED')
         }
@@ -72,5 +71,5 @@ export const RemoveProductHook = () => {
 
 
 
-    return [deleteProduct]
+    return [deleteOrder]
 } 

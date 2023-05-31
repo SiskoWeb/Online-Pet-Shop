@@ -99,7 +99,7 @@ export const UpdateCategoryHook = () => {
         if (loading === false) {
 
             if (res.status === 201) {
-                notify('image required ', 'success')
+                notify('Category Updated ', 'success')
                 dispatch(getAllCategories())
                 setToggleUpdate(false)
 

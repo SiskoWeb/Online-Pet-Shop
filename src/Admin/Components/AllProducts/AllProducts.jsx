@@ -9,6 +9,7 @@ import { GetProductHook } from '../../HookAdmin/Product/GetProductHook'
 
 
 
+
 export default function AllProducts() {
 
     const [isLoading, productsList] = GetProductHook()
@@ -29,6 +30,7 @@ export default function AllProducts() {
 
             </div>
             <ToastContainer />
+
         </div>
     )
 }

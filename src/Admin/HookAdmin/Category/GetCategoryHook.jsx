@@ -16,10 +16,10 @@ export const GetCategoryHook = () => {
     const Categories = useSelector((state) => state.categories.categoriesList)
 
     useEffect(() => {
+
         dispatch(getAllCategories())
 
     }, [])
-
 
 
     return [isloading, Categories]

@@ -20,6 +20,7 @@ import AllProducts from './Admin/Components/AllProducts/AllProducts'
 import AllOrders from './Admin/Components/AllOrders/AllOrders'
 import EditProduct from './Admin/Components/EditProduct/EditProduct'
 import { useSelector } from 'react-redux'
+import OrderDetail from './Admin/Components/OrderDetail/OrderDetail'
 
 function App() {
   const isloading = useSelector((state) => state.categories.isloading)
@@ -40,7 +41,7 @@ function App() {
 
 
       <BrowserRouter>
-        {isloading ? <p className='loading'>Loading...</p> : null}
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/Product" element={<ProductDetails />} />
@@ -57,6 +58,7 @@ function App() {
             <Route path="order/1" index element={<Order />} />
             <Route path="orders" index element={<AllOrders />} />
             <Route path="allproducts/product/:id" index element={<EditProduct />} />
+            <Route path="order/:id" index element={<OrderDetail />} />
 
           </Route>
           <Route path="*" element={<p>There's nothing here: 404!</p>} />

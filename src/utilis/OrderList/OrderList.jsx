@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './OrderList.module.scss'
 import { Link } from 'react-router-dom'
-export default function OrderList(orderData) {
+import { RemoveOrderHook } from '../../Admin/HookAdmin/Orders/RemoveOrderHook'
+import { GetOrdersHook } from '../../Admin/HookAdmin/Orders/GetOrdersHook'
+export default function OrderList() {
+    const [deleteOrder] = RemoveOrderHook()
+    const [isLoading, OrdersData, padding, shipped, orders] = GetOrdersHook()
+    console.log(orders)
     return (
         <div className={styles.OrderList}>
             <div className={styles.orderCol1}>
@@ -19,42 +24,31 @@ export default function OrderList(orderData) {
 
 
                     </tr>
+
                 </thead>
                 <tbody>
-                    <tr>
 
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
+                    {orders?.map((item, index) => {
+                        return (
+                            <tr key={index}>
 
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
+                                <td>#{item._id}</td>
+                                <td>{item.shippingAddress.name}</td>
+                                <td>{item.isDelivered ? <p className={styles.shipped}>shipped</p> : <p className={styles.pending}>Pending</p>}</td>
+                                <td>${item.totalOrderPrice}</td>
+                                <td > <div className={`${styles.icons}`} >
 
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
+                                    <i onClick={() => deleteOrder(item._id)} className={`${styles.remove}  fa-solid fa-trash-can`} ></i>
+                                    <Link to={`order/${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
 
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
+                                </div></td>
+                            </tr>
+                        )
+                    })}
+
+
                 </tbody>
             </table>
-        </div>
+        </div >
     )
 }

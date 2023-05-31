@@ -6,7 +6,7 @@ import { AddProductHook } from '../../HookAdmin/Product/AddProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 import Loading from '../../../utilis/Loading/Loading';
 export default function AddProduct() {
-    const [Categories] = GetCategoryHook()
+    const [ignoreThisValue, Categories] = GetCategoryHook()
     const [onSubmit, handleChange, formInputData, handleChangeImageCover, displayImageCover, imageCover, onRemoveImage, handleChangeImages, listimages, isloading] = AddProductHook()
 
     return (

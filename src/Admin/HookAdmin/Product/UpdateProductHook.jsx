@@ -120,7 +120,7 @@ export const UpdateProductHook = () => {
                 description: GetOneProduct?.data.description,
                 quantity: GetOneProduct?.data.quantity,
                 price: GetOneProduct?.data.price,
-                category: GetOneProduct?.data.category._id,
+                category: GetOneProduct?.data.category?._id || null,
             });
 
         }
@@ -339,5 +339,5 @@ export const UpdateProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages,isloading]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading]
 } 

@@ -6,11 +6,11 @@
   border-radius: 10px;
   color: white;
   padding: 20px;
-  justify-content: space-between;
-  height: 120px;
+  justify-content: space-around;
+  height: 100px;
 
   i {
-    font-size: 80px;
+    font-size: 60px;
   }
   p {
     font-size: 20px;
@@ -18,7 +18,8 @@
     display: flex;
     justify-content: space-between;
     row-gap: 50px;
-    align-items: start;
+    // align-items: start;
     flex-direction: column;
   }
+  text-align: center;
 }

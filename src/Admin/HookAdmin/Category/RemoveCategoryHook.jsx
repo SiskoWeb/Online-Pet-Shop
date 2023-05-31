@@ -11,7 +11,6 @@ export const RemoveCategoryHook = () => {
 
     const dispatch = useDispatch()
 
-
     const RemoveResponse = useSelector((state) => state.categories.RemoveResponse)
 
 
@@ -34,10 +33,11 @@ export const RemoveCategoryHook = () => {
 
     useEffect(() => {
 
-        console.log(RemoveResponse)
-        dispatch(getAllCategories())
+
+
         if (RemoveResponse.status === 202) {
             //@ if category created 
+            dispatch(getAllCategories())
             notify('removed', 'success')
 
         }

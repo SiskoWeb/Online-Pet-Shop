@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .AllOrders {
   margin-top: 50px;
   background-color: white;
@@ -17,32 +19,6 @@
       text-decoration: none;
     }
   }
-
-  .table {
-    table-layout: fixed;
-    width: 100%;
-    font-size: 12px;
-    background-color: transparent;
-    margin-bottom: 1rem;
-    color: #212529;
-    vertical-align: top;
-    border-color: #e9ecef;
-    border-collapse: collapse;
-  }
-  .table > :not(caption) > * > * {
-    padding: 1rem;
-    background-color: var(--bs-table-bg);
-    border-bottom-width: 1px;
-    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
-  }
-  tbody,
-  td,
-  th,
-  thead,
-  tr {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    text-align: start;
-  }
+  //@desc called from variables.scss
+  @include Table;
 }

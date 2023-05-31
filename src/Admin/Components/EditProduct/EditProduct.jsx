@@ -5,7 +5,7 @@ import { UpdateProductHook } from '../../HookAdmin/Product/UpdateProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 import Loading from '../../../utilis/Loading/Loading';
 export default function EditProduct() {
-    const [Categories] = GetCategoryHook()
+    const [ignoreThisValue, Categories] = GetCategoryHook()
     const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading] = UpdateProductHook()
 
     return (
@@ -46,13 +46,17 @@ export default function EditProduct() {
                             <div className={styles.formGroup}>
                                 <label className={styles.category}>
 
-
+                                    <p><span>*</span>Product Category</p>
                                     <select onChange={handleChange} defaultValue='cat' name="category" >
 
                                         {Categories.length >= 1 ? Categories?.map((cat, index) => {
-                                            if (cat._id === formInputData.category) {
-                                                return <option selected key={index} value={cat._id}>{cat.name}</option>
+                                            if (cat._id === formInputData?.category) {
+
+                                                return <option selected key={index} value={cat?._id}>{cat?.name}</option>
+
+
                                             }
+
                                             else {
                                                 return <option key={index} value={cat._id}>{cat.name}</option>
                                             }
