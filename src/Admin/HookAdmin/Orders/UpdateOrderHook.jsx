@@ -77,16 +77,15 @@ export const UpdateOrderHook = () => {
         if (loading === false) {
 
             console.log(UpdateResponse)
-
-            if (UpdateResponse.status === 201) {
+            if (UpdateResponse.data.status === "success") {
+                notify('category created', 'success')
                 //@ if category created 
-                if (UpdateResponse.data.data.createdAt) {
-                    notify('category created', 'success')
-                    // setIsChecked(prevCheck => !prevCheck);
-                    dispatch(updateOrderRedux(id))
-                    setOrder(GetOneOrder.data)
-                }
+                dispatch(getOneOrderRedux(id))
+                setOrder(GetOneOrder.data)
+
             }
+
+
             else {
 
                 //     //@ if we get error

@@ -6,6 +6,7 @@ import Switch from "react-switch";
 
 import { UpdateOrderHook } from '../../HookAdmin/Orders/UpdateOrderHook'
 import Loading from '../../../utilis/Loading/Loading';
+import { ToastContainer } from 'react-toastify';
 export default function OrderDetail() {
 
     const [isloading, order, ischecked, handleChangeSwitcher] = UpdateOrderHook()
@@ -96,7 +97,7 @@ export default function OrderDetail() {
             <div className={styles.card}>
                 <div className={styles.cardHeader}><h5>Shipping Address:</h5></div>
                 <div className={styles.itemShipping}>
-                    <div className={styles.item}><i className="fa-solid fa-user"></i> <h5>{order?.shippingAddress?.name}</h5></div>
+                    <div className={styles.item}><i className="fa-solid fa-user"></i> <h5>{order ? order?.shippingAddress?.name : "no Name"}</h5></div>
                     <div className={styles.item}><i className="fa-solid fa-phone"></i> <h5>{order?.shippingAddress?.phone}</h5></div>
                     <div className={styles.item}><i className="fa-solid fa-city"></i><h5>{order?.shippingAddress?.city}</h5></div>
                     <div className={styles.item}><i className="fa-solid fa-location-dot"></i> <h5>{order?.shippingAddress?.address}</h5></div>
@@ -104,6 +105,9 @@ export default function OrderDetail() {
                 </div>
             </div>
             {isloading ? <Loading /> : null}
+
+            <ToastContainer
+                autoClose={600} />
         </div>
     )
 }

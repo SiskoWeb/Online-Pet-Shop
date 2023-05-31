@@ -1,6 +1,6 @@
 import styles from './Loading.module.scss'
 export default function Loading() {
     return (
-        <div className={styles.loading}>Loading..</div>
+        <div className={styles.loading}><h1>Loading..</h1></div>
     )
 }

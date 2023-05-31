@@ -95,7 +95,8 @@ export default function CategoriesAdmin() {
                 </div>
             </div> : null}
 
-            <ToastContainer />
+            <ToastContainer
+                autoClose={600} />
 
             {isloading ? <Loading /> : null}
         </div>

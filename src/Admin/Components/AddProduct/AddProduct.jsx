@@ -162,7 +162,8 @@ export default function AddProduct() {
             </div>
 
 
-            <ToastContainer />
+            <ToastContainer
+                autoClose={600} />
             <div>
             </div>
         </div>
