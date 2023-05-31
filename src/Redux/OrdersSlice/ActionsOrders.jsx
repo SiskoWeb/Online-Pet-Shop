@@ -7,7 +7,7 @@ import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
 
 
-export const getAllOrders = createAsyncThunk('Orders/getAll', async () => {
+export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async () => {
     try {
 
         const response = await useGetData('/api/v1/order')

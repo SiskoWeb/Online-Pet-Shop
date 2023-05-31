@@ -28,79 +28,81 @@ export default function CategoriesAdmin() {
 
 
     return (
+        <div>
+            {isloading ? <Loading /> : null}
 
-        <div className={styles.categoriesAdmin}>
+            <div className={styles.categoriesAdmin}>
 
 
-            <div className={styles.addCategory}>
+                <div className={styles.addCategory}>
 
-                <div className={styles.col1}>
+                    <div className={styles.col1}>
 
-                    <div className={styles.imageCategory}>
-                        <p>Image(Required)*</p>
-                        <label htmlFor='imageCover'
+                        <div className={styles.imageCategory}>
+                            <p>Image(Required)*</p>
+                            <label htmlFor='imageCover'
 
-                        ><img src={addimg}></img>
-                            Click To Upload
+                            ><img src={addimg}></img>
+                                Click To Upload
+                                <input
+                                    type="file"
+                                    id='imageCover'
+                                    onChange={(e) => onChangeImg(e.target.files[0])}
+                                    accept="image/png, image/gif, image/jpeg"
+                                />
+                            </label>
+
+                        </div>
+                        <label htmlFor='nameCategory'>Add Name Category* <input value={categoryName} onChange={onChangeName} id='nameCategory' type='text' /></label>
+                        <button onClick={onSubmit}>Submit</button>
+
+
+                    </div>
+                    <div className={styles.col1}>
+                        {imgCategory === null ? null : <button onClick={clearInputImg}>Remove Image</button>}
+                        <img className={styles.UploadedImgCategory} src={imgCategory}></img>
+                    </div>
+                </div>
+
+                <div className={styles.listCategories}>
+
+                    {Categories.length >= 1 ? Categories?.map((item, index) =>
+                        <CardCategoryAdmin key={item._id} onBringDataToUpdate={onBringDataToUpdate} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
+                        : <div>No Categories</div>}
+
+
+                </div>
+
+
+
+                {/* ----  Update PopUp--- */}
+                {toggleUpdate ? <div className={styles.wrapperPopUpdate}>
+                    <div className={styles.popUpdate}>
+                        <i onClick={() => setToggleUpdate(false)} className="fa-solid fa-xmark"></i>
+
+                        <label htmlFor='imageUpdateCategory'>
+                            click here to upload Image
+                            <img src={imgToDisplay}></img>
                             <input
                                 type="file"
-                                id='imageCover'
-                                onChange={(e) => onChangeImg(e.target.files[0])}
+                                id='imageUpdateCategory'
+                                onChange={(e) => saveFileUpdate(e.target.files[0])}
                                 accept="image/png, image/gif, image/jpeg"
                             />
                         </label>
 
+
+                        <input value={nameUpdate} type="text" onChange={(e) => setNameUpdate(e.target.value)} />
+                        <button className={styles.UpdateBtn} onClick={(e) => onSubmitUpdate(e)}>Update</button>
                     </div>
-                    <label htmlFor='nameCategory'>Add Name Category* <input value={categoryName} onChange={onChangeName} id='nameCategory' type='text' /></label>
-                    <button onClick={onSubmit}>Submit</button>
+                </div> : null}
 
-
-                </div>
-                <div className={styles.col1}>
-                    {imgCategory === null ? null : <button onClick={clearInputImg}>Remove Image</button>}
-                    <img className={styles.UploadedImgCategory} src={imgCategory}></img>
-                </div>
-            </div>
-
-            <div className={styles.listCategories}>
-
-                {Categories.length >= 1 ? Categories?.map((item, index) =>
-                    <CardCategoryAdmin key={item._id} onBringDataToUpdate={onBringDataToUpdate} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
-                    : <div>No Categories</div>}
+                <ToastContainer
+                    autoClose={600} />
 
 
             </div>
-
-
-
-            {/* ----  Update PopUp--- */}
-            {toggleUpdate ? <div className={styles.wrapperPopUpdate}>
-                <div className={styles.popUpdate}>
-                    <i onClick={() => setToggleUpdate(false)} className="fa-solid fa-xmark"></i>
-
-                    <label htmlFor='imageUpdateCategory'>
-                        click here to upload Image
-                        <img src={imgToDisplay}></img>
-                        <input
-                            type="file"
-                            id='imageUpdateCategory'
-                            onChange={(e) => saveFileUpdate(e.target.files[0])}
-                            accept="image/png, image/gif, image/jpeg"
-                        />
-                    </label>
-
-
-                    <input value={nameUpdate} type="text" onChange={(e) => setNameUpdate(e.target.value)} />
-                    <button className={styles.UpdateBtn} onClick={(e) => onSubmitUpdate(e)}>Update</button>
-                </div>
-            </div> : null}
-
-            <ToastContainer
-                autoClose={600} />
-
-            {isloading ? <Loading /> : null}
         </div>
-
 
     )
 }

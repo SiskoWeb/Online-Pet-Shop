@@ -77,13 +77,17 @@
       flex-direction: column;
       align-items: center;
       row-gap: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 10px;
+      svg {
+        transform: scale(0.7);
+      }
     }
   }
-  //@desc called from variables.scss
-  @include Table;
-
-  .switcher {
-    display: flex;
-    flex-direction: column;
-  }
 }
+//@desc called from variables.scss
+@include Table;
+
+

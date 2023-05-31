@@ -1,60 +1,57 @@
 import React from 'react'
 import styles from './AllOrders.module.scss'
 import { Link } from 'react-router-dom'
+import { GetAllOrdersHook } from '../../HookAdmin/Orders/GetAllOrdersHook'
+import { RemoveOrderHook } from '../../HookAdmin/Orders/RemoveOrderHook'
+import Loading from '../../../utilis/Loading/Loading'
 export default function AllOrders() {
+    const [isLoading, padding, shipped, orders] = GetAllOrdersHook()
+    const [deleteOrder] = RemoveOrderHook()
     return (
-        <div className={styles.AllOrders}>
-            <div className={styles.orderCol1}>
-                <p>Recent Orders</p>
-                <Link className={styles.orderBtn} to='/admin/order/1'>View All</Link>
+        <div>
+            {isLoading ? <Loading /> : null}
+
+            <div className={styles.AllOrders}>
+
+                <div className={styles.orderCol1}>
+                    <p>Recent Orders</p>
+                    <Link className={styles.orderBtn} to='/admin/order/1'>View All</Link>
+                </div>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {orders.length >= 1 ? orders?.map((item, index) => {
+                            return (
+                                <tr key={index}>
+
+                                    <td>#{item._id}</td>
+                                    <td>{item.shippingAddress.name}</td>
+                                    <td>{item.isDelivered ? <p className={styles.shipped}>shipped</p> : <p className={styles.pending}>Pending</p>}</td>
+                                    <td>${item.totalOrderPrice}</td>
+                                    <td > <div className={`${styles.icons}`} >
+
+                                        <i onClick={() => deleteOrder(item._id)} className={`${styles.remove}  fa-solid fa-trash-can`} ></i>
+                                        <Link to={`order/${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
+
+                                    </div></td>
+                                </tr>
+                            )
+                        }) : <p>No Orders</p>}
+                    </tbody>
+                </table>
+
             </div>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Actions</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
-
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
-
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                    <tr>
-
-                        <td>#2</td>
-                        <td>Yassine</td>
-                        <td>Shiiped</td>
-                        <td>$200</td>
-                        <td>Remove</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     )
 }

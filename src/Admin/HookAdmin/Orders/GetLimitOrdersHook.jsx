@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { get10OrderRedux } from "../../../Redux/OrdersSlice/ActionsOrders"
 
 
-export const GetOrdersHook = () => {
+export const GetLimitOrdersHook = () => {
 
     const [padding, setPadding] = useState(0)
     const [shipped, setShipped] = useState(0)
@@ -22,30 +22,18 @@ export const GetOrdersHook = () => {
     const isLoading = useSelector((state) => state.orders.isloading)
 
 
+
+
+
     useEffect(() => {
 
         //@desc get 10 last orders from server by  redux 
         dispatch(get10OrderRedux())
 
-        const filter = async () => {
-
-            const pendingList = await OrdersData.map(item => item.isDelivered === false)
-            setPadding(pendingList)
-
-
-            const shippedList = await OrdersData.map(item => item.isDelivered === false)
-            setShipped(shippedList)
-
-
-
-        }
-
-        filter()
 
 
     }, [])
 
-    console.log(OrdersData)
 
 
     //@desc after remove order list update
@@ -54,7 +42,7 @@ export const GetOrdersHook = () => {
 
     }, [OrdersData])
 
-    return [isLoading, OrdersData.data, padding, shipped, orders]
+    return [isLoading, orders]
 
 
 } 

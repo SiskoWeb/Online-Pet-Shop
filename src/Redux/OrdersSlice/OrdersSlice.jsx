@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllOrders, AddProduct, removeOrderRedux, updateOrderRedux, getOneOrderRedux, get10OrderRedux } from './ActionsOrders'
+import { getAllOrdersRedux, AddProduct, removeOrderRedux, updateOrderRedux, getOneOrderRedux, get10OrderRedux } from './ActionsOrders'
 
 const initialState = {
     OrderList: [],
@@ -20,15 +20,15 @@ export const OrdersSlice = createSlice({
 
     },
     extraReducers: {
-        [getAllOrders.pending]: (state, action) => {
+        [getAllOrdersRedux.pending]: (state, action) => {
             state.isloading = true
         },
-        [getAllOrders.fulfilled]: (state, action) => {
+        [getAllOrdersRedux.fulfilled]: (state, action) => {
             state.OrderList = action.payload
             state.isloading = false
 
         },
-        [getAllOrders.rejected]: (state, action) => {
+        [getAllOrdersRedux.rejected]: (state, action) => {
             state.isloading = true
         },
         [get10OrderRedux.pending]: (state, action) => {
