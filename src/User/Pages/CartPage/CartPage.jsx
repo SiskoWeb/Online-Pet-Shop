@@ -28,18 +28,21 @@ export default function CartPage() {
                     <div className={styles.address}>
                         <h3>Shipping Detail</h3>
                         {isAddressHere ?
-                            <div className={styles.DisplayAddressContainer}>
-                                <div className={styles.DisplayAddress}>
-                                    <p>Your Name<span>{shippingAddress.name}</span></p>
-                                    <p>Phone Number <span>{shippingAddress.number}</span></p>
-                                    <p>City<span>{shippingAddress.city}</span></p>
-                                    <p>Shipping Adress<span>{shippingAddress.address}</span></p>
-                                </div>
-                                <div className={styles.ChangeAddress}>
-                                    <buuton onClick={(e) => editAddress(e)}>Change Address</buuton>
-                                </div>
-                            </div>
+                            <>
+                                <div className={styles.DisplayAddressContainer}>
+                                    <div className={styles.DisplayAddress}>
+                                        <p>Your Name<span>{shippingAddress.name}</span></p>
+                                        <p>Phone Number <span>{shippingAddress.number}</span></p>
+                                        <p>City<span>{shippingAddress.city}</span></p>
+                                        <p>Shipping Adress<span>{shippingAddress.address}</span></p>
+                                    </div>
+                                    <div className={styles.ChangeAddress}>
+                                        <buuton onClick={(e) => editAddress(e)}>Change Address</buuton>
+                                    </div>
 
+                                </div>
+                                <button className={styles.orderBtn}>Confirme</button>
+                            </>
                             :
 
 
@@ -135,7 +138,7 @@ export default function CartPage() {
                             </div>
                         </div>
 
-                        <button className={styles.orderBtn}>Confirme</button>
+
                     </div>
 
 
