@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react"
 
-import { getAllCategories } from "../../../Redux/CategoriesSlice/ActionsCategories"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getAllCategories } from '../../../Redux/CategoriesSlice/ActionsCategories'
+
+export function CategoriesHook() {
 
 
-export const GetCategoryHook = () => {
+
+
+
     const dispatch = useDispatch()
+
     const [categoriesData, setCategoriesData] = useState([])
 
 
@@ -54,4 +59,4 @@ export const GetCategoryHook = () => {
     }, [Categories])
 
     return [isloading, categoriesData]
-} 
+}

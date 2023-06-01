@@ -5,9 +5,11 @@ import OrderList from '../../../utilis/OrderList/OrderList'
 import { GetLimitOrdersHook } from '../../HookAdmin/Orders/GetLimitOrdersHook'
 import Loading from '../../../utilis/Loading/Loading'
 import { ToastContainer } from 'react-toastify'
+import { GetAllOrdersHook } from '../../HookAdmin/Orders/GetAllOrdersHook'
 export default function Dashboard() {
 
     const [isLoading, orders] = GetLimitOrdersHook()
+    const [ignore1, padding, shipped, ignore2, totaleIncome, totalIncomToday] = GetAllOrdersHook()
 
 
     // eslint-disable-next-line react/jsx-key
@@ -22,10 +24,10 @@ export default function Dashboard() {
             {isLoading ? <Loading /> : null}
             <div className={styles.cardsAdmin}>
 
-                <CardAdminStatus text={'ORDER PENDING'} color={'#7C6FB8'} icon={icons[0]} number={5} />
-                <CardAdminStatus text={'ORDER SHIPPED'} color={'#006BA9'} icon={icons[0]} number={1} />
-                <CardAdminStatus text={'Today Earnings'} color={'#0D6603'} icon={icons[2]} number={"$109"} />
-                <CardAdminStatus text={'Earnings'} color={'#4AA53F'} icon={icons[2]} number={"$509"} />
+                <CardAdminStatus text={'ORDER PENDING'} color={'#7C6FB8'} icon={icons[0]} number={orders.length - shipped} /> {/* Get Pending order  : by divide tottal shiiped from all orders */}
+                <CardAdminStatus text={'ORDER SHIPPED'} color={'#006BA9'} icon={icons[0]} number={shipped} />
+                <CardAdminStatus text={'Today Earnings'} color={'#0D6603'} icon={icons[2]} number={`$ ${totalIncomToday}`} />
+                <CardAdminStatus text={'All Earnings'} color={'#4AA53F'} icon={icons[2]} number={`$ ${totaleIncome}`} />
 
 
             </div>

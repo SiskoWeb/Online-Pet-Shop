@@ -12,6 +12,7 @@ export const UpdateProductHook = () => {
 
     const [loading, setLoading] = useState(true)
     const [id, setId] = useState(params.id)
+    const [error, sesetError] = useState(false)
 
 
     // const [displayImageCover, setDisplayImageCover] = useState(addImg)
@@ -81,56 +82,72 @@ export const UpdateProductHook = () => {
 
 
 
+
+
+
+    //@desc after remove order list update
     useEffect(() => {
 
-        console.log(GetOneProduct.data)
-
-        if (GetOneProduct?.data) {
-
-            //@desc add image from sserver to inputs
-            setMainImage({
-                image: null,
-                displayImageCover: GetOneProduct?.data.imageCover
-            })
+        if (GetOneProduct.status === 200) {
 
 
+            if (GetOneProduct.data.data) {
+                sesetError(false)
 
-
-
-
-            const updatedList = listimages.map((item, index) => {
-                if (item.id === index + 1) {
-                    return {
-                        ...item,
-                        image: null, imageDisplay: GetOneProduct.data.images[index] // Replace 'image' + id with the actual image value
-                    };
-                }
-                return item;
-            });
-
-            setListimages(updatedList);
+                //@desc add image from sserver to inputs
+                setMainImage({
+                    image: null,
+                    displayImageCover: GetOneProduct.data.data.imageCover
+                })
 
 
 
 
 
-            //@desc add data from server to inputs
-            setformInputData({
-                title: GetOneProduct?.data.title,
-                description: GetOneProduct?.data.description,
-                quantity: GetOneProduct?.data.quantity,
-                price: GetOneProduct?.data.price,
-                category: GetOneProduct?.data.category?._id || null,
-            });
+
+                const updatedList = listimages.map((item, index) => {
+                    if (item.id === index + 1) {
+                        return {
+                            ...item,
+                            image: null, imageDisplay: GetOneProduct.data.data.images[index] // Replace 'image' + id with the actual image value
+                        };
+                    }
+                    return item;
+                });
+
+                setListimages(updatedList);
+
+
+
+
+
+                //@desc add data from server to inputs
+                setformInputData({
+                    title: GetOneProduct.data.data.title,
+                    description: GetOneProduct.data.data.description,
+                    quantity: GetOneProduct.data.data.quantity,
+                    price: GetOneProduct.data.data.price,
+                    category: GetOneProduct.data.data.category?._id || null,
+                });
+
+
+            }
 
         }
 
 
+        else {
 
+            //     //@ if we get error
+            if (GetOneProduct?.data) {
+                if (GetOneProduct.data.message) {
+                    sesetError(true)
+                }
+
+            }
+
+        }
     }, [GetOneProduct])
-
-
-
 
 
 
@@ -339,5 +356,5 @@ export const UpdateProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading,error]
 } 

@@ -14,7 +14,7 @@ export default function CategoriesAdmin() {
 
 
 
-    const [isloading, Categories, categoriesList] = GetCategoryHook()
+    const [isloading, categoriesData] = GetCategoryHook()
     const [categoryName, imgCategory, onChangeName, onChangeImg, onSubmit, clearInputImg,] = AddCategoryHook()
     const [deleteCategory] = RemoveCategoryHook()
     const [onBringDataToUpdate, onSubmitUpdate, imgToDisplay, nameUpdate, setNameUpdate, saveFileUpdate, toggleUpdate, setToggleUpdate] = UpdateCategoryHook()
@@ -66,7 +66,7 @@ export default function CategoriesAdmin() {
 
                 <div className={styles.listCategories}>
 
-                    {Categories.length >= 1 ? Categories?.map((item, index) =>
+                    {categoriesData?.length >= 1 ? categoriesData?.map((item, index) =>
                         <CardCategoryAdmin key={item._id} onBringDataToUpdate={onBringDataToUpdate} color={colors[index]} dataCategory={item} deleteCategory={deleteCategory} />)
                         : <div>No Categories</div>}
 

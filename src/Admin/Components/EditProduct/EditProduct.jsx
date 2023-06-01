@@ -4,13 +4,15 @@ import { ToastContainer } from 'react-toastify';
 import { UpdateProductHook } from '../../HookAdmin/Product/UpdateProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 import Loading from '../../../utilis/Loading/Loading';
+import ErrorPopUp from '../../../utilis/ErrorPopUp/ErrorPopUp';
 export default function EditProduct() {
     const [ignoreThisValue, Categories] = GetCategoryHook()
-    const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading] = UpdateProductHook()
+    const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading, error] = UpdateProductHook()
 
     return (
         <div>
             {isloading ? <Loading /> : null}
+            {error ? <ErrorPopUp /> : null}
             <div className={styles.title}>
                 <h3>Update Product</h3>
             </div>
@@ -62,7 +64,7 @@ export default function EditProduct() {
                                             }
                                         })
                                             :
-                                            <option disabled>No Category , add new one</option>}
+                                            <option disabled>No Product , add new one</option>}
                                     </select>
 
                                 </label>
@@ -178,6 +180,7 @@ export default function EditProduct() {
             <ToastContainer />
             <div>
             </div>
+
         </div>
 
 

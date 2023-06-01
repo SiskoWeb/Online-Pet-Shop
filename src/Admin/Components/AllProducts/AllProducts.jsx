@@ -12,7 +12,7 @@ import { GetProductHook } from '../../HookAdmin/Product/GetProductHook'
 
 export default function AllProducts() {
 
-    const [isLoading, productsList] = GetProductHook()
+    const [isLoading, productsData] = GetProductHook()
     const [deleteProduct] = RemoveProductHook()
     GetProductHook()
 
@@ -26,7 +26,7 @@ export default function AllProducts() {
             <h4>All Products</h4>
             <div className={styles.list}>
 
-                {isLoading ? <h1>Loading</h1> : productsList.length >= 1 ? productsList?.map((item) => <ProductCardAdmin key={item._id} dataProduct={item} img={item.imageCover} price={item.price} name={item.title} deleteProduct={deleteProduct} />) : <h1>No Product</h1>}
+                {isLoading ? <h1>Loading</h1> : productsData?.length >= 1 ? productsData?.map((item) => <ProductCardAdmin key={item._id} dataProduct={item} img={item.imageCover} price={item.price} name={item.title} deleteProduct={deleteProduct} />) : <h1>No Product</h1>}
 
             </div>
             <ToastContainer />

@@ -42,13 +42,34 @@ export const UpdateOrderHook = () => {
 
     //@desc after remove order list update
     useEffect(() => {
-        setOrder(GetOneOrder.data)
-        setIsChecked(GetOneOrder?.data?.isDelivered)
 
+        if (GetOneOrder.status === 200) {
+
+            console.log(GetOneOrder)
+            if (GetOneOrder.data.data) {
+                setOrder(GetOneOrder.data.data)
+                setIsChecked(GetOneOrder.data.data?.isDelivered)
+            }
+
+        }
+
+
+        else {
+
+            //     //@ if we get error
+            if (GetOneOrder?.data) {
+
+                if (GetOneOrder.data.message) {
+                    setOrder([])
+                }
+
+
+            }
+
+
+
+        }
     }, [GetOneOrder])
-
-
-
 
 
 
@@ -81,7 +102,7 @@ export const UpdateOrderHook = () => {
                 notify('category created', 'success')
                 //@ if category created 
                 dispatch(getOneOrderRedux(id))
-                setOrder(GetOneOrder.data)
+                setOrder(GetOneOrder.data.data)
 
             }
 

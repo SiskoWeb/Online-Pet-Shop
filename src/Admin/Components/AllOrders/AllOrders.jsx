@@ -6,6 +6,7 @@ import { RemoveOrderHook } from '../../HookAdmin/Orders/RemoveOrderHook'
 import Loading from '../../../utilis/Loading/Loading'
 export default function AllOrders() {
     const [isLoading, padding, shipped, orders] = GetAllOrdersHook()
+
     const [deleteOrder] = RemoveOrderHook()
     return (
         <div>
@@ -31,7 +32,7 @@ export default function AllOrders() {
                     </thead>
                     <tbody>
 
-                        {orders.length >= 1 ? orders?.map((item, index) => {
+                        {orders?.length >= 1 ? orders?.map((item, index) => {
                             return (
                                 <tr key={index}>
 

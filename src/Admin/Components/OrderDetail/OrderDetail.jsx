@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 export default function OrderDetail() {
 
     const [isloading, order, ischecked, handleChangeSwitcher] = UpdateOrderHook()
-
+    console.log(order)
 
     return (
         <div>

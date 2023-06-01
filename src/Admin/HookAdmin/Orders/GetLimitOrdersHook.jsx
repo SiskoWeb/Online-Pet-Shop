@@ -32,14 +32,38 @@ export const GetLimitOrdersHook = () => {
 
 
 
-    }, [])
+    }, [dispatch])
 
 
 
     //@desc after remove order list update
     useEffect(() => {
-        setOrders(OrdersData.data)
 
+        if (OrdersData.status === 200) {
+
+
+            if (OrdersData.data.data) {
+                setOrders(OrdersData.data.data)
+            }
+
+        }
+
+
+        else {
+
+            //     //@ if we get error
+            if (OrdersData?.data) {
+
+                if (OrdersData.data.message) {
+                    setOrders([])
+                }
+
+
+            }
+
+
+
+        }
     }, [OrdersData])
 
     return [isLoading, orders]

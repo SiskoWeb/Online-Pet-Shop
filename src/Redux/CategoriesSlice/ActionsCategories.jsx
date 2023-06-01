@@ -12,7 +12,7 @@ export const getAllCategories = createAsyncThunk('categories/getAll', async () =
 
         const response = await useGetData('/api/v1/categories')
 
-        return response.data
+        return response
 
     } catch (error) {
 

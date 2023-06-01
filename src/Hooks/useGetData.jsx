@@ -26,7 +26,7 @@ const useGetData = async (url) => {
 
     const res = await baseUrl.get(url)
 
-    return res.data
+    return res
 }
 
 

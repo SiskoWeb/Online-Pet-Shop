@@ -6,7 +6,7 @@ import { GetLimitOrdersHook } from '../../Admin/HookAdmin/Orders/GetLimitOrdersH
 export default function OrderList() {
     const [deleteOrder] = RemoveOrderHook()
     const [isLoading, orders] = GetLimitOrdersHook()
-    console.log(orders)
+
     return (
         <div className={styles.OrderList}>
             <div className={styles.orderCol1}>
@@ -28,7 +28,7 @@ export default function OrderList() {
                 </thead>
                 <tbody>
 
-                    {orders?.map((item, index) => {
+                    {orders?.length >= 1 ? orders?.map((item, index) => {
                         return (
                             <tr key={index}>
 
@@ -44,7 +44,7 @@ export default function OrderList() {
                                 </div></td>
                             </tr>
                         )
-                    })}
+                    }) : <p>ther is no order </p>}
 
 
                 </tbody>

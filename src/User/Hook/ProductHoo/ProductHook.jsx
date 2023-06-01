@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react"
 
-import { useDispatch, useSelector } from "react-redux"
-import { getAllProducts } from "../../../Redux/productsSlice/ActionsProducts"
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getAllProducts } from '../../../Redux/productsSlice/ActionsProducts'
 
-
-export const GetProductHook = () => {
-    const dispatch = useDispatch()
+export function ProductHook() {
 
     const [productsData, setProductsData] = useState([])
 
+
     const productsList = useSelector((state) => state.products.productsList)
     const isLoading = useSelector((state) => state.products.isloading)
-
-
-
+    const dispatch = useDispatch()
 
 
     useEffect(() => {
 
         dispatch(getAllProducts())
 
-    }, [dispatch])
+    }, [])
+
+
 
     //@desc after remove order list update
     useEffect(() => {
@@ -48,6 +47,4 @@ export const GetProductHook = () => {
         }
     }, [productsList])
     return [isLoading, productsData]
-
-
-} 
+}
