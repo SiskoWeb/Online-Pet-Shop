@@ -8,7 +8,7 @@ import { GetAllOrdersHook } from '../../HookAdmin/Orders/GetAllOrdersHook'
 export default function Dashboard() {
 
     // const [isLoading, orders] = GetLimitOrdersHook()
-    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate] = GetAllOrdersHook()
+    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate, paginationResult] = GetAllOrdersHook()
 
 
     // eslint-disable-next-line react/jsx-key

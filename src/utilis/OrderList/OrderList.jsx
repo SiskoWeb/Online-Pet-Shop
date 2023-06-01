@@ -38,7 +38,7 @@ export default function OrderList({ orders }) {
                                 <td > <div className={`${styles.icons}`} >
 
                                     <i onClick={() => deleteOrder(item._id)} className={`${styles.remove}  fa-solid fa-trash-can`} ></i>
-                                    <Link to={`order/${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
+                                    <Link to={`orders/${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
 
                                 </div></td>
                             </tr>

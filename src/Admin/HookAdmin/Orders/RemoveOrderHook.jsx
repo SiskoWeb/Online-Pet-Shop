@@ -46,7 +46,7 @@ export const RemoveOrderHook = () => {
         if (DeletedResponse.status === 202) {
             dispatch(getAllOrdersRedux())
             notify('removed', 'success')
-            console.log('RMOVED')
+
         }
         else {
 

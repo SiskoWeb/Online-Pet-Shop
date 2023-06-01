@@ -8,8 +8,9 @@ import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 let limit = 3;
 
 export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (page) => {
-    try {
 
+    try {
+        console.log(page)
         const response = await useGetData(`/api/v1/order?limit=${limit}&page=${page}`)
 
         return response

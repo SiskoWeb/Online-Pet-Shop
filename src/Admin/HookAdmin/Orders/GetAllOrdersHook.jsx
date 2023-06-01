@@ -9,6 +9,7 @@ export const GetAllOrdersHook = () => {
 
     const [padding, setPadding] = useState(0)
     const [shipped, setShipped] = useState(0)
+    const [paginationResult, setPaginationResult] = useState({})
     const [totalIncomToday, setTotalIncomToday] = useState(0)
     const [totaleIncome, setTotaleIncome] = useState(0)
     const [orders, setOrders] = useState([])
@@ -27,29 +28,32 @@ export const GetAllOrdersHook = () => {
     const TotalIncom = (data) => {
         let result = 0;
         for (var i = 0; i < data.length; i++) {
-
-
             if (data[i]?.isDelivered) {
                 result = result + data[i].totalOrderPrice
-         
             }
-
         }
         setTotaleIncome(result)
     }
+
+
+
     /// @desc :get today income in last 24hourse    
     const TotalIncomToday = async (data) => {
         let result = 0;
         let date = await (new Date()).getTime() - 24 * 60 * 60 * 1000;
-
         let dayTransactions = await data.filter((item) => (new Date(item.created_at)).getTime() >= date);
 
-        const resultatoday = await dayTransactions.map((item) => result = result + item.totalOrderPrice)
-
+        for (var i = 0; i < dayTransactions.length; i++) {
+            if (dayTransactions[i]?.isDelivered) {
+                result = result + dayTransactions[i].totalOrderPrice
+            }
+        }
 
 
         setTotalIncomToday(result)
     }
+
+
 
 
     /// @desc: get tottal of ordr delivred
@@ -74,14 +78,13 @@ export const GetAllOrdersHook = () => {
 
 
 
-    }, [dispatch])
+    }, [])
 
 
-    const onPressPaginate = async (page) => {
+    const onPressPaginate = async (event) => {
+        console.log(event.selected + 1)
 
-        console.log('from on press')
-        await dispatch(getAllOrdersRedux(page))
-
+        await dispatch(getAllOrdersRedux(event.selected + 1))
 
     }
 
@@ -95,12 +98,12 @@ export const GetAllOrdersHook = () => {
 
             if (OrderList.data.data) {
                 setOrders(OrderList.data.data)
-
+                setPaginationResult(OrderList.data.paginationResult)
                 TotalIncom(OrderList.data.data)
                 GetNumberDelivered(OrderList.data.data)
                 TotalIncomToday(OrderList.data.data)
 
-             
+
 
             }
 
@@ -121,7 +124,7 @@ export const GetAllOrdersHook = () => {
     }, [OrderList])
 
 
-    return [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate]
+    return [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate, paginationResult]
 
 
 } 

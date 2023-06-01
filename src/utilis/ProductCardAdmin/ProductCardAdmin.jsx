@@ -17,7 +17,7 @@ export default function ProductCardAdmin({ dataProduct, deleteProduct }) {
                 <div className={`${styles.icons}`} >
 
                     <i onClick={() => deleteProduct(dataProduct._id)} className={`${styles.cartIcon}  fa-solid fa-trash-can`} ></i>
-                    <Link to={`product/${dataProduct._id}`}><i className={`${styles.updateIcon} fa-solid fa-pen-to-square `}></i></Link>
+                    <Link to={`${dataProduct._id}`}><i className={`${styles.updateIcon} fa-solid fa-pen-to-square `}></i></Link>
 
                 </div>
             </div>

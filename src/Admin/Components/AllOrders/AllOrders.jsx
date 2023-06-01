@@ -6,15 +6,15 @@ import ReactPaginate from 'react-paginate';
 import { RemoveOrderHook } from '../../HookAdmin/Orders/RemoveOrderHook'
 import Loading from '../../../utilis/Loading/Loading'
 export default function AllOrders() {
-    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate] = GetAllOrdersHook()
+    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate, paginationResult] = GetAllOrdersHook()
 
     const [deleteOrder] = RemoveOrderHook()
     return (
         <div className={styles.ordersPage}>
-            {isLoading ? <Loading /> : null}
+
 
             <div className={styles.AllOrders}>
-
+                {isLoading ? <Loading /> : null}
                 <div className={styles.orderCol1}>
                     <p>Recent Orders</p>
 
@@ -47,19 +47,22 @@ export default function AllOrders() {
                                         <Link to={`${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
 
                                     </div></td>
-                                </tr>
-                            )
+                                </tr>)
                         }) : <p>No Orders</p>}
+
+
                     </tbody>
                 </table>
 
             </div>
+
+
             <ReactPaginate
                 breakLabel="..."
                 nextLabel="next >"
 
-                pageRangeDisplayed={5}
-                pageCount={4}
+
+                pageCount={paginationResult?.numberOfPages}
                 previousLabel="< previous"
                 renderOnZeroPageCount={null}
                 onPageChange={onPressPaginate}
@@ -68,6 +71,8 @@ export default function AllOrders() {
                 containerClassName={styles.containerClassName}
                 pageClassName={styles.pageClassName}
                 pageLinkClassName={styles.pageLinkClassName}
+                previousClassName={styles.previousClassName}
+                nextClassName={styles.nextClassName}
 
 
                 activeClassName={styles.activeClassName}

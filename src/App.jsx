@@ -59,8 +59,9 @@ function App() {
             <Route path="categories" element={<CategoriesAdmin />} />
             <Route path="order/1" element={<Order />} />
             <Route path="orders" element={<AllOrders />} />
-            <Route path="allproducts/product/:id" index element={<EditProduct />} />
-            <Route path="order/:id" element={<OrderDetail />} />
+            <Route path="allproducts/:id" index element={<EditProduct />} />
+            <Route path="orders/:id" element={<OrderDetail />} />
+            <Route path=":id" element={<OrderDetail />} />
 
           </Route>
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
