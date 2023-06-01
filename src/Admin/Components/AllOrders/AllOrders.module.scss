@@ -1,5 +1,10 @@
 @import "../../../variables.scss";
-
+:root {
+  --primary: #23adad;
+  --greyLight: #23adade1;
+  --greyLight-2: #cbe0dd;
+  --greyDark: #2d4848;
+}
 .AllOrders {
   position: relative;
   margin-top: 50px;
@@ -34,5 +39,47 @@
     .update {
       color: green;
     }
+  }
+}
+.ordersPage {
+  ul {
+    // display: inline-block;
+    // padding-left: 15px;
+    // padding-right: 15px;
+  }
+
+  .containerClassName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    margin: 3rem;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
+  }
+  
+  .pageClassName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.4rem;
+  }
+
+  .breakClassName {
+    color: var(--greyLight);
+    cursor: initial;
+  }
+
+  .activeClassName {
+    color: #ffffff;
+    background: var(--primary);
+    font-weight: 600;
+    border: 1px solid var(--primary);
   }
 }

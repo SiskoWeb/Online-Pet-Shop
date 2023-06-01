@@ -2,21 +2,22 @@ import React from 'react'
 import styles from './AllOrders.module.scss'
 import { Link } from 'react-router-dom'
 import { GetAllOrdersHook } from '../../HookAdmin/Orders/GetAllOrdersHook'
+import ReactPaginate from 'react-paginate';
 import { RemoveOrderHook } from '../../HookAdmin/Orders/RemoveOrderHook'
 import Loading from '../../../utilis/Loading/Loading'
 export default function AllOrders() {
-    const [isLoading, padding, shipped, orders] = GetAllOrdersHook()
+    const [isLoading, padding, shipped, orders, onPressPaginate] = GetAllOrdersHook()
 
     const [deleteOrder] = RemoveOrderHook()
     return (
-        <div>
+        <div className={styles.ordersPage}>
             {isLoading ? <Loading /> : null}
 
             <div className={styles.AllOrders}>
 
                 <div className={styles.orderCol1}>
                     <p>Recent Orders</p>
-                    <Link className={styles.orderBtn} to='/admin/order/1'>View All</Link>
+
                 </div>
                 <table className={styles.table}>
                     <thead>
@@ -43,7 +44,7 @@ export default function AllOrders() {
                                     <td > <div className={`${styles.icons}`} >
 
                                         <i onClick={() => deleteOrder(item._id)} className={`${styles.remove}  fa-solid fa-trash-can`} ></i>
-                                        <Link to={`order/${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
+                                        <Link to={`${item._id}`}><i className={`${styles.update} fa-solid fa-pen-to-square `}></i></Link>
 
                                     </div></td>
                                 </tr>
@@ -53,6 +54,25 @@ export default function AllOrders() {
                 </table>
 
             </div>
-        </div>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+
+                pageRangeDisplayed={5}
+                pageCount={4}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                onPageChange={onPressPaginate}
+
+                breakClassName={styles.breakClassName}
+                containerClassName={styles.containerClassName}
+                pageClassName={styles.pageClassName}
+                pageLinkClassName={styles.pageLinkClassName}
+
+
+                activeClassName={styles.activeClassName}
+            />
+
+        </div >
     )
 }

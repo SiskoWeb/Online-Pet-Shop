@@ -7,10 +7,10 @@ import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
 
 
-export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async () => {
+export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (params) => {
     try {
 
-        const response = await useGetData('/api/v1/order')
+        const response = await useGetData(`/api/v1/order?limit=${params.limit}&page=${params.page}`)
 
         return response
 
@@ -23,10 +23,10 @@ export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async () => {
 })
 
 
-export const get10OrderRedux = createAsyncThunk('Orders/get10Order', async () => {
+export const get10OrderRedux = createAsyncThunk('Orders/get10Order', async (limit) => {
     try {
 
-        const response = await useGetData('/api/v1/order?limit=10')
+        const response = await useGetData(`/api/v1/order?limit=${limit}`)
 
         return response
 

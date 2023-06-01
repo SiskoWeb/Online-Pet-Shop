@@ -21,6 +21,7 @@ specifiers:
   react-dom: ^18.2.0
   react-icons: ^4.8.0
   react-just-parallax: ^3.1.16
+  react-paginate: ^8.2.0
   react-redux: ^8.0.5
   react-router-dom: ^6.11.1
   react-switch: ^7.0.0
@@ -42,6 +43,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-just-parallax: 3.1.16_react@18.2.0
+  react-paginate: 8.2.0_react@18.2.0
   react-redux: 8.0.5_uzhzqaehfp27v5jkxmk6prrzti
   react-router-dom: 6.11.1_biqbaboplfbrettd7655fr4n2y
   react-switch: 7.0.0_biqbaboplfbrettd7655fr4n2y
@@ -2047,6 +2049,15 @@ packages:
       framesync: 6.1.0
       lodash.debounce: 4.0.8
       prefix: 1.0.0
+      react: 18.2.0
+    dev: false
+
+  /react-paginate/8.2.0_react@18.2.0:
+    resolution: {integrity: sha512-sJCz1PW+9PNIjUSn919nlcRVuleN2YPoFBOvL+6TPgrH/3lwphqiSOgdrLafLdyLDxsgK+oSgviqacF4hxsDIw==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+    dependencies:
+      prop-types: 15.8.1
       react: 18.2.0
     dev: false
 

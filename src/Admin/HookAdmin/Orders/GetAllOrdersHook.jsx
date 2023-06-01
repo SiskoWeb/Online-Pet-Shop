@@ -15,7 +15,7 @@ export const GetAllOrdersHook = () => {
 
     const dispatch = useDispatch()
 
-
+    let limit = 2;
 
 
 
@@ -70,14 +70,20 @@ export const GetAllOrdersHook = () => {
     useEffect(() => {
 
         //@desc get 10 last orders from server by  redux 
-        dispatch(getAllOrdersRedux())
+        dispatch(getAllOrdersRedux({ limit }))
 
 
 
     }, [dispatch])
 
 
+    const onPressPaginate = async (page) => {
 
+        console.log('from on press')
+        await dispatch(getAllOrdersRedux({ limit, page }))
+
+
+    }
 
 
     //@desc after remove order list update
@@ -114,7 +120,7 @@ export const GetAllOrdersHook = () => {
     }, [OrderList])
 
 
-    return [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday]
+    return [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate]
 
 
 } 

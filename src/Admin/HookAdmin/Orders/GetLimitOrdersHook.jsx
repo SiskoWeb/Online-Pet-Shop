@@ -12,7 +12,7 @@ export const GetLimitOrdersHook = () => {
     const [orders, setOrders] = useState([])
 
     const dispatch = useDispatch()
-
+    let limit = 10
 
 
 
@@ -28,13 +28,22 @@ export const GetLimitOrdersHook = () => {
     useEffect(() => {
 
         //@desc get 10 last orders from server by  redux 
-        dispatch(get10OrderRedux())
+        dispatch(get10OrderRedux(limit))
 
 
 
     }, [dispatch])
 
 
+
+
+    const onPressPaginate = async (page) => {
+
+        console.log('from on press')
+        await dispatch(get10OrderRedux({ limit, page }))
+
+
+    }
 
     //@desc after remove order list update
     useEffect(() => {
