@@ -2,14 +2,13 @@ import React from 'react'
 import CardAdminStatus from '../../../utilis/CardAdminStatus/CardAdminStatus'
 import styles from './Dashboard.module.scss'
 import OrderList from '../../../utilis/OrderList/OrderList'
-import { GetLimitOrdersHook } from '../../HookAdmin/Orders/GetLimitOrdersHook'
 import Loading from '../../../utilis/Loading/Loading'
 import { ToastContainer } from 'react-toastify'
 import { GetAllOrdersHook } from '../../HookAdmin/Orders/GetAllOrdersHook'
 export default function Dashboard() {
 
-    const [isLoading, orders] = GetLimitOrdersHook()
-    const [ignore1, padding, shipped, ignore2, totaleIncome, totalIncomToday] = GetAllOrdersHook()
+    // const [isLoading, orders] = GetLimitOrdersHook()
+    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate] = GetAllOrdersHook()
 
 
     // eslint-disable-next-line react/jsx-key
@@ -34,7 +33,7 @@ export default function Dashboard() {
 
             <div className={styles.listOrders}>
 
-                <OrderList />
+                <OrderList orders={orders} />
             </div>
             <ToastContainer />
         </div>

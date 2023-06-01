@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 import { RemoveOrderHook } from '../../HookAdmin/Orders/RemoveOrderHook'
 import Loading from '../../../utilis/Loading/Loading'
 export default function AllOrders() {
-    const [isLoading, padding, shipped, orders, onPressPaginate] = GetAllOrdersHook()
+    const [isLoading, padding, shipped, orders, totaleIncome, totalIncomToday, onPressPaginate] = GetAllOrdersHook()
 
     const [deleteOrder] = RemoveOrderHook()
     return (

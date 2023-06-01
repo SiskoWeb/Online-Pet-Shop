@@ -3,7 +3,7 @@ import notify from "../../../Hooks/useNotifaction"
 
 import { useDispatch, useSelector } from "react-redux"
 // import { getAllProducts } from "../../../Redux/productsSlice/ActionsProducts"
-import { get10OrderRedux, removeOrderRedux } from "../../../Redux/OrdersSlice/ActionsOrders"
+import { getAllOrdersRedux, removeOrderRedux } from "../../../Redux/OrdersSlice/ActionsOrders"
 
 
 export const RemoveOrderHook = () => {
@@ -44,7 +44,7 @@ export const RemoveOrderHook = () => {
 
 
         if (DeletedResponse.status === 202) {
-            dispatch(get10OrderRedux())
+            dispatch(getAllOrdersRedux())
             notify('removed', 'success')
             console.log('RMOVED')
         }

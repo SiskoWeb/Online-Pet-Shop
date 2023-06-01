@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getAllOrdersRedux, AddProduct, removeOrderRedux, updateOrderRedux, getOneOrderRedux, get10OrderRedux } from './ActionsOrders'
+import { getAllOrdersRedux, AddProduct, removeOrderRedux, updateOrderRedux, getOneOrderRedux } from './ActionsOrders'
 
 const initialState = {
     OrderList: [],
-    Just10Orders: [],
+
     isloading: false,
     addProductResponse: [],
     DeletedResponse: [],
@@ -31,17 +31,7 @@ export const OrdersSlice = createSlice({
         [getAllOrdersRedux.rejected]: (state, action) => {
             state.isloading = true
         },
-        [get10OrderRedux.pending]: (state, action) => {
-            state.isloading = true
-        },
-        [get10OrderRedux.fulfilled]: (state, action) => {
-            state.Just10Orders = action.payload
-            state.isloading = false
 
-        },
-        [get10OrderRedux.rejected]: (state, action) => {
-            state.isloading = true
-        },
         [AddProduct.pending]: (state, action) => {
             state.isloading = true
         },

@@ -15,7 +15,7 @@ export const GetAllOrdersHook = () => {
 
     const dispatch = useDispatch()
 
-    let limit = 2;
+
 
 
 
@@ -31,7 +31,7 @@ export const GetAllOrdersHook = () => {
 
             if (data[i]?.isDelivered) {
                 result = result + data[i].totalOrderPrice
-                console.log(result)
+         
             }
 
         }
@@ -70,7 +70,7 @@ export const GetAllOrdersHook = () => {
     useEffect(() => {
 
         //@desc get 10 last orders from server by  redux 
-        dispatch(getAllOrdersRedux({ limit }))
+        dispatch(getAllOrdersRedux())
 
 
 
@@ -80,10 +80,11 @@ export const GetAllOrdersHook = () => {
     const onPressPaginate = async (page) => {
 
         console.log('from on press')
-        await dispatch(getAllOrdersRedux({ limit, page }))
+        await dispatch(getAllOrdersRedux(page))
 
 
     }
+
 
 
     //@desc after remove order list update
@@ -99,7 +100,7 @@ export const GetAllOrdersHook = () => {
                 GetNumberDelivered(OrderList.data.data)
                 TotalIncomToday(OrderList.data.data)
 
-                console.log(totaleIncome)
+             
 
             }
 

@@ -2,10 +2,9 @@ import React from 'react'
 import styles from './OrderList.module.scss'
 import { Link } from 'react-router-dom'
 import { RemoveOrderHook } from '../../Admin/HookAdmin/Orders/RemoveOrderHook'
-import { GetLimitOrdersHook } from '../../Admin/HookAdmin/Orders/GetLimitOrdersHook'
-export default function OrderList() {
+export default function OrderList({ orders }) {
     const [deleteOrder] = RemoveOrderHook()
-    const [isLoading, orders] = GetLimitOrdersHook()
+
 
     return (
         <div className={styles.OrderList}>

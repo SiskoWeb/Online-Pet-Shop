@@ -5,12 +5,12 @@ import { useInsertDataWithImages } from "../../Hooks/useInsertData"
 import { useDeleteData } from "../../Hooks/useDeleteData"
 import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
+let limit = 3;
 
-
-export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (params) => {
+export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (page) => {
     try {
 
-        const response = await useGetData(`/api/v1/order?limit=${params.limit}&page=${params.page}`)
+        const response = await useGetData(`/api/v1/order?limit=${limit}&page=${page}`)
 
         return response
 
@@ -23,20 +23,7 @@ export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (params
 })
 
 
-export const get10OrderRedux = createAsyncThunk('Orders/get10Order', async (limit) => {
-    try {
 
-        const response = await useGetData(`/api/v1/order?limit=${limit}`)
-
-        return response
-
-    } catch (error) {
-
-        return error.response
-
-    }
-
-})
 
 export const getOneOrderRedux = createAsyncThunk('Orders/getOne', async (id) => {
     try {
