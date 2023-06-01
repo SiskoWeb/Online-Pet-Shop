@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import notify from "../../../Hooks/useNotifaction"
 import { useDispatch, useSelector } from "react-redux"
-import { AddProduct, getOneProductRedux, updateProductRedux } from "../../../Redux/productsSlice/ActionsProducts"
-import addImg from '../../../assets/addimg.png'
+import { getAllProducts } from "../../../Redux/productsSlice/ActionsProducts"
+
 import { useParams } from "react-router-dom"
 import { getOneOrderRedux, updateOrderRedux } from "../../../Redux/OrdersSlice/ActionsOrders"
 
@@ -16,6 +16,7 @@ export const UpdateOrderHook = () => {
     const [ischecked, setIsChecked] = useState(null)
     const [id, setId] = useState(params.id)
     const [order, setOrder] = useState([])
+    const [allproducts, setAllproducts] = useState([])
 
 
 
@@ -25,16 +26,28 @@ export const UpdateOrderHook = () => {
     //@desc get data for spicific product by params.id
     useEffect(() => {
 
-        const getOneProduct = async () => {
+        const getOneOrder = async () => {
 
             await dispatch(getOneOrderRedux(id))
+
         }
-        getOneProduct()
+        getOneOrder()
+
+    }, [])
+    //@desc get data for spicific product by params.id
+    useEffect(() => {
+
+        const getProducts = async () => {
+
+
+            await dispatch(getAllProducts())
+
+        }
+        getProducts()
 
     }, [])
 
-
-
+    const productsList = useSelector((state) => state.products.productsList)
     const GetOneOrder = useSelector(state => state.orders.GetOneOrder)
     const isloading = useSelector(state => state.orders.isloading)
 
@@ -45,11 +58,23 @@ export const UpdateOrderHook = () => {
 
         if (GetOneOrder.status === 200) {
 
-            console.log(GetOneOrder)
-            if (GetOneOrder.data.data) {
-                setOrder(GetOneOrder.data.data)
-                setIsChecked(GetOneOrder.data.data?.isDelivered)
+            if (productsList.status === 200) {
+
+                if (GetOneOrder.data.data) {
+
+                    setAllproducts(productsList.data.data)
+                    setOrder(GetOneOrder.data.data)
+                    setIsChecked(GetOneOrder.data.data?.isDelivered)
+
+
+                }
             }
+
+
+
+
+
+
 
         }
 
@@ -130,5 +155,5 @@ export const UpdateOrderHook = () => {
     }, [loading])
 
 
-    return [isloading, order, ischecked, handleChangeSwitcher]
+    return [isloading, order, ischecked, handleChangeSwitcher, allproducts]
 } 

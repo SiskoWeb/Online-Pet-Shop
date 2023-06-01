@@ -10,8 +10,8 @@ import Loading from '../../../utilis/Loading/Loading';
 import { ToastContainer } from 'react-toastify';
 export default function OrderDetail() {
 
-    const [isloading, order, ischecked, handleChangeSwitcher] = UpdateOrderHook()
-    console.log(order)
+    const [isloading, order, ischecked, handleChangeSwitcher, allproducts] = UpdateOrderHook()
+
 
     return (
         <div>
@@ -39,11 +39,12 @@ export default function OrderDetail() {
 
                                 {order === [] ? <p>no porudcts</p> :
                                     order?.cartItems?.map((item, index) => {
+                                        const product = allproducts.find(p => p.id === item.product);
                                         return (
                                             <tr key={index}>
 
-                                                <td><img src={pro1}></img></td>
-                                                <td>Food Cat</td>
+                                                <td><img src={product.imageCover}></img></td>
+                                                <td>{product.title}</td>
                                                 <td>{item.price}x{item.quantity}</td>
                                                 <td>${item.price * item.quantity}</td>
 

@@ -27,12 +27,20 @@ export const GetAllOrdersHook = () => {
     /// @desc :get tottal income from only delevred orders
     const TotalIncom = (data) => {
         let result = 0;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i]?.isDelivered) {
-                result = result + data[i].totalOrderPrice
+
+        data.map(item => {
+            if (!item.isDelivered === true) return;
+            else {
+                return setTotaleIncome(totalIncomToday + item.totalOrderPrice)
+
             }
-        }
-        setTotaleIncome(result)
+        })
+        // for (var i = 0; i < data.length; i++) {
+        //     if (data[i]?.isDelivered) {
+        //         result = result + data[i].totalOrderPrice
+        //     }
+        // }
+        // setTotaleIncome(result)
     }
 
 
@@ -43,11 +51,18 @@ export const GetAllOrdersHook = () => {
         let date = await (new Date()).getTime() - 24 * 60 * 60 * 1000;
         let dayTransactions = await data.filter((item) => (new Date(item.created_at)).getTime() >= date);
 
-        for (var i = 0; i < dayTransactions.length; i++) {
-            if (dayTransactions[i]?.isDelivered) {
-                result = result + dayTransactions[i].totalOrderPrice
+        dayTransactions.map(item => {
+            if (!item.isDelivered === true) return;
+            else {
+                return setTotalIncomToday(totalIncomToday + item.totalOrderPrice)
+
             }
-        }
+        })
+        // for (var i = 0; i < dayTransactions.length; i++) {
+        //     if (dayTransactions[i]?.isDelivered) {
+        //         result = result + dayTransactions[i].totalOrderPrice
+        //     }
+        // }
 
 
         setTotalIncomToday(result)
@@ -70,6 +85,8 @@ export const GetAllOrdersHook = () => {
         }
         setShipped(result)
     }
+
+
 
     useEffect(() => {
 
@@ -97,11 +114,11 @@ export const GetAllOrdersHook = () => {
 
 
             if (OrderList.data.data) {
-                setOrders(OrderList.data.data)
-                setPaginationResult(OrderList.data.paginationResult)
-                TotalIncom(OrderList.data.data)
-                GetNumberDelivered(OrderList.data.data)
-                TotalIncomToday(OrderList.data.data)
+                setOrders(OrderList.data.data) //@desc push orders  to order state
+                setPaginationResult(OrderList.data.paginationResult)//@desc pushcount of pages and orders 
+                TotalIncom(OrderList.data.data)//@desc push Total Incom all time
+                GetNumberDelivered(OrderList.data.data)//@desc push total of order is deliverd
+                TotalIncomToday(OrderList.data.data)//@desc push Total Incom inlast 24Hourse
 
 
 
