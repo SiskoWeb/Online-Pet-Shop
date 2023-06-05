@@ -93,9 +93,9 @@ export default function CartPage() {
                                         <button>Remove</button>
                                     </div>
                                     <div className={styles.QuantityCart}>
-                                        <i class="fa-solid fa-minus"></i>
+                                        <i className="fa-solid fa-minus"></i>
                                         <span>8</span>
-                                        <i class="fa-solid fa-plus"></i>
+                                        <i className="fa-solid fa-plus"></i>
                                     </div>
                                     <div className={styles.prictProductCart}>
                                         <p>$102.99</p>

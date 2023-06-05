@@ -1,18 +1,9 @@
 import React, { useState } from 'react'
 import styles from './ProductDetails.module.scss'
-import imgP1 from '../../../assets/Products/p1.png'
-import imgP2 from '../../../assets/Products/p2.png'
-import imgP10 from '../../../assets/Products/p10.png'
-import imgP11 from '../../../assets/Products/p11.png'
-import ProductCard from '../../../utilis/ProductCard/ProductCard'
-import img1 from '../../../assets/Products/p1.png'
-import img2 from '../../../assets/Products/p2.png'
-import img3 from '../../../assets/Products/p3.png'
-import img4 from '../../../assets/Products/p4.png'
-import img10 from '../../../assets/Products/p10.png'
-import img11 from '../../../assets/Products/p11.png'
+
 import NavBar from '../../Components/NavBar/NavBar'
 import { GetProductHook } from '../../Hook/ProductHoo/GetProductHook'
+import Loading from '../../../utilis/Loading/Loading'
 export default function ProductDetails() {
 
     const [imageIndex, setImageIndex] = useState(0)
@@ -26,7 +17,7 @@ export default function ProductDetails() {
 
             <NavBar />
 
-
+            {isloading ? <Loading /> : null}
             <div className={styles.PageProdcut}>
                 <div className={styles.ProductDetails}>
                     <div className={styles.ProductImages} >

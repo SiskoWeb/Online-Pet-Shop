@@ -131,7 +131,7 @@
   .orderBtn {
     border: none;
 
-    background-color: #b04a18;
+    background-color: $Home_Main_color;
     color: white;
     padding: 10px 15px;
     border-radius: 15px;
@@ -179,15 +179,15 @@
       justify-content: center;
       align-items: center;
       column-gap: 5px;
+      height: 100%;
       i {
-        width: 19px;
-        height: 19px;
+        padding: 5px !important;
         display: flex;
         cursor: pointer;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        background-color: #f2d2aa;
+        background-color: $Home_Main_color;
         border: none;
         color: #fff;
       }
@@ -204,6 +204,9 @@
   padding: 20px 10px;
   justify-content: space-around;
   width: 100%;
+}
+.ChangeAddress {
+  cursor: pointer;
 }
 .DisplayAddress {
   width: 100%;

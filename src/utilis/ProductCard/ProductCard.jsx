@@ -1,12 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './ProductCard.module.scss'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { AddToCart, removeFromCart } from '../../Redux/CartSlice/CartSlice'
 // import img from '../../assets/Products/p1.png'
 
 export default function ProductCard({ data }) {
 
 
+
+    const AddToCart2 = (id) => {
+        const cartItem = {
+            id,
+            quantity: 1
+        }
+        dispatch(AddToCart(cartItem))
+
+    }
+
+    const AddToCart1 = (id) => {
+        const cartItem = {
+            id,
+            quantity: 1
+        }
+        dispatch(removeFromCart(cartItem))
+
+    }
+    const cart = useSelector((state) => state.cart.Cart)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        console.log(cart)
+
+    }, [AddToCart2, AddToCart1])
 
     return (
 
@@ -40,7 +67,8 @@ export default function ProductCard({ data }) {
                 <div className={`${styles.icons}`} >
 
                     <p>${data?.price}</p>
-                    <button>ADD</button>
+                    <button onClick={() => AddToCart2(data?._id)}>ADD</button>
+                    <button onClick={() => AddToCart1(data?._id)}>remove</button>
 
 
 
