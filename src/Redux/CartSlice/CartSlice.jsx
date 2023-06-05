@@ -10,6 +10,7 @@ export const CartSlice = createSlice({
     initialState,
     reducers: {
         AddToCart: (state, action) => {
+
             //1 check if this product alrady in cart
             const exist = state.Cart.find(item => item.id === action.payload.id);
             //2 if already in incress quantity +1
@@ -23,10 +24,10 @@ export const CartSlice = createSlice({
             //3 if not in add it ro cart
             else {
                 //1 add to cart
+
                 state.Cart = [...state.Cart, action.payload]
             }
-
-
+           
         },
         decrement: (state, action) => {
             state.Cart.map(item => {

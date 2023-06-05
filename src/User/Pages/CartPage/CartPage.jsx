@@ -6,14 +6,28 @@ import p1 from '../../../assets/Products/p1.png'
 import { ToastContainer } from 'react-toastify';
 import { CartPageHook } from '../../Hook/CartPageHook.jsx'
 import NavBar from '../../Components/NavBar/NavBar'
+import { ProductHook } from '../../Hook/ProductHoo/ProductHook'
+import { useSelector } from 'react-redux'
 
 export default function CartPage() {
 
     const [name, number, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress] = CartPageHook()
+    const [total, setTotal] = useState(0)
 
-    const [products, setProducts] = useState(false)
+
+    const [isLoading, productsData] = ProductHook()
+    const cart = useSelector((state) => state.cart.Cart)
 
 
+
+    const getTotalPrice = () => {
+        let result = 0
+        cart.map((item, index) => {
+            const product = productsData.find(p => p._id === item.id)
+            return setTotal(total + (product?.price * item.quantity))
+        })
+
+    }
     console.log(name)
     return (
         <>
@@ -80,49 +94,38 @@ export default function CartPage() {
                         <h3>ORDER DETAILS</h3>
 
                         <div className={styles.listItem}>
-                            {products ? <><p>Cart Empty</p>
-                                <img src={empty}></img></> :
 
-                                <> <div className={styles.Item}>
 
-                                    <div className={styles.imgProdctCart}>
-                                        <img src={p11}></img>
-                                    </div>
-                                    <div className={styles.textProductCart}>
-                                        <p>Cat Food</p>
-                                        <button>Remove</button>
-                                    </div>
-                                    <div className={styles.QuantityCart}>
-                                        <i className="fa-solid fa-minus"></i>
-                                        <span>8</span>
-                                        <i className="fa-solid fa-plus"></i>
-                                    </div>
-                                    <div className={styles.prictProductCart}>
-                                        <p>$102.99</p>
-                                    </div>
-                                </div>
-                                    <div className={styles.Item}>
+                            {cart.length >= 1 ? cart.map((item, index) => {
+                                const product = productsData.find(p => p._id === item.id)
+
+
+                                return (
+                                    <div key={index} className={styles.Item}>
 
                                         <div className={styles.imgProdctCart}>
-                                            <img src={p1}></img>
+                                            <img src={product?.imageCover}></img>
                                         </div>
                                         <div className={styles.textProductCart}>
-                                            <p>Dog Food</p>
+                                            <p>{product?.title}</p>
                                             <button>Remove</button>
                                         </div>
                                         <div className={styles.QuantityCart}>
                                             <i class="fa-solid fa-minus"></i>
-                                            <span>8</span>
+                                            <span>{item.quantity}</span>
                                             <i class="fa-solid fa-plus"></i>
                                         </div>
                                         <div className={styles.prictProductCart}>
-                                            <p>$72.99</p>
+                                            <p>${product?.price}</p>
                                         </div>
                                     </div>
+                                )
+
+                            }) : <><p>Cart Empty</p>
+                                <img src={empty}></img></>}
 
 
-                                </>
-                            }
+
 
 
                         </div>
@@ -134,7 +137,7 @@ export default function CartPage() {
                             </div>
                             <div className={styles.numberPrice}>
                                 <p>$0</p>
-                                <p>$25.99</p>
+                                <p>${total}</p>
                             </div>
                         </div>
 

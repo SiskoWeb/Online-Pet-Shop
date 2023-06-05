@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styles from './Navbar.module.scss'
 import Logo from '../../../assets/logo.png'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
+import CartBodyPopup from '../../../utilis/CartBodyPoupup/CartBodyPopup.jsx'
 export default function NavBar() {
     const [cartItems, setCartItems] = useState(1)
     const [isCart, setIsCart] = useState(true)
@@ -19,6 +20,8 @@ export default function NavBar() {
 
 
     }
+    const cart = useSelector((state) => state.cart.Cart)
+    console.log(cart.length)
     return (
         <navbar >
             <div className={styles.navbar}>
@@ -45,9 +48,10 @@ export default function NavBar() {
 
 
                     <div className={styles.cartMain}>
-                        <Link to="/cart" >  {isCart ? <div className={styles.cartActive}>3</div> : null}
+                        <Link to="/cart" >  {cart <= 1 ? null : <div className={styles.cartActive}>{cart?.length}</div>}
                             <i className={`${styles.cartIcon}  fa-brands fa-opencart`} ></i></Link>
-
+                      
+                            <div className={styles.popup}> <CartBodyPopup /></div>
                     </div>
 
                 </div>

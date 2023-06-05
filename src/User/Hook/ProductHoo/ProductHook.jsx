@@ -17,7 +17,7 @@ export function ProductHook() {
 
         dispatch(getAllProducts())
 
-    }, [])
+    }, [dispatch])
 
 
 
