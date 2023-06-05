@@ -11,59 +11,64 @@ import img3 from '../../../assets/Products/p3.png'
 import img4 from '../../../assets/Products/p4.png'
 import img10 from '../../../assets/Products/p10.png'
 import img11 from '../../../assets/Products/p11.png'
+import NavBar from '../../Components/NavBar/NavBar'
+import { GetProductHook } from '../../Hook/ProductHoo/GetProductHook'
 export default function ProductDetails() {
 
     const [imageIndex, setImageIndex] = useState(0)
-    const arryImg = [imgP1, imgP2, imgP10, imgP11]
-    const Weight = [1, 2, 4, 10]
 
+
+    const [isloading, productsData] = GetProductHook()
 
     return (
-        <div className={styles.PageProdcut}>
-            <div className={styles.ProductDetails}>
-                <div className={styles.ProductImages} >
-                    <div className={styles.ListImgs}>
-                        {arryImg.map((item, index) => {
-                            return (<img key={index} className={styles.minImages} src={item} onClick={() => setImageIndex(index)}></img>)
-                        })}
-                    </div>
-                    <img className={styles.MainImgs} src={arryImg[imageIndex]}></img>
-                </div>
-                <div className={styles.Text} >
-                    <h1>Catessy Sticks</h1>
 
-                    <p>Delicious Catessy Sticks are a popular grain-free cat treat, in a variety of tasty flavours. These easy to digest treats are available at a great price! Treat your cat to something specia</p>
-                    <div className={styles.Price}>
-                        <h3>$100</h3>
+        <div>
+
+            <NavBar />
 
 
-                        <p>Weight:</p>
-                        <div className={styles.weight}>
-                            {Weight.map((item, index) => {
-
-                                return (
-                                    <div key={index}>{`${item}KG`}</div>
-                                )
+            <div className={styles.PageProdcut}>
+                <div className={styles.ProductDetails}>
+                    <div className={styles.ProductImages} >
+                        <div className={styles.ListImgs}>
+                            {productsData.images?.map((item, index) => {
+                                return (<img key={index} className={styles.minImages} src={item} onClick={() => setImageIndex(index)}></img>)
                             })}
                         </div>
-                        <div className={styles.addToCart}>Add To Cart  <i className="fa-brands fa-opencart"></i></div>
+                        <img className={styles.MainImgs} src={productsData.imageCover}></img>
+                    </div>
 
+                    <div className={styles.Text} >
+                        <h1>{productsData?.title}</h1>
+
+
+                        <div className={styles.Price}>
+                            <h3>${productsData?.price}</h3>
+
+                            <p>Short Hooded Coat features a straight body, large pockets with b,
+                                a straight body, large pockets with buttoutton </p>
+
+
+                            <div className={styles.btns}>
+                                <button className={styles.addToCart}>Add To Cart  <i className="fa-brands fa-opencart"></i></button>
+                                <div className={styles.wishlist_icon}>   <i className="far fa-heart"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div >
+
+                <div className={styles.Description}>
+                    <div>  <p>Description</p></div>
+                    <hr></hr>
+
+                    <div>
+                        <p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic silhouette and utilitarian design details.<br></br>This is a unisex item, please check our clothing & footwear sizing guide for specific Rains jacket sizing information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody- but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy days, issuing an invitation to explore even in the most mercurial weather.</p>
                     </div>
                 </div>
 
 
-            </div >
-            <div className={styles.MoreProducts}>
-                <hr></hr>
-                <div className={styles.list}>
-                    <ProductCard img={img1} />
-                    <ProductCard img={img2} />
-                    <ProductCard img={img3} />
-                    <ProductCard img={img4} />
-                    <ProductCard img={img10} />
-                    <ProductCard img={img11} />
-
-                </div>
             </div>
         </div>
     )

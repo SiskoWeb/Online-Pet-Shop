@@ -10,11 +10,14 @@ export default function ProductsHome() {
 
     return (
         <div className={styles.products}>
-            <p>Featured Products.</p>
+            <div className={styles.title}>
+                <p>New Arrival</p>
+                <button>View All</button>
+            </div>
             <div className={styles.list}>
 
                 {isLoading ? <h1>Loading</h1> : productsData.length >= 1 ? productsData?.map((item) =>
-                    <ProductCard key={item._id} img={item.imageCover} price={item.price} name={item.title} />) : <h1>No Products</h1>}
+                    <ProductCard key={item._id} data={item} />) : <h1>No Products</h1>}
 
             </div>
         </div>

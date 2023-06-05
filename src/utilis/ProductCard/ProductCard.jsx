@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './ProductCard.module.scss'
+import { Link } from 'react-router-dom'
 
 // import img from '../../assets/Products/p1.png'
 
-export default function ProductCard({ img, price, name }) {
+export default function ProductCard({ data }) {
 
 
 
@@ -14,31 +15,40 @@ export default function ProductCard({ img, price, name }) {
 
 
 
-                <img src={img}></img>
+                <img src={data?.imageCover}></img>
 
 
             </div>
 
+
             <div className={styles.card2}>
 
 
-                <div className={styles.col1}>
-
-                    <div className={styles.text} >
-                        <a href='/product'>  <p>{name}</p></a>
-                        <p>${price}</p>
 
 
-                    </div>
+                <div className={styles.text} >
+                    <Link to={`Product/${data?._id}`}>  <p>{data?.title}</p></Link>
+
+                    <span>{data?.category?.name}</span>
+
+
+
+
+
+
                 </div>
-
-
-
                 <div className={`${styles.icons}`} >
-                    <i className={`${styles.cart}  fa-brands fa-opencart`} ></i>
-                    <i className={`${styles.heart} fa-regular fa-heart `} ></i>
+
+                    <p>${data?.price}</p>
+                    <button>ADD</button>
+
+
 
                 </div>
+
+
+
+
 
 
             </div>
