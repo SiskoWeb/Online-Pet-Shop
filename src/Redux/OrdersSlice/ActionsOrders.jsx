@@ -5,7 +5,7 @@ import { useInsertDataWithImages } from "../../Hooks/useInsertData"
 import { useDeleteData } from "../../Hooks/useDeleteData"
 import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
-let limit = 3;
+let limit = 10;
 
 export const getAllOrdersRedux = createAsyncThunk('Orders/getAll', async (page) => {
 

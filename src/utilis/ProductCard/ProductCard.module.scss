@@ -8,16 +8,15 @@
     border-radius: 15px;
     background-color: #ffead1;
     padding: 15px 40px;
-    width: 200px;
+    width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 2px -2px gray;
 
     img {
       width: 150px;
       transition: 0.3s all ease-in;
-
-      // box-shadow: 0 4px 2px -2px gray;
     }
   }
 

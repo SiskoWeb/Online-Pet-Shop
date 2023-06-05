@@ -26,15 +26,17 @@ export default function NavBar() {
 
                 <div className={styles.links}>
                     <div className={styles.logo}> <Link to='/' ><img src={Logo}></img></Link></div>
+                    <div className={styles.links}>
 
+                        <Link to='/'>Home</Link>
+                        <Link to='/'>Categories</Link>
+                        <Link to='/'>Products</Link>
+
+
+                    </div>
 
                 </div>
-                <div className={styles.links}>
 
-                    <Link to='/'>Shop now</Link>
-                    <Link to='/'>About us</Link>
-
-                </div>
                 <div className={styles.cart}>
                     <div className={styles.inputClass}>
                         <input type='text' placeholder='search for...'></input>
@@ -44,7 +46,7 @@ export default function NavBar() {
 
                     <div className={styles.cartMain}>
                         <Link to="/cart" >  {isCart ? <div className={styles.cartActive}>3</div> : null}
-                            <i className={`${styles.cart}  fa-brands fa-opencart`} ></i></Link>
+                            <i className={`${styles.cartIcon}  fa-brands fa-opencart`} ></i></Link>
 
                     </div>
 

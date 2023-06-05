@@ -45,7 +45,7 @@ export default function OrderDetail() {
 
                                                 <td><img src={product.imageCover}></img></td>
                                                 <td>{product.title}</td>
-                                                <td>{item.price}x{item.quantity}</td>
+                                                <td>${item.price}x{item.quantity}</td>
                                                 <td>${item.price * item.quantity}</td>
 
                                             </tr>

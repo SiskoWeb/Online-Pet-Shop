@@ -6,6 +6,20 @@ $paddingPage: 100px calc(100% - 80%);
 
 //design for admin pages
 
+$colors_Card: (
+  "one": #7c6fb8,
+  "two": #006ba9,
+  "three": #0d6603,
+  "four": #4aa53f,
+);
+
+
+
+// Colors Cliente side
+
+$Home_Main_color:#5897fb;
+$Home_Hero_color:#f4f5f9;
+
 
 @mixin btnAdmin($padding) {
   border: none;
@@ -41,8 +55,7 @@ $paddingPage: 100px calc(100% - 80%);
   padding-left: 15px;
 }
 
-
-@mixin Table(){
+@mixin Table() {
   .table {
     table-layout: fixed;
     width: 100%;

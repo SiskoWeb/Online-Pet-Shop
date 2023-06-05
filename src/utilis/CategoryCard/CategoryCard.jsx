@@ -1,18 +1,22 @@
 import styles from './CategoryCard.module.scss'
 
-export default function CategoryCard({ img, color }) {
+export default function CategoryCard({ data }) {
 
 
 
 
     return (
-        <div className={styles.card} style={{ background: color }}>
+        <div className={styles.cardCategory}>
+            <div className={styles.card} >
 
 
 
-            <img src={img}></img>
+                <img src={data?.image}></img>
 
-         
+
+            </div>
+
+            <p>{data?.name}</p>
         </div>
 
 

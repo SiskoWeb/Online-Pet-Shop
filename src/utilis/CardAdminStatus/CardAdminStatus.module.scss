@@ -1,6 +1,13 @@
+$colors_Card: (
+  "1": #7c6fb8,
+  "2": #006ba9,
+  "3": #0d6603,
+  "4": #4aa53f,
+);
+
 .cardAdmin {
   width: 100%;
-  background-color: #9081d7;
+
   display: flex;
   align-items: center;
   border-radius: 10px;
@@ -23,3 +30,13 @@
   }
   text-align: center;
 }
+// @each $key, $val in $colors_Card {
+//   & {
+//     background-color: $val;
+//   }
+// }
+// @for $i from 1 through 4 {
+//   .cardAdmin {
+//     background-color: map-get($map: $colors_Card, $key: $i);
+//   }
+// }

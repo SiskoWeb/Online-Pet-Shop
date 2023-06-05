@@ -23,14 +23,7 @@ export default function ProductCard({ img, price, name }) {
 
 
                 <div className={styles.col1}>
-                    <div className={styles.reviews} >
-                        <i className="fa-solid fa-star" ></i>
-                        <i className="fa-solid fa-star" ></i>
-                        <i className="fa-solid fa-star" ></i>
-                        <i className="fa-solid fa-star" ></i>
-                        <i className="fa-solid fa-star" ></i>
-                        <p>(152)</p>
-                    </div>
+
                     <div className={styles.text} >
                         <a href='/product'>  <p>{name}</p></a>
                         <p>${price}</p>
