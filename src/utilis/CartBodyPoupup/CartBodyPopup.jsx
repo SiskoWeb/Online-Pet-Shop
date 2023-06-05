@@ -6,6 +6,7 @@ import p1 from '../../assets/Products/p1.png'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ProductHook } from '../../User/Hook/ProductHoo/ProductHook'
+import CartCardProduct from '../CartCardProduct/CartCardProduct'
 export default function CartBodyPopup() {
     const isCart = false
 
@@ -29,24 +30,9 @@ export default function CartBodyPopup() {
 
                             console.log(product)
                             return (
-                                <div key={index} className={styles.Item}>
 
-                                    <div className={styles.imgProdctCart}>
-                                        <img src={product?.imageCover}></img>
-                                    </div>
-                                    <div className={styles.textProductCart}>
-                                        <p>{product?.title}</p>
-                                        <button>Remove</button>
-                                    </div>
-                                    <div className={styles.QuantityCart}>
-                                        <i className="fa-solid fa-minus"></i>
-                                        <span>{item?.quantity}</span>
-                                        <i className="fa-solid fa-plus"></i>
-                                    </div>
-                                    <div className={styles.prictProductCart}>
-                                        <p>${product?.price}</p>
-                                    </div>
-                                </div>
+                                <CartCardProduct product={product} item={item} key={index} />
+
                             )
 
                         }) : null}

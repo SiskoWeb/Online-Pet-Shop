@@ -121,11 +121,28 @@
     align-items: center;
     justify-content: center;
     text-align: start;
-    column-gap: 10px;
+    column-gap: 40px;
+    width: 100%;
+
+    .numberPrice {
+      :nth-child(1) {
+        font-weight: 600;
+        font-size: 12px;
+      }
+      color: $Home_Main_color !important;
+      font-weight: 700;
+      font-size: 18px;
+    }
   }
   .textPrice {
+    :nth-child(1) {
+      font-weight: 600;
+      font-size: 12px;
+    }
     display: flex;
     flex-direction: column;
+    font-weight: 900;
+    font-size: 18px;
   }
 
   .orderBtn {

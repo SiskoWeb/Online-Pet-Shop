@@ -1,34 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { AddToCart, removeFromCart } from '../../../Redux/CartSlice/CartSlice'
 import { useEffect } from 'react'
+import notify from "../../../Hooks/useNotifaction"
 
-export function AddProductToCartHook(){
+export function AddProductToCartHook() {
 
-    
 
-    const AddToCart2 = (id) => {
+
+    const AddToCartFunc = async (id) => {
+        //@desc Create object for cart
         const cartItem = {
             id,
             quantity: 1
         }
-        dispatch(AddToCart(cartItem))
-
+        await dispatch(AddToCart(cartItem))
+        notify('Product Added', 'success')
     }
 
-    const Remove = (id) => {
-        const cartItem = {
-            id,
-            quantity: 1
-        }
-        dispatch(removeFromCart(cartItem))
-
-    }
     const cart = useSelector((state) => state.cart.Cart)
     const dispatch = useDispatch()
 
-    useEffect(() => {
 
-        console.log(cart)
-
-    }, [AddToCart2, AddToCart1])
+    return [AddToCartFunc]
 }

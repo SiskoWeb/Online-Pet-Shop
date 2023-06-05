@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react'
 import styles from './ProductCard.module.scss'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { AddToCart } from '../../Redux/CartSlice/CartSlice'
+
 // import img from '../../assets/Products/p1.png'
+import { ToastContainer } from 'react-toastify';
+import { AddProductToCartHook } from '../../User/Hook/ProductHoo/AddProductToCartHook'
 
 export default function ProductCard({ data }) {
 
+    const [AddToCartFunc] = AddProductToCartHook()
 
-    const dispatch = useDispatch()
 
 
-    //@desc Create object for cart
-    const cartItem = {
-        id: data?._id,
-        quantity: 1
-    }
+
 
 
 
@@ -51,7 +48,7 @@ export default function ProductCard({ data }) {
                 <div className={`${styles.icons}`} >
 
                     <p>${data?.price}</p>
-                    <button onClick={() => dispatch(AddToCart(cartItem))}>ADD</button>
+                    <button onClick={() => AddToCartFunc(data?._id)}>ADD</button>
 
 
 
@@ -65,7 +62,9 @@ export default function ProductCard({ data }) {
 
             </div>
 
-
+            <ToastContainer
+                autoClose={500}
+            />
         </div >
 
     )

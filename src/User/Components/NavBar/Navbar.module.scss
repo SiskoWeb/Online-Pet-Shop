@@ -62,16 +62,7 @@
 }
 .cartMain {
 }
-.popup {
-  position: relative;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease-out !important;
-  transition: transform 0.5s ease-out !important;
-}
-.cartMain:hover .popup {
-  opacity: 1 !important;
-}
+
 .cartActive {
   display: flex;
   justify-content: center;
@@ -86,4 +77,15 @@
   right: -10px;
   font-family: serif;
   background-color: #e96161;
+}
+
+.popup {
+  position: relative;
+  opacity: 0;
+  // transform: translateY(10px);
+  transition: opacity 0.5s ease-out !important;
+  // transition: transform 0.5s ease-out !important;
+}
+i:hover .popup {
+  opacity: 1 !important;
 }

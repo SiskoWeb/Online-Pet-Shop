@@ -8,11 +8,13 @@ import { CartPageHook } from '../../Hook/CartPageHook.jsx'
 import NavBar from '../../Components/NavBar/NavBar'
 import { ProductHook } from '../../Hook/ProductHoo/ProductHook'
 import { useSelector } from 'react-redux'
+import { CartHook } from '../../Hook/CartHook/CartHook'
+import CartCardProduct from '../../../utilis/CartCardProduct/CartCardProduct'
 
 export default function CartPage() {
 
     const [name, number, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress] = CartPageHook()
-    const [total, setTotal] = useState(0)
+
 
 
     const [isLoading, productsData] = ProductHook()
@@ -20,15 +22,13 @@ export default function CartPage() {
 
 
 
-    const getTotalPrice = () => {
-        let result = 0
-        cart.map((item, index) => {
-            const product = productsData.find(p => p._id === item.id)
-            return setTotal(total + (product?.price * item.quantity))
-        })
+    const totalPrice = cart?.reduce((total, cartItem) => {
+        const item = productsData?.find((i) => i.id === cartItem.id);
+        return Math.floor(total + (item?.price || 0) * cartItem.quantity * 1)
+    }, 0)
 
-    }
-    console.log(name)
+
+
     return (
         <>
             <NavBar />
@@ -101,24 +101,8 @@ export default function CartPage() {
 
 
                                 return (
-                                    <div key={index} className={styles.Item}>
+                                    <CartCardProduct product={product} item={item} key={index} />
 
-                                        <div className={styles.imgProdctCart}>
-                                            <img src={product?.imageCover}></img>
-                                        </div>
-                                        <div className={styles.textProductCart}>
-                                            <p>{product?.title}</p>
-                                            <button>Remove</button>
-                                        </div>
-                                        <div className={styles.QuantityCart}>
-                                            <i class="fa-solid fa-minus"></i>
-                                            <span>{item.quantity}</span>
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                        <div className={styles.prictProductCart}>
-                                            <p>${product?.price}</p>
-                                        </div>
-                                    </div>
                                 )
 
                             }) : <><p>Cart Empty</p>
@@ -129,7 +113,7 @@ export default function CartPage() {
 
 
                         </div>
-
+                        <hr></hr>
                         <div className={styles.price}>
                             <div className={styles.textPrice}>
                                 <p>Shipping:</p>
@@ -137,7 +121,7 @@ export default function CartPage() {
                             </div>
                             <div className={styles.numberPrice}>
                                 <p>$0</p>
-                                <p>${total}</p>
+                                <p>${totalPrice}</p>
                             </div>
                         </div>
 
