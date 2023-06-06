@@ -21,7 +21,7 @@ export default function NavBar() {
 
     }
     const cart = useSelector((state) => state.cart.Cart)
-    console.log(cart.length)
+
     return (
         <navbar >
             <div className={styles.navbar}>
@@ -50,8 +50,8 @@ export default function NavBar() {
                     <div className={styles.cartMain}>
                         <Link to="/cart" >  {cart <= 1 ? null : <div className={styles.cartActive}>{cart?.length}</div>}
                             <i className={`${styles.cartIcon}  fa-brands fa-opencart`} ></i></Link>
-                      
-                            <div className={styles.popup}> <CartBodyPopup /></div>
+
+                        <div className={styles.popup}> <CartBodyPopup /></div>
                     </div>
 
                 </div>

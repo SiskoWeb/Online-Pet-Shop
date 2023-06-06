@@ -7,7 +7,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { loginAction } from './ActionsAuth'
 
 const initialState = {
-    user: [],
+    user: localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user"))
+        : [],
     isloading: false
 
 }
@@ -27,7 +29,7 @@ export const authSlice = createSlice({
         },
         [loginAction.fulfilled]: (state, action) => {
             state.user = action.payload
-    
+
             state.isloading = false
 
         },

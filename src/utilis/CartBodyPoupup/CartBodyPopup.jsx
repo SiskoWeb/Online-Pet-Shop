@@ -8,15 +8,22 @@ import { useSelector } from 'react-redux'
 import { ProductHook } from '../../User/Hook/ProductHoo/ProductHook'
 import CartCardProduct from '../CartCardProduct/CartCardProduct'
 export default function CartBodyPopup() {
-    const isCart = false
+
 
     const [isLoading, productsData] = ProductHook()
     const cart = useSelector((state) => state.cart.Cart)
-    console.log(productsData)
+
+
+    // @desc sum total Price
+    const totalPrice = cart?.reduce((total, cartItem) => {
+        const item = productsData?.find((i) => i.id === cartItem.id);
+        return Math.floor(total + (item?.price || 0) * cartItem.quantity * 1)
+    }, 0)
+
     return (
         <div className={styles.Card}>
 
-            {!cart.length >= 1 ? <p>No products in the cart.</p> :
+            {!cart?.length >= 1 ? <p>No products in the cart.</p> :
 
                 <div className={styles.CardBody}>
 
@@ -25,10 +32,9 @@ export default function CartBodyPopup() {
 
                     <div className={styles.listItem}>
 
-                        {cart.length >= 1 ? cart.map((item, index) => {
+                        {cart?.length >= 1 ? cart.map((item, index) => {
                             const product = productsData.find(p => p._id === item.id)
 
-                            console.log(product)
                             return (
 
                                 <CartCardProduct product={product} item={item} key={index} />
@@ -37,27 +43,13 @@ export default function CartBodyPopup() {
 
                         }) : null}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
 
 
                     <hr></hr>
                     <div className={styles.price}>
                         <p>Total:</p>
-                        <p>$199.95</p>
+                        <p>${totalPrice}</p>
                     </div>
 
                     <Link className={styles.ViewCart} to='/cart'>View cart</Link>

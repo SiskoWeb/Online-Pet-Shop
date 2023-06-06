@@ -12,7 +12,7 @@ export default function OrderDetail() {
 
     const [isloading, order, ischecked, handleChangeSwitcher, allproducts] = UpdateOrderHook()
 
-
+    console.log(order)
     return (
         <div>
             {isloading ? <Loading /> : null}
@@ -43,10 +43,10 @@ export default function OrderDetail() {
                                         return (
                                             <tr key={index}>
 
-                                                <td><img src={product.imageCover}></img></td>
-                                                <td>{product.title}</td>
-                                                <td>${item.price}x{item.quantity}</td>
-                                                <td>${item.price * item.quantity}</td>
+                                                <td><img src={product?.imageCover}></img></td>
+                                                <td>{product?.title}</td>
+                                                <td>${item?.price}x{item.quantity}</td>
+                                                <td>${item?.price * item.quantity}</td>
 
                                             </tr>
                                         )

@@ -35,11 +35,11 @@ export default function ProductCard({ data }) {
 
 
                 <div className={styles.text} >
-                    <Link to={`Product/${data?._id}`}>  <p>{data?.title}</p></Link>
+
 
                     <span>{data?.category?.name}</span>
 
-
+                    <Link to={`Product/${data?._id}`}>  <p>{data?.title}</p></Link>
 
 
 

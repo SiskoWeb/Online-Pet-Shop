@@ -10,23 +10,23 @@ import { ProductHook } from '../../Hook/ProductHoo/ProductHook'
 import { useSelector } from 'react-redux'
 import { CartHook } from '../../Hook/CartHook/CartHook'
 import CartCardProduct from '../../../utilis/CartCardProduct/CartCardProduct'
+import { AddOrderHook } from '../../Hook/OrderHook/AddOrderHook'
 
 export default function CartPage() {
 
-    const [name, number, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress] = CartPageHook()
+    const [name, phone, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress] = CartPageHook()
 
-
+    const [CreateOrder] = AddOrderHook()
 
     const [isLoading, productsData] = ProductHook()
+
     const cart = useSelector((state) => state.cart.Cart)
 
-
-
+    // @desc sum total Price
     const totalPrice = cart?.reduce((total, cartItem) => {
         const item = productsData?.find((i) => i.id === cartItem.id);
         return Math.floor(total + (item?.price || 0) * cartItem.quantity * 1)
     }, 0)
-
 
 
     return (
@@ -46,7 +46,7 @@ export default function CartPage() {
                                 <div className={styles.DisplayAddressContainer}>
                                     <div className={styles.DisplayAddress}>
                                         <p>Your Name<span>{shippingAddress.name}</span></p>
-                                        <p>Phone Number <span>{shippingAddress.number}</span></p>
+                                        <p>Phone Number <span>{shippingAddress.phone}</span></p>
                                         <p>City<span>{shippingAddress.city}</span></p>
                                         <p>Shipping Adress<span>{shippingAddress.address}</span></p>
                                     </div>
@@ -55,7 +55,7 @@ export default function CartPage() {
                                     </div>
 
                                 </div>
-                                <button className={styles.orderBtn}>Confirme</button>
+                                <button onClick={() => CreateOrder()} className={styles.orderBtn}>Confirme</button>
                             </>
                             :
 
@@ -73,7 +73,7 @@ export default function CartPage() {
 
                                     <label>
                                         Phone Number:
-                                        <input required value={number} onChange={(e) => onChangeNumber(e)} type='number' placeholder='06*****' name="email" />
+                                        <input required value={phone} onChange={(e) => onChangeNumber(e)} type='number' placeholder='06*****' name="email" />
                                     </label>
                                     <label>
                                         City:
@@ -96,7 +96,7 @@ export default function CartPage() {
                         <div className={styles.listItem}>
 
 
-                            {cart.length >= 1 ? cart.map((item, index) => {
+                            {cart?.length >= 1 ? cart?.map((item, index) => {
                                 const product = productsData.find(p => p._id === item.id)
 
 

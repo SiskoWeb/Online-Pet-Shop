@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import notify from "../../Hooks/useNotifaction"
 
 const initialState = {
     isLoading: false,
-    Cart: []
+    Cart: localStorage.getItem("shopping-cart")
+        ? JSON.parse(localStorage.getItem("shopping-cart"))
+        : [],
 }
 
 export const CartSlice = createSlice({
@@ -16,40 +19,57 @@ export const CartSlice = createSlice({
             //2 if already in incress quantity +1
             if (exist) {
                 state.Cart.map(item => {
-                    if (item.id === action.payload.id) return item.quantity = item.quantity + 1
-
+                    if (item.id === action.payload.id) {
+                        item.quantity = item.quantity + 1
+                        notify('increment quantity', 'success')
+                    }
                 })
-
             }
             //3 if not in add it ro cart
             else {
                 //1 add to cart
-
                 state.Cart = [...state.Cart, action.payload]
             }
-
         },
-        decrement: (state, action) => {
+
+        increment: (state, action) => {
             state.Cart.map(item => {
-                if (item.id === action.payload.id) {
-                    if (item.quantity === 1) return console.log("already 1 ")
-                    else {
-                        item.quantity = item.quantity - 1
-                    }
-                }
-                else {
-                    return state.Cart
+                if (item.id === action.payload) {
+                    item.quantity = item.quantity + 1
+                    notify('increment quantity', 'success')
+                } else {
+                    return state
                 }
             })
+        },
 
+        decrement: (state, action) => {
+            state.Cart.map(item => {
+                if (item.id === action.payload) {
+                    if (item.quantity > 1) {
+
+                        item.quantity = item.quantity - 1
+                        notify('decrement quantity', 'success')
+                    }
+                    else {
+                        notify('already 1', 'warn')
+                    }
+                } else {
+
+                    return state
+                }
+            })
         },
         removeFromCart: (state, action) => {
             state.Cart = state.Cart.filter(item => item.id !== action.payload)
-        }
+            notify('Removed', 'success')
+        },
+
 
 
     }
 })
 // Action creators are generated for each case reducer function
-export const { AddToCart, decrement, removeFromCart } = CartSlice.actions
+export const { AddToCart, decrement, removeFromCart, increment } = CartSlice.actions
+
 export default CartSlice.reducer

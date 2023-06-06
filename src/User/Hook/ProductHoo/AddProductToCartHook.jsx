@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { AddToCart, removeFromCart } from '../../../Redux/CartSlice/CartSlice'
+import { AddToCart, increment } from '../../../Redux/CartSlice/CartSlice'
 import { useEffect } from 'react'
 import notify from "../../../Hooks/useNotifaction"
 
@@ -17,9 +17,11 @@ export function AddProductToCartHook() {
         notify('Product Added', 'success')
     }
 
+
+
     const cart = useSelector((state) => state.cart.Cart)
     const dispatch = useDispatch()
 
 
-    return [AddToCartFunc]
+    return [AddToCartFunc, increment]
 }

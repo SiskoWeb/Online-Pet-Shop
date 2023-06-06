@@ -21,6 +21,7 @@ import AllOrders from './Admin/Components/AllOrders/AllOrders'
 import EditProduct from './Admin/Components/EditProduct/EditProduct'
 import { useSelector } from 'react-redux'
 import OrderDetail from './Admin/Components/OrderDetail/OrderDetail'
+import ThankYouPage from './User/Pages/ThankYouPage/ThankYouPage'
 
 function App() {
   const isloading = useSelector((state) => state.categories.isloading)
@@ -64,6 +65,8 @@ function App() {
             <Route path=":id" element={<OrderDetail />} />
 
           </Route>
+          <Route path="/ThankYou" element={<ThankYouPage />} />
+          
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Routes>
 

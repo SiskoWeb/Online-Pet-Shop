@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './CartCardProduct.module.scss'
 import { CartHook } from '../../User/Hook/CartHook/CartHook'
+import { AddProductToCartHook } from '../../User/Hook/ProductHoo/AddProductToCartHook'
 export default function CartCardProduct({ product, item }) {
-    const [onAddToCart, onRemove, onDecrement, cart] = CartHook()
+    const [onRemove, onDecrement, onincrement] = CartHook()
+
 
     return (
         <div className={styles.Item}>
@@ -12,12 +14,12 @@ export default function CartCardProduct({ product, item }) {
             </div>
             <div className={styles.textProductCart}>
                 <p>{product?.title}</p>
-                <button>Remove</button>
+                <button onClick={() => onRemove(product?._id)}>Remove</button>
             </div>
             <div className={styles.QuantityCart}>
-                <i onClick={() => onAddToCart(item?._id)} class="fa-solid fa-minus"></i>
+                <i onClick={() => onDecrement(product?._id)} className="fa-solid fa-minus"></i>
                 <span>{item.quantity}</span>
-                <i onClick={() => onDecrement(item?._id)} class="fa-solid fa-plus"></i>
+                <i onClick={() => onincrement(product?._id)} className="fa-solid fa-plus"></i>
             </div>
             <div className={styles.prictProductCart}>
                 <p>${product?.price}</p>

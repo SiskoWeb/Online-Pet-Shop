@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 import { useGetData } from "../../Hooks/useGetData"
-import { useInsertDataWithImages } from "../../Hooks/useInsertData"
+import { useInsertData, useInsertDataWithImages } from "../../Hooks/useInsertData"
 import { useDeleteData } from "../../Hooks/useDeleteData"
 import { useUpdateDataWithImage } from "../../Hooks/useUpdateData"
 
@@ -41,10 +41,10 @@ export const getOneOrderRedux = createAsyncThunk('Orders/getOne', async (id) => 
 
 })
 
-export const AddProduct = createAsyncThunk('product/add', async (body) => {
+export const AddOrder = createAsyncThunk('Orders/add', async (body) => {
     try {
 
-        const response = await useInsertDataWithImages('/api/v1/products', body)
+        const response = await useInsertData('/api/v1/order', body)
 
         return response
 

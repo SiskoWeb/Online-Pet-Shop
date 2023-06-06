@@ -8,7 +8,7 @@ export const CartPageHook = () => {
 
 
     const [name, setName] = useState('')
-    const [number, setNumber] = useState('')
+    const [phone, setPhone] = useState('')
     const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
     const [loading, setLoading] = useState(true)
@@ -24,7 +24,7 @@ export const CartPageHook = () => {
     }
 
     const onChangeNumber = (e) => {
-        setNumber(e.target.value)
+        setPhone(e.target.value)
     }
     const onChangeCity = (e) => {
         setCity(e.target.value)
@@ -40,13 +40,13 @@ export const CartPageHook = () => {
         e.preventDefault()
 
         // validation Inputs
-        if (name === '' || number === '' || city === '' || address === '') {
+        if (name === '' || phone === '' || city === '' || address === '') {
             notify('Somthing Wring in address ', 'error')
             return true
         }
 
         setLoading(true)
-        localStorage.setItem('address', JSON.stringify({ name, number, city, address }))
+        localStorage.setItem('address', JSON.stringify({ name, phone, city, address }))
         setShippingAddress(JSON.parse(localStorage.getItem('address')))
         setLoading(false)
         setIsAddressHere(true)
@@ -61,13 +61,12 @@ export const CartPageHook = () => {
 
 
 
-        console.log('true lodaing')
+
         setShippingAddress(JSON.parse(localStorage.getItem('address')))
         setName(shippingAddress.name)
-        setNumber(shippingAddress.number)
+        setPhone(shippingAddress.phone)
         setCity(shippingAddress.city)
         setAddress(shippingAddress.address)
-        console.log('false lodaing')
         setIsAddressHere(false)
 
     }
@@ -91,5 +90,5 @@ export const CartPageHook = () => {
 
 
 
-    return [name, number, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress]
+    return [name, phone, city, address, onChangeName, onChangeNumber, onChangeCity, onChangeAddress, addAddress, editAddress, isAddressHere, shippingAddress]
 }
