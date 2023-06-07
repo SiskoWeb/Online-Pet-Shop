@@ -16,7 +16,7 @@ export default function CartBodyPopup() {
 
     // @desc sum total Price
     const totalPrice = cart?.reduce((total, cartItem) => {
-        const item = productsData?.find((i) => i.id === cartItem.id);
+        const item = productsData?.find((i) => i.id === cartItem.productID);
         return Math.floor(total + (item?.price || 0) * cartItem.quantity * 1)
     }, 0)
 
@@ -33,7 +33,7 @@ export default function CartBodyPopup() {
                     <div className={styles.listItem}>
 
                         {cart?.length >= 1 ? cart.map((item, index) => {
-                            const product = productsData.find(p => p._id === item.id)
+                            const product = productsData.find(p => p._id === item.productID)
 
                             return (
 

@@ -15,11 +15,11 @@ export const CartSlice = createSlice({
         AddToCart: (state, action) => {
 
             //1 check if this product alrady in cart
-            const exist = state.Cart.find(item => item.id === action.payload.id);
+            const exist = state.Cart.find(item => item.productID === action.payload.productID);
             //2 if already in incress quantity +1
             if (exist) {
                 state.Cart.map(item => {
-                    if (item.id === action.payload.id) {
+                    if (item.productID === action.payload.productID) {
                         item.quantity = item.quantity + 1
                         notify('increment quantity', 'success')
                     }
@@ -34,7 +34,7 @@ export const CartSlice = createSlice({
 
         increment: (state, action) => {
             state.Cart.map(item => {
-                if (item.id === action.payload) {
+                if (item.productID === action.payload) {
                     item.quantity = item.quantity + 1
                     notify('increment quantity', 'success')
                 } else {
@@ -45,7 +45,7 @@ export const CartSlice = createSlice({
 
         decrement: (state, action) => {
             state.Cart.map(item => {
-                if (item.id === action.payload) {
+                if (item.productID === action.payload) {
                     if (item.quantity > 1) {
 
                         item.quantity = item.quantity - 1
@@ -61,7 +61,7 @@ export const CartSlice = createSlice({
             })
         },
         removeFromCart: (state, action) => {
-            state.Cart = state.Cart.filter(item => item.id !== action.payload)
+            state.Cart = state.Cart.filter(item => item.productID !== action.payload)
             notify('Removed', 'success')
         },
 

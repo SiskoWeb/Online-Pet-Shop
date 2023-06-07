@@ -22,7 +22,7 @@ export function AddOrderHook() {
     const dispatch = useDispatch()
 
     const totalOrderPrice = cart?.reduce((total, cartItem) => {
-        const item = productsData?.find((i) => i.id === cartItem.id);
+        const item = productsData?.find((i) => i.id === cartItem.productID);
         return Math.floor(total + (item?.price || 0) * cartItem.quantity * 1)
     }, 0)
 

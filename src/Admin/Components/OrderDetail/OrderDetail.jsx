@@ -12,6 +12,7 @@ export default function OrderDetail() {
 
     const [isloading, order, ischecked, handleChangeSwitcher, allproducts] = UpdateOrderHook()
 
+    console.log(allproducts)
     console.log(order)
     return (
         <div>
@@ -39,14 +40,15 @@ export default function OrderDetail() {
 
                                 {order === [] ? <p>no porudcts</p> :
                                     order?.cartItems?.map((item, index) => {
-                                        const product = allproducts.find(p => p.id === item.product);
+                                        const product = allproducts.find(p => p.id === item.productID);
+
                                         return (
                                             <tr key={index}>
 
                                                 <td><img src={product?.imageCover}></img></td>
                                                 <td>{product?.title}</td>
-                                                <td>${item?.price}x{item.quantity}</td>
-                                                <td>${item?.price * item.quantity}</td>
+                                                <td>${product?.price}x{item.quantity}</td>
+                                                <td>${product?.price * item.quantity}</td>
 
                                             </tr>
                                         )

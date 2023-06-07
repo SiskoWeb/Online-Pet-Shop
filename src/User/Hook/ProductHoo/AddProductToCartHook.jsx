@@ -10,7 +10,7 @@ export function AddProductToCartHook() {
     const AddToCartFunc = async (id) => {
         //@desc Create object for cart
         const cartItem = {
-            id,
+            productID: id,
             quantity: 1
         }
         await dispatch(AddToCart(cartItem))
