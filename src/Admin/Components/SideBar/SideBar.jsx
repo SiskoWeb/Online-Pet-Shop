@@ -1,16 +1,19 @@
 import React from 'react'
-import { Link  , NavLink} from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './SideBar.module.scss'
 import logo from '../../../assets/admin/logo.png'
-import avatar from '../../../assets/admin/avatar.jpg'
+import avatar from '../../../assets/admin/admin_avatar.png'
+import { useSelector } from 'react-redux'
 export default function SideBar() {
+
+    const user = useSelector(state => state.auth.user)
     return (
         <aside className={styles.SideBar}>
-            <div className={styles.logoAdmin}><img src={logo}></img></div>
+            <div className={styles.logoAdmin}><h1>Logo</h1></div>
             <div className={styles.SideBarcol2}>
                 <img src={avatar}></img>
-                <h6>JOHN</h6>
-                <p>general manager.</p>
+                <h6>{user?.name}</h6>
+                <p>{user?.role}</p>
             </div>
 
             <ul className={styles.Links}>

@@ -1,8 +1,5 @@
 @import "../../../variables";
 
-.hideSideBar {
-  display: none;
-}
 .SideBar {
   background-color: #ffffff;
   height: 100%;
@@ -87,6 +84,10 @@
     align-items: center;
     text-align: start;
     // row-gap: 10px;
+    &.active {
+      color: red !important;
+      background-color: red !important;
+    }
   }
   i {
     color: black;
@@ -99,7 +100,4 @@
   li:hover {
     color: #ff8084 !important;
   }
-}
-a .active {
-  color: #ff8084 !important;
 }
