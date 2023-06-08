@@ -1,15 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './ProductDetails.module.scss'
 
 import NavBar from '../../Components/NavBar/NavBar'
 import { GetProductHook } from '../../Hook/ProductHoo/GetProductHook'
 import Loading from '../../../utilis/Loading/Loading'
+import { AddProductToCartHook } from '../../Hook/ProductHoo/AddProductToCartHook'
+import { CartHook } from '../../Hook/CartHook/CartHook'
+import { useSelector } from 'react-redux'
 export default function ProductDetails() {
 
     const [imageIndex, setImageIndex] = useState(0)
+    const [itemCart, setItemCart] = useState([])
+
 
 
     const [isloading, productsData] = GetProductHook()
+    const [AddToCartFunc] = AddProductToCartHook()
+
+    const [onRemove, onDecrement, onincrement] = CartHook()
+
+    const cart = useSelector((state) => state.cart.Cart)
+
+
+    //@desc filter cart and get only cart of our product
+    useEffect(() => {
+
+        setItemCart(cart.filter(p => p.productID === productsData._id))
+
+    }, [cart, productsData])
 
     return (
 
@@ -41,7 +59,22 @@ export default function ProductDetails() {
 
 
                             <div className={styles.btns}>
-                                <button className={styles.addToCart}>Add To Cart  <i className="fa-brands fa-opencart"></i></button>
+                                {itemCart.length >= 1 ?
+                                    <div className={styles.QuantityCart}>
+                                        <i onClick={() => onDecrement(productsData?._id)} className="fa-solid fa-minus"></i>
+                                        <span>{itemCart[0]?.quantity}</span>
+                                        <i onClick={() => onincrement(productsData?._id)} className="fa-solid fa-plus"></i>
+                                    </div>
+
+
+                                    : <button onClick={() => AddToCartFunc(productsData?.id)} className={styles.addToCart}>
+                                        Add To Cart  <i className="fa-brands fa-opencart"></i></button>
+
+
+
+
+                                }
+
                                 <div className={styles.wishlist_icon}>   <i className="far fa-heart"></i></div>
                             </div>
                         </div>

@@ -8,7 +8,7 @@
   box-shadow: 0 1px 3px #00000044;
   transition: 0.5s;
   padding: 10px;
-
+  @include QuantityCart;
   width: 200px;
   .card1 {
     display: flex;

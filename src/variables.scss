@@ -13,13 +13,10 @@ $colors_Card: (
   "four": #4aa53f,
 );
 
-
-
 // Colors Cliente side
 
-$Home_Main_color:#5897fb;
-$Home_Hero_color:#f4f5f9;
-
+$Home_Main_color: #5897fb;
+$Home_Hero_color: #f4f5f9;
 
 @mixin btnAdmin($padding) {
   border: none;
@@ -82,5 +79,30 @@ $Home_Hero_color:#f4f5f9;
     border-style: solid;
     border-width: 0;
     text-align: start;
+  }
+}
+
+@mixin QuantityCart() {
+  .QuantityCart {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    column-gap: 5px;
+    i {
+      border-radius: 10px;
+      padding: 3px;
+      cursor: pointer;
+    }
+    span {
+      width: 10px;
+    }
+    :nth-child(1) {
+      background-color: red;
+      color: white;
+    }
+    :nth-child(3) {
+      background-color: #03a103;
+      color: white;
+    }
   }
 }
