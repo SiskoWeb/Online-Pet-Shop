@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 export default function SideBar() {
 
     const user = useSelector(state => state.auth.user)
+
+    const ActiveLink = ({ isActive }) => (isActive ? styles.active : 'inactive')
     return (
         <aside className={styles.SideBar}>
             <div className={styles.logoAdmin}><h1>Logo</h1></div>
@@ -19,10 +21,10 @@ export default function SideBar() {
             <ul className={styles.Links}>
 
 
-                <li>     <NavLink to="/admin"><i className="fa-solid fa-gauge" ></i><span>Dashboard</span></NavLink> <i className="fa fa-angle-right pull-right"></i></li>
-                <li >    <NavLink to="allproducts"><i className="fa-brands fa-product-hunt"></i><span>Products</span></NavLink><i className="fa fa-angle-right pull-right"></i></li>
-                <li >    <NavLink to="addproduct"><i className="fa-solid fa-water"></i><span>Add Product</span></NavLink><i className="fa fa-angle-right pull-right"></i></li>
-                <li >    <NavLink to="categories"><i className="fa-solid fa-water"></i><span>Categories</span></NavLink><i className="fa fa-angle-right pull-right"></i></li>
+                <li>     <NavLink end className={ActiveLink} to="/admin"><i className="fa-solid fa-gauge" ></i><span>Dashboard</span><i className="fa fa-angle-right pull-right"></i></NavLink> </li>
+                <li >    <NavLink className={ActiveLink} to="allproducts"><i className="fa-brands fa-product-hunt"></i><span>Products</span><i className="fa fa-angle-right pull-right"></i></NavLink></li>
+                <li >    <NavLink className={ActiveLink} to="addproduct"><i className="fa-solid fa-water"></i><span>Add Product</span><i className="fa fa-angle-right pull-right"></i></NavLink></li>
+                <li >    <NavLink className={ActiveLink} to="categories"><i className="fa-solid fa-water"></i><span>Categories</span><i className="fa fa-angle-right pull-right"></i></NavLink></li>
 
 
 

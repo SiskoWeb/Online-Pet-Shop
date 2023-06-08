@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom'
 // import img from '../../assets/Products/p1.png'
 import { ToastContainer } from 'react-toastify';
 import { AddProductToCartHook } from '../../User/Hook/ProductHoo/AddProductToCartHook'
-
-export default function ProductCard({ data }) {
+import { useSelector } from 'react-redux';
+import { CartHook } from '../../User/Hook/CartHook/CartHook';
+export default function ProductCard({ data, cartItem }) {
 
     const [AddToCartFunc] = AddProductToCartHook()
 
-
-
-
+    const [onRemove, onDecrement, onincrement] = CartHook()
 
 
 
@@ -48,7 +47,18 @@ export default function ProductCard({ data }) {
                 <div className={`${styles.icons}`} >
 
                     <p>${data?.price}</p>
-                    <button onClick={() => AddToCartFunc(data?._id)}>ADD</button>
+
+                    {/* @desc Check if this product in cart diplay componant quantity if not diplay add to card*/}
+                    {cartItem?.quantity >= 1 ?
+
+                        <div className={styles.QuantityCart}>
+                            <i onClick={() => onDecrement(data?._id)} className="fa-solid fa-minus"></i>
+                            <span>{cartItem?.quantity}</span>
+                            <i onClick={() => onincrement(data?._id)} className="fa-solid fa-plus"></i>
+                        </div>
+
+
+                        : <button onClick={() => AddToCartFunc(data?._id)}>ADD</button>}
 
 
 

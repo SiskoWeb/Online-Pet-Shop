@@ -52,7 +52,8 @@ export const CartSlice = createSlice({
                         notify('decrement quantity', 'success')
                     }
                     else {
-                        notify('already 1', 'warn')
+                        state.Cart = state.Cart.filter(item => item.productID !== action.payload)
+                        notify('Removed from cart', 'success')
                     }
                 } else {
 
@@ -62,7 +63,7 @@ export const CartSlice = createSlice({
         },
         removeFromCart: (state, action) => {
             state.Cart = state.Cart.filter(item => item.productID !== action.payload)
-            notify('Removed', 'success')
+            notify('Removed ', 'success')
         },
 
 

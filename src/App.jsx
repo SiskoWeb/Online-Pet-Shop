@@ -55,6 +55,7 @@ function App() {
           <Route path="admin" element={<DashboardPage />}>
             <Route index element={<Dashboard />} />
 
+
             <Route path="allproducts" element={<AllProducts />} />
             <Route path="addproduct" element={<AddProduct />} />
             <Route path="categories" element={<CategoriesAdmin />} />
@@ -66,7 +67,7 @@ function App() {
 
           </Route>
           <Route path="/ThankYou" element={<ThankYouPage />} />
-          
+
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Routes>
 

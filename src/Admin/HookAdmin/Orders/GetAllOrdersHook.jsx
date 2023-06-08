@@ -26,7 +26,7 @@ export const GetAllOrdersHook = () => {
 
     /// @desc :get tottal income from only delevred orders
     const TotalIncom = (data) => {
-        let result = 0;
+
 
         data.map(item => {
             if (!item.isDelivered === true) return;
@@ -35,12 +35,7 @@ export const GetAllOrdersHook = () => {
 
             }
         })
-        // for (var i = 0; i < data.length; i++) {
-        //     if (data[i]?.isDelivered) {
-        //         result = result + data[i].totalOrderPrice
-        //     }
-        // }
-        // setTotaleIncome(result)
+
     }
 
 
@@ -58,11 +53,7 @@ export const GetAllOrdersHook = () => {
 
             }
         })
-        // for (var i = 0; i < dayTransactions.length; i++) {
-        //     if (dayTransactions[i]?.isDelivered) {
-        //         result = result + dayTransactions[i].totalOrderPrice
-        //     }
-        // }
+
 
 
         setTotalIncomToday(result)
