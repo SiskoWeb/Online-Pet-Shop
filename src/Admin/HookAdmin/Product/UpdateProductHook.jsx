@@ -82,7 +82,7 @@ export const UpdateProductHook = () => {
 
 
 
-    const [file, setFile] = useState()
+
 
     //@desc after remove order list update
     useEffect(() => {
@@ -102,21 +102,6 @@ export const UpdateProductHook = () => {
 
 
                 if (GetOneProduct.data.data.images) {
-
-
-
-                    const convertUrlToFile = async (url) => {
-                        const response = await fetch(url);
-                        const blob = await response.blob();
-                        const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
-                        setFile(file)
-
-                    };
-
-
-
-
-
                     const fetchData = async () => {
 
                         // Create a new list of images based on the API response
@@ -125,21 +110,14 @@ export const UpdateProductHook = () => {
                         }
 
                         else {
-
+                            //@desc Mapping through images from api and put it in listImages Array 
                             const updatedList = await listimages.map((item, index) => {
-
-                                convertUrlToFile(GetOneProduct.data.data.images[index])
                                 const imageDisplay = index < GetOneProduct.data.data.images.length ? GetOneProduct.data.data.images[index] : addImg;
                                 const image = index < GetOneProduct.data.data.images.length ? GetOneProduct.data.data.images[index] : null;
-
-
                                 return { ...item, imageDisplay, image };
-
 
                             });
                             setListimages(updatedList);
-                            console.log(updatedList)
-
                         }
                     }
                     fetchData();
@@ -147,19 +125,7 @@ export const UpdateProductHook = () => {
 
 
 
-                // const updatedList = listimages.map((item, index) => {
 
-                //     if (item.id === index + 1) {
-
-                //         return {
-                //             ...item,
-                //             image: null, imageDisplay: GetOneProduct.data.data.images[index] // Replace 'image' + id with the actual image value
-                //         };
-                //     }
-                //     return item;
-                // });
-
-                // setListimages(updatedList);
 
 
 
@@ -283,7 +249,7 @@ export const UpdateProductHook = () => {
     const onSubmit = async (e) => {
 
         e.preventDefault()
-
+        console.log(listimages)
 
 
 
@@ -338,27 +304,31 @@ export const UpdateProductHook = () => {
 
 
 
-                //convert array of url image to file 
-                news.map(
-                    (img, index) => {
-                        //1) check is this image is url  
-                        const exist = img.imageDisplay.includes('.jpeg')
+                if (news.length >= 1) {
+                    //convert array of url image to file 
+                    news.map(
+                        (img, index) => {
+                            //1) check is this image is url  
+                            const exist = img.imageDisplay.includes('.jpeg')
 
-                        //2)conver it to URL
-                        if (exist) {
-                            convertUrlToFile(img.image).then(val => itemImages.push(val))
-                            console.log('url')
-                        }
-                        else {
-                            itemImages.push(img.image)
-                            console.log('no url')
-                        }
-                    })
+                            //2)conver it to URL
+                            if (exist) {
+                                convertUrlToFile(img.image).then(val => itemImages.push(val))
+                                console.log('url')
+                            }
+                            else {
+                                itemImages.push(img.image)
+                                console.log('no url')
+                            }
+                        })
+                }
             }
             conve()
 
             setTimeout(() => {
-                itemImages.forEach((item) => formData.append('images', item));
+                itemImages.forEach((item) => formData.append('images', item))
+
+
                 console.log('from timeout')
             }, 1000);
 
