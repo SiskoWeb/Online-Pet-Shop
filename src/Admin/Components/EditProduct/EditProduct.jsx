@@ -5,6 +5,7 @@ import { UpdateProductHook } from '../../HookAdmin/Product/UpdateProductHook'
 import { GetCategoryHook } from '../../HookAdmin/Category/GetCategoryHook';
 import Loading from '../../../utilis/Loading/Loading';
 import ErrorPopUp from '../../../utilis/ErrorPopUp/ErrorPopUp';
+import addImg from '../../../assets/addimg.png'
 export default function EditProduct() {
     const [ignoreThisValue, Categories] = GetCategoryHook()
     const [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading, error] = UpdateProductHook()

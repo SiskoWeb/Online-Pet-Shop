@@ -39,17 +39,42 @@ export function AddOrderHook() {
 
         await dispatch(AddOrder({ cartItems, shippingAddress, totalOrderPrice }))
 
-        notify('Order Created', 'success')
-        setTimeout(() => {
-            navigate('/ThankYou')
-        }, 1100);
 
-        localStorage.removeItem("shopping-cart")
     }
 
 
 
     useEffect(() => {
+        console.log(OrderResponse)
+        if (OrderResponse.status === 'success') {
+
+
+            if (OrderResponse.data.created_at) {
+
+
+                notify('Order Created', 'success')
+                setTimeout(() => {
+                    navigate('/ThankYou')
+                }, 1100);
+
+                localStorage.removeItem("shopping-cart")
+
+            }
+
+        }
+
+
+        else {
+
+            //     //@ if we get error
+            if (OrderResponse?.data) {
+                if (OrderResponse.data.message) {
+                    notify('there is error', 'error')
+                }
+
+            }
+
+        }
 
 
     }, [OrderResponse])

@@ -27,7 +27,8 @@
 
 .list {
   padding: 50px 0;
-  row-gap: 30px;
+  row-gap: 100px;
+  column-gap: 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }

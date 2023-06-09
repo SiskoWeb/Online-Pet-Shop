@@ -39,11 +39,11 @@ export default function ProductDetails() {
             <div className={styles.PageProdcut}>
                 <div className={styles.ProductDetails}>
                     <div className={styles.ProductImages} >
-                        <div className={styles.ListImgs}>
+                        {/*     <div className={styles.ListImgs}>
                             {productsData.images?.map((item, index) => {
                                 return (<img key={index} className={styles.minImages} src={item} onClick={() => setImageIndex(index)}></img>)
                             })}
-                        </div>
+                        </div> */}
                         <img className={styles.MainImgs} src={productsData.imageCover}></img>
                     </div>
 

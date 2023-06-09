@@ -84,24 +84,29 @@ $Home_Hero_color: #f4f5f9;
 
 @mixin QuantityCart() {
   .QuantityCart {
+    height: 100%;
     display: flex;
     align-items: center;
-    // justify-content: space-between;
+
+    border-radius: 50px;
+
     column-gap: 5px;
+    font-weight: 900;
     i {
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 3px;
       cursor: pointer;
+      background-color: $Home_Main_color;
     }
     span {
       width: 10px;
     }
     :nth-child(1) {
-      background-color: red;
+      background-color: #7899ce;
       color: white;
     }
     :nth-child(3) {
-      background-color: #03a103;
+      background-color: #3faceb;
       color: white;
     }
   }

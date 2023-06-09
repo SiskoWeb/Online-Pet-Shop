@@ -13,7 +13,7 @@ export default function ProductCard({ data, cartItem }) {
 
     const [onRemove, onDecrement, onincrement] = CartHook()
 
-
+    // <span>{data?.category?.name}</span>
 
     return (
 
@@ -36,17 +36,17 @@ export default function ProductCard({ data, cartItem }) {
                 <div className={styles.text} >
 
 
-                    <span>{data?.category?.name}</span>
+
 
                     <Link to={`Product/${data?._id}`}>  <p>{data?.title}</p></Link>
 
-
+                    <p>${data?.price}</p>
 
 
                 </div>
-                <div className={`${styles.icons}`} >
+                <div className={`${styles.btns}`} >
 
-                    <p>${data?.price}</p>
+
 
                     {/* @desc Check if this product in cart diplay componant quantity if not diplay add to card*/}
                     {cartItem?.quantity >= 1 ?
@@ -58,7 +58,10 @@ export default function ProductCard({ data, cartItem }) {
                         </div>
 
 
-                        : <button onClick={() => AddToCartFunc(data?._id)}>ADD</button>}
+                        : <button onClick={() => AddToCartFunc(data?.id)} className={styles.addToCart}>
+                            Add To Cart  <i className="fa-brands fa-opencart"></i></button>
+
+                    }
 
 
 

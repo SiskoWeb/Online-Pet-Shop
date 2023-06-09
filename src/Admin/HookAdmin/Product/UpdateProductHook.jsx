@@ -82,14 +82,13 @@ export const UpdateProductHook = () => {
 
 
 
-
-
+    const [file, setFile] = useState()
 
     //@desc after remove order list update
     useEffect(() => {
 
         if (GetOneProduct.status === 200) {
-
+            console.log(GetOneProduct.data.data.images)
 
             if (GetOneProduct.data.data) {
                 sesetError(false)
@@ -102,22 +101,65 @@ export const UpdateProductHook = () => {
 
 
 
+                if (GetOneProduct.data.data.images) {
 
 
 
-                const updatedList = listimages.map((item, index) => {
-                    if (item.id === index + 1) {
-                        return {
-                            ...item,
-                            image: null, imageDisplay: GetOneProduct.data.data.images[index] // Replace 'image' + id with the actual image value
-                        };
+                    const convertUrlToFile = async (url) => {
+                        const response = await fetch(url);
+                        const blob = await response.blob();
+                        const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+                        setFile(file)
+
+                    };
+
+
+
+
+
+                    const fetchData = async () => {
+
+                        // Create a new list of images based on the API response
+                        if (GetOneProduct.data.data.images.length === 0) {
+                            return; // No URLs, keep the original state
+                        }
+
+                        else {
+
+                            const updatedList = await listimages.map((item, index) => {
+
+                                convertUrlToFile(GetOneProduct.data.data.images[index])
+                                const imageDisplay = index < GetOneProduct.data.data.images.length ? GetOneProduct.data.data.images[index] : addImg;
+                                const image = index < GetOneProduct.data.data.images.length ? GetOneProduct.data.data.images[index] : null;
+
+
+                                return { ...item, imageDisplay, image };
+
+
+                            });
+                            setListimages(updatedList);
+                            console.log(updatedList)
+
+                        }
                     }
-                    return item;
-                });
-
-                setListimages(updatedList);
+                    fetchData();
+                }
 
 
+
+                // const updatedList = listimages.map((item, index) => {
+
+                //     if (item.id === index + 1) {
+
+                //         return {
+                //             ...item,
+                //             image: null, imageDisplay: GetOneProduct.data.data.images[index] // Replace 'image' + id with the actual image value
+                //         };
+                //     }
+                //     return item;
+                // });
+
+                // setListimages(updatedList);
 
 
 
@@ -133,19 +175,20 @@ export const UpdateProductHook = () => {
 
             }
 
-        }
 
 
-        else {
 
-            //     //@ if we get error
-            if (GetOneProduct?.data) {
-                if (GetOneProduct.data.message) {
-                    sesetError(true)
+            else {
+
+                //     //@ if we get error
+                if (GetOneProduct?.data) {
+                    if (GetOneProduct.data.message) {
+                        sesetError(true)
+                    }
+
                 }
 
             }
-
         }
     }, [GetOneProduct])
 
@@ -153,24 +196,27 @@ export const UpdateProductHook = () => {
 
 
 
-    //@desc get images from user (second Images)
-    const handleChangeImages = (image, id) => {
-        const updatedList = listimages.map(item => {
+
+    // //@desc get images from user (second Images)
+    const handleChangeImages = async (image, id) => {
+
+
+
+        // Update the image object in the listimages state
+        const updatedListImages = await listimages.map((item) => {
+            // Replace 'image' + id with the actual image value
             if (item.id === id) {
                 return {
                     ...item,
-                    image: image, imageDisplay: URL.createObjectURL(image)// Replace 'image' + id with the actual image value
+                    image: image,
+                    imageDisplay: URL.createObjectURL(image)
                 };
             }
             return item;
         });
 
-        setListimages(updatedList);
-
-
+        setListimages(updatedListImages);
     };
-
-
 
 
 
@@ -219,18 +265,27 @@ export const UpdateProductHook = () => {
             });
 
             setListimages(updatedList);
-            console.log(updatedList)
+
         }
 
 
     }
 
+    const convertUrlToFile = async (url) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
 
+        return file;
+    };
 
     // @desc upload data to Server 
     const onSubmit = async (e) => {
-        console.log(mainImage)
+
         e.preventDefault()
+
+
+
 
         //@desc  valuesValidator
         if (formInputData.title.length <= 3) {
@@ -263,49 +318,82 @@ export const UpdateProductHook = () => {
         }
 
 
-        // const checkEmptyInput = !Object.values(formInputData).every(res => res === "")
 
 
-
+        //@desc if all values valid fo this
         else {
-            console.log(formInputData.category)
-            setLoading(true)
+
             // @desc create new form from buildin FromData
             const formData = new FormData()
-            //@desc check if user change img if yes add it into form if not updae only name
 
+
+
+            let itemImages = []
+
+            const conve = async () => {
+                //@desc mapping through listimages array  and get only new array contain only old and new images 
+                const news = await listimages.filter((item) => {
+                    if (item.image !== null) return item
+                });
+
+
+
+                //convert array of url image to file 
+                news.map(
+                    (img, index) => {
+                        //1) check is this image is url  
+                        const exist = img.imageDisplay.includes('.jpeg')
+
+                        //2)conver it to URL
+                        if (exist) {
+                            convertUrlToFile(img.image).then(val => itemImages.push(val))
+                            console.log('url')
+                        }
+                        else {
+                            itemImages.push(img.image)
+                            console.log('no url')
+                        }
+                    })
+            }
+            conve()
+
+            setTimeout(() => {
+                itemImages.forEach((item) => formData.append('images', item));
+                console.log('from timeout')
+            }, 1000);
+
+
+            //@desc check if user change img if yes add it into form if not updae only name
             if (mainImage.image === null) {
                 formData.append('title', formInputData.title)
                 formData.append('description', formInputData.description)
                 formData.append('quantity', parseInt(formInputData.quantity))
                 formData.append('price', parseInt(formInputData.price))
                 formData.append('category', formInputData.category)
-                listimages.map(item => formData.append('images', item.image))
-                console.log(formInputData.category)
             }
 
             else {
-                console.log(formInputData.category)
-
                 formData.append('title', formInputData.title)
                 formData.append('description', formInputData.description)
                 formData.append('quantity', parseInt(formInputData.quantity))
                 formData.append('price', parseInt(formInputData.price))
-                formData.append('imageCover', mainImage.image)
+
                 formData.append('category', formInputData.category)
-                listimages.map(item => formData.append('images', item.image))
+
+                formData.append('imageCover', mainImage.image)
+
             }
 
 
-
-
-
-
             //@desc fun create Category  passing ID + naem & image
-            await dispatch(updateProductRedux({ id, formData }))
+            setTimeout(async () => {
+                setLoading(true)
+                await dispatch(updateProductRedux({ id, formData }))
 
-            //@dex switchh loading to false to active validator inside useEffect
-            setLoading(false)
+                setLoading(false)    //@dex switchh loading to false to active validator inside useEffect
+            }, 1000);
+
+
         }
     }
 
@@ -323,11 +411,10 @@ export const UpdateProductHook = () => {
         if (loading === false) {
 
 
-
             if (UpdateResponse.status === 201) {
                 //@ if category created 
                 if (UpdateResponse.data.data.createdAt) {
-                    notify('category created', 'success')
+                    notify('Product Updated', 'success')
 
                     dispatch(getOneProductRedux(id))
 
@@ -356,5 +443,5 @@ export const UpdateProductHook = () => {
     }, [loading])
 
 
-    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading,error]
+    return [onSubmit, handleChange, formInputData, handleChangeImageCover, mainImage, onRemoveImage, handleChangeImages, listimages, isloading, error]
 } 
